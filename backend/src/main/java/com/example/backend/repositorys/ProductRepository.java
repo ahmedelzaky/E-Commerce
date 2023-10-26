@@ -13,13 +13,13 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As imageUrl, p.rating AS rating," + " p.description As description, c.name AS categoryName" + "   FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY p.id")
+    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As image, p.rating AS rating," + " p.description As description, c.name AS category" + "   FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY p.id")
     List<ProductDto> findAllProducts();
 
-    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As imageUrl, p.rating AS rating," + " p.description As description, c.name AS categoryName" + " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = ?1")
+    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As image, p.rating AS rating," + " p.description As description, c.name AS category" + " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = ?1")
     List<ProductDto> findAllByCategoryName(String name);
 
 
-    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As imageUrl, p.rating AS rating," + " p.description As description, c.name AS categoryName" + "   FROM Product p JOIN Category c ON c.id = p.categoryId WHERE  p.id = ?1")
+    @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As image, p.rating AS rating," + " p.description As description, c.name AS category" + "   FROM Product p JOIN Category c ON c.id = p.categoryId WHERE  p.id = ?1")
     Optional<ProductDto> findSpecific(Long productId);
 }

@@ -5,9 +5,9 @@ public interface ProductDto {
 
     String getTitle();
 
-    String getCategoryName();
+    String getCategory();
 
-    String getImageUrl();
+    String getImage();
 
     Float getPrice();
 

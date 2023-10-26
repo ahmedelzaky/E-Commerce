@@ -1,0 +1,32 @@
+.row {
+  margin-top: 40px;
+}
+.col {
+  margin-bottom: 30px;
+  flex: 0 0;
+}
+.product-item {
+  width: 18rem;
+  min-height: 400px;
+  padding: 10px;
+  box-shadow: #a7a5a5 10px 13px 15px 10px;
+  border-radius: 30px;
+  transition: 1s all;
+}
+.product-item:hover {
+  scale: 1.1;
+  border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  .product-item {
+    width: auto;
+    scale: 0.9;
+  }
+  .product-item:hover {
+    scale: 1;
+  }
+  .col {
+    flex: 1 0;
+  }
+}
