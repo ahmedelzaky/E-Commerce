@@ -2,6 +2,7 @@ package com.example.backend.controllers;
 
 
 import com.example.backend.dto.ProductDto;
+import com.example.backend.models.Product;
 import com.example.backend.services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +33,9 @@ public class ProductController {
         return productServices.getProduct(productId);
     }
 
+    @PostMapping(path = "add")
+    public void addProduct(@RequestBody Product product) {
+        System.out.println(product);
+        productServices.addProduct(product);
+    }
 }

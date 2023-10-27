@@ -2,6 +2,7 @@ package com.example.backend.services;
 
 
 import com.example.backend.dto.ProductDto;
+import com.example.backend.models.Product;
 import com.example.backend.repositorys.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,13 @@ public class ProductServices {
             throw new IllegalStateException("category " + categoryName + " dose not exist");
         }
         return productRepository.findAllByCategoryName(categoryName);
+    }
+
+    public void addProduct(Product product) {
+        Optional exist = productRepository.findByTittle(product.getTitle());
+        if (exist.isPresent()) {
+            throw new IllegalStateException("This product is already exist");
+        }
+        productRepository.save(product);
     }
 }

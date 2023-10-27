@@ -1,4 +1,10 @@
 -- Inserting data into the product table
+INSERT INTO "category" (id, category_name)
+VALUES (1, 'Men''s Clothing'),
+       (2, 'Jewelry'),
+       (3, 'Electronics'),
+       (4, 'Women''s Clothing');
+
 INSERT INTO product (id, product_title, description, price, rating, stock_quantity, image_url, category_id)
 VALUES (1, 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
         'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',

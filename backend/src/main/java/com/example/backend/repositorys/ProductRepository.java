@@ -22,4 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p.id AS id, p.title AS title," + " p.price AS price, p.stockQuantity As stockQuantity," + " p.imageUrl As image, p.rating AS rating," + " p.description As description, c.name AS category" + "   FROM Product p JOIN Category c ON c.id = p.categoryId WHERE  p.id = ?1")
     Optional<ProductDto> findSpecific(Long productId);
+
+    @Query("select p FROM Product p WHERE  p.title = ?1")
+    Optional<Product> findByTittle(String title);
 }

@@ -16,9 +16,7 @@ public class Product {
     private Long id;
     @Column(name = "product_title")
     private String title;
-    @Column(
-            columnDefinition = "decimal"
-    )
+    @Column(columnDefinition = "numeric")
     private Float price;
 
     private String description;
@@ -28,9 +26,7 @@ public class Product {
     private String imageUrl;
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
-    @Column(
-            columnDefinition = "decimal"
-    )
+    @Column(columnDefinition = "numeric")
     private Float rating;
 
     public Product(String title, Float price, String description, Long categoryId, String imageUrl, Integer stockQuantity, Float rating) {
