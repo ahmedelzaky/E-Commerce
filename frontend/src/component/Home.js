@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <Container>
       <GetProducts
-        url={process.env.REACT_APP_API + "products"}
+        url={process.env.REACT_APP_LOCAL_API + "products"}
       ></GetProducts>
     </Container>
   );

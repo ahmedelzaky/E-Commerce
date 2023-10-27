@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import useFetch from "./UseFetch";
 import { Col, Row } from "react-bootstrap";
-import "./products.css";
+import "./css/products.css";
 
 const GetProducts = ({ url }) => {
   const { data, isPending } = useFetch(url);
@@ -14,7 +14,6 @@ const GetProducts = ({ url }) => {
           <Col key={product.id}>
             <Card className="product-item">
               <center>
-                {" "}
                 <Card.Img
                   variant="top"
                   src={product.image}
@@ -34,7 +33,9 @@ const GetProducts = ({ url }) => {
                     ? product.description.substring(0, 80)
                     : product.description}
                 </Card.Text>
-                <Button variant="primary">{product.price}$</Button>
+                <center>
+                  <Button variant="primary">{product.price}$</Button>
+                </center>
               </Card.Body>
             </Card>
           </Col>
