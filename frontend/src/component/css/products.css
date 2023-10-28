@@ -18,6 +18,14 @@
   border-radius: 10px;
 }
 
+.product-item p.price {
+  font-size: 20px;
+  font-weight: 600;
+}
+.product-item .card-title {
+  height: 45px;
+}
+
 @media (max-width: 767px) {
   .product-item {
     width: auto;
