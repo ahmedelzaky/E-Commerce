@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -6,25 +7,23 @@ const useFetch = (url) => {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("could not fetch data");
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        if (response.status !== 200) {
+          throw new Error("could not fetch data");
         }
-        console.log(res);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setData(data);
+        setData(response.data);
         setIsPending(false);
         setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
+      } catch (error) {
+        setError(error.message);
         setIsPending(false);
-      });
+      }
+    };
+    fetchData();
   }, [url]);
+
   return {
     data,
     isPending,
