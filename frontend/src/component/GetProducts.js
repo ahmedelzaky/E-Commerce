@@ -6,15 +6,16 @@ import "./css/products.css";
 import LoadingScreen from "./LoadingScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const GetProducts = ({ url }) => {
-  const { data, isPending, error } = useFetch(url);
+  const { data: products, isPending, error } = useFetch(url);
   return (
     <Row>
       {isPending && <LoadingScreen />}
       {error && <p>{error}</p>}
-      {data &&
-        data.map((product) => (
+      {products &&
+        products.map((product) => (
           <Col key={product.id}>
             <Card className="product-item">
               <center>
@@ -29,15 +30,17 @@ const GetProducts = ({ url }) => {
               </center>
               <Card.Body>
                 <Card.Title>
-                  {product.title.length > 35
-                    ? product.title.substring(0, 35) + "..."
-                    : product.title}
+                  <Link to={"/product/" + product.id}>
+                    {product.title.length > 35
+                      ? product.title.substring(0, 35) + "..."
+                      : product.title}
+                  </Link>
                 </Card.Title>
-                <Card.Text>
+                {/* <Card.Text>
                   {product.description.length > 80
                     ? product.description.substring(0, 80) + "..."
                     : product.description}
-                </Card.Text>
+                </Card.Text> */}
                 <p className="price">{product.price}$</p>
                 <center>
                   <Button>
