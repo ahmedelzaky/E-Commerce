@@ -1,13 +1,26 @@
 import { Container } from "react-bootstrap";
-import GetProducts from "./GetProducts";
+import Categories from "./Categories";
+import Slider from "./Slider";
 
 const Home = () => {
   return (
-    <Container>
-      <GetProducts
-        url={process.env.REACT_APP_API + "products"}
-      ></GetProducts>
-    </Container>
+    <div className="home">
+      {window.screen.width > 768 ? (
+        <Slider />
+      ) : (
+        <img
+          src="images/mobile.jpg"
+          alt=""
+          style={{
+            height: "700px",
+          }}
+        />
+      )}
+      {console.log(window.screen.width)}
+      <Container>
+        <Categories />
+      </Container>
+    </div>
   );
 };
 
