@@ -16,3 +16,12 @@
   border-radius: 50%;
   font-size: 10px;
 }
+
+@media (max-width: 767px) {
+  .nav-link {
+    justify-content: start;
+  }
+  /* .navbar-toggler:focus {
+    box-shadow: none;
+  } */
+}
