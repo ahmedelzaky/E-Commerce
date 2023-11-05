@@ -7,9 +7,12 @@ import LoadingScreen from "./LoadingScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../rtk/slices/cart-slice";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useFetch(url);
+  const dispatch = useDispatch();
   return (
     <Row>
       {isPending && <LoadingScreen />}
@@ -43,7 +46,11 @@ const GetProducts = ({ url }) => {
                 </Card.Text> */}
                 <p className="price">{product.price}$</p>
                 <center>
-                  <Button>
+                  <Button
+                    onClick={() => {
+                      dispatch(addToCart(product));
+                    }}
+                  >
                     Add <FontAwesomeIcon icon={faCartShopping} />
                   </Button>
                 </center>
