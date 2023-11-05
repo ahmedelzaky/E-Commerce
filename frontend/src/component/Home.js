@@ -13,6 +13,7 @@ const Home = () => {
           alt=""
           style={{
             height: "700px",
+            width: "100%",
           }}
         />
       )}
