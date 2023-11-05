@@ -19,13 +19,11 @@ public class Order {
     private long id;
     @Column(name = "customer_id")
     private long customerId;
-    @Column(name = "order_date",
-            columnDefinition = "DATE")
+    @Column(name = "order_date")
     private Date orderDate;
     @Column(name = "total_amount")
     private float totalAmount;
-    @Column(name = "arrival_date",
-            columnDefinition = "DATE")
+    @Column(name = "arrival_date")
     private Date arrivalDate;
 
     @OneToMany(targetEntity = OrderItem.class, cascade = CascadeType.ALL)
