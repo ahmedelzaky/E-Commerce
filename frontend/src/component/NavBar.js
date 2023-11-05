@@ -4,12 +4,15 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import useFetch from "./UseFetch";
+import { Badge } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { BsCart4 } from "react-icons/bs";
 
 const NavBar = () => {
   const { data: categories } = useFetch(
     process.env.REACT_APP_API + "categories"
   );
-  // const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -31,10 +34,11 @@ const NavBar = () => {
               Home
             </Link>
             <Link className="nav-link" to="/cart">
-              Cart
+              <BsCart4 size={"25px"} />{" "}
+              {cart.length > 0 ? <Badge bg="warning">{cart.length}</Badge> : ""}
             </Link>
             <Link className="nav-link" to="/all">
-              All
+              Shop
             </Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               {categories &&

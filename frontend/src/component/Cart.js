@@ -82,12 +82,10 @@ const Cart = () => {
         </div>
         {cart.length > 0 && (
           <div className="payment p-4">
-            <h5>
-              {" "}
-              Subtotal ({cart.length} {cart.length === 1 ? "item" : "items"}):{" "}
-              {calculateSubtotal()}$
-            </h5>
-            <Button className="mt-3">Proceed to checkout</Button>
+            <h5> Subtotal :{calculateSubtotal()}$</h5>
+            <Button variant="warning" className="mt-3">
+              Proceed to checkout
+            </Button>
           </div>
         )}
       </Container>

@@ -47,6 +47,7 @@ const GetProducts = ({ url }) => {
                 <p className="price">{product.price}$</p>
                 <center>
                   <Button
+                    variant="warning"
                     onClick={() => {
                       dispatch(addToCart(product));
                     }}
