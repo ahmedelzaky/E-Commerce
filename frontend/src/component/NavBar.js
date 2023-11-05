@@ -14,7 +14,7 @@ const NavBar = () => {
   );
   const cart = useSelector((state) => state.cart);
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar fixed="top" collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
         <Link to={"/"}>
           <img
@@ -33,12 +33,12 @@ const NavBar = () => {
             <Link className="nav-link" to="/">
               Home
             </Link>
+            <Link className="nav-link" to="/all">
+              Shop
+            </Link>
             <Link className="nav-link" to="/cart">
               <BsCart4 size={"25px"} />{" "}
               {cart.length > 0 ? <Badge bg="warning">{cart.length}</Badge> : ""}
-            </Link>
-            <Link className="nav-link" to="/all">
-              Shop
             </Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               {categories &&

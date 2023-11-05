@@ -3,7 +3,11 @@ import GetProducts from "./GetProducts";
 
 const Products = () => {
   return (
-    <Container>
+    <Container
+      style={{
+        paddingTop: "80px",
+      }}
+    >
       <GetProducts url={process.env.REACT_APP_API + "products"}></GetProducts>
     </Container>
   );

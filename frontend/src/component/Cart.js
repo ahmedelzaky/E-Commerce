@@ -27,7 +27,12 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart">
+    <div
+      className="cart"
+      style={{
+        paddingTop: "80px",
+      }}
+    >
       <Container>
         <div className="items p-4">
           <h1>Shopping Cart</h1>
@@ -51,7 +56,7 @@ const Cart = () => {
                         </p>
                       )
                     ) : (
-                      <p lassName="out-stock">Out OF Stock</p>
+                      <p className="out-stock">Out OF Stock</p>
                     )}
                     <Row className="actions">
                       <Col>

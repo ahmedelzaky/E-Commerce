@@ -1,16 +1,9 @@
-.row {
-  margin-top: 40px;
-  justify-content: center;
-}
-.col {
-  margin-bottom: 30px;
-  flex: 0 1;
-}
 .category {
   width: 375px;
   padding: 20px;
   box-shadow: #a7a5a5 10px 13px 15px 10px;
   transition: 1s all;
+  margin-bottom: 20px;
 }
 .category:hover {
   scale: 1.1;
