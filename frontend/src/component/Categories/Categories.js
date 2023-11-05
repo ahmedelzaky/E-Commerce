@@ -1,10 +1,9 @@
-import "./css/categories.css";
+import "./categories.css";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import useFetch from "./UseFetch";
+import useFetch from "../UseFetch";
 import { Col, Row } from "react-bootstrap";
-import "./css/products.css";
-import LoadingScreen from "./LoadingScreen";
+import LoadingScreen from "../LoadingScreen";
 import { Link } from "react-router-dom";
 const Categories = () => {
   const {

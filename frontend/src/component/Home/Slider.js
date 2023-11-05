@@ -1,5 +1,5 @@
+import "./home.css";
 import Carousel from "react-bootstrap/Carousel";
-
 const Slider = () => {
   return (
     <Carousel>

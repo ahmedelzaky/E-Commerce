@@ -1,14 +1,13 @@
+import "./products.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import useFetch from "./UseFetch";
+import useFetch from "../UseFetch";
 import { Col, Row } from "react-bootstrap";
-import "./css/products.css";
-import LoadingScreen from "./LoadingScreen";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import LoadingScreen from "../LoadingScreen";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../rtk/slices/cart-slice";
+import { addToCart } from "../../rtk/slices/cart-slice";
+import { FaShoppingCart } from "react-icons/fa";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useFetch(url);
@@ -52,7 +51,7 @@ const GetProducts = ({ url }) => {
                       dispatch(addToCart(product));
                     }}
                   >
-                    Add <FontAwesomeIcon icon={faCartShopping} />
+                    Add <FaShoppingCart />
                   </Button>
                 </center>
               </Card.Body>

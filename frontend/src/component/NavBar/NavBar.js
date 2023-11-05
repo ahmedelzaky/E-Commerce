@@ -1,9 +1,10 @@
+import "./navbar.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
-import useFetch from "./UseFetch";
+import useFetch from "../UseFetch";
 import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
@@ -14,7 +15,12 @@ const NavBar = () => {
   );
   const cart = useSelector((state) => state.cart);
   return (
-    <Navbar fixed="top" collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar
+      fixed="top"
+      collapseOnSelect
+      expand="lg"
+      className="bg-body-tertiary"
+    >
       <Container>
         <Link to={"/"}>
           <img

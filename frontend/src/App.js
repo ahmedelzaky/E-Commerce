@@ -1,9 +1,9 @@
 import "./App.css";
-import Cart from "./component/Cart";
-import Home from "./component/Home";
-import NavBar from "./component/NavBar";
-import NotFound from "./component/NotFound";
-import Products from "./component/Products";
+import Cart from "./component/Cart/Cart";
+import Home from "./component/Home/Home";
+import NavBar from "./component/NavBar/NavBar";
+import NotFound from "./component/NotFound/NotFound";
+import Products from "./component/Products/Products";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
