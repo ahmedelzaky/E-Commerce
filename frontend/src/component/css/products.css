@@ -33,12 +33,12 @@
   color: var(--bs-body-color);
 }
 .product-item .card-title a:hover {
-  color: #777;
+  color: var(--hover-color);
 }
 
 @media (max-width: 767px) {
   .product-item {
-    width: auto;
+    width: 400px;
     scale: 0.9;
   }
   .product-item:hover {

@@ -31,7 +31,7 @@
   color: var(--bs-body-color);
 }
 .category .card-title a:hover {
-  color: #777;
+  color: var(--hover-color);
 }
 
 @media (max-width: 767px) {
