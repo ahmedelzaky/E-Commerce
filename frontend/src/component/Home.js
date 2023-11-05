@@ -16,7 +16,6 @@ const Home = () => {
           }}
         />
       )}
-      {console.log(window.screen.width)}
       <Container>
         <Categories />
       </Container>

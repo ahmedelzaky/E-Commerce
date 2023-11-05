@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import GetProducts from "./GetProducts";
 
-const All = () => {
+const Products = () => {
   return (
     <Container>
       <GetProducts url={process.env.REACT_APP_API + "products"}></GetProducts>
@@ -9,4 +9,4 @@ const All = () => {
   );
 };
 
-export default All;
+export default Products;

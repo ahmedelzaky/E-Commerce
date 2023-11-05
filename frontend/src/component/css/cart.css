@@ -1,0 +1,75 @@
+.cart {
+  background-color: var(--background-color);
+  padding: 30px;
+}
+
+.cart .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.cart .items {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.cart .item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.cart .item img {
+  height: 200px;
+  width: 200px;
+}
+.cart .item .in-stock {
+  color: green;
+}
+.cart .item .med-stock {
+  color: orange;
+}
+.cart .item .out-stock {
+  color: red;
+}
+
+.cart .details {
+  flex: 1;
+}
+
+.cart .details h4,
+.cart .details h5 {
+  margin: 0;
+}
+
+.cart .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cart .actions input {
+  width: 60px;
+  margin-left: 10px;
+}
+.cart .actions .btn {
+  margin-top: 24px;
+}
+
+.cart .payment {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}

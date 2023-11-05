@@ -9,7 +9,7 @@ const NavBar = () => {
   const { data: categories } = useFetch(
     process.env.REACT_APP_API + "categories"
   );
-  console.log(categories);
+  // const cart = useSelector((state) => state.cart);
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -27,8 +27,15 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/all">All</Nav.Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="/cart">
+              Cart
+            </Link>
+            <Link className="nav-link" to="/all">
+              All
+            </Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               {categories &&
                 categories.map((category) => (
