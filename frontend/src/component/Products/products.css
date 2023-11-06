@@ -36,6 +36,25 @@
   color: var(--hover-color);
 }
 
+.pagination {
+  justify-content: center;
+}
+
+.page-link {
+  color: #222;
+  margin: 10px;
+  box-shadow: var(--box-shadow-main);
+  transition: 0.3s all;
+}
+.page-link:hover {
+  color: var(--hover-color);
+  scale: 1.1;
+}
+.page-link:focus {
+  color: #222;
+  box-shadow: var(--box-shadow-main);
+}
+
 @media (max-width: 767px) {
   .product-item {
     width: 400px;

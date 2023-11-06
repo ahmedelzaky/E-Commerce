@@ -1,6 +1,10 @@
 .not-found {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  height: 100vh;
 }
 .not-found h1 {
   font-size: 300px;
