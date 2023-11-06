@@ -17,5 +17,8 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     @Query("SELECT o FROM Order o where o.orderDate = ?1")
     List<Order> findOrdersByDate(Date orderDate);
 
+    @Query("SELECT o FROM Order o where o.customerId = ?1")
+    List<Order> findOrderByCustomerId(Long customerId);
+
 
 }
