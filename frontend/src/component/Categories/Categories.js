@@ -5,6 +5,8 @@ import useFetch from "../UseFetch";
 import { Col, Row } from "react-bootstrap";
 import LoadingScreen from "../LoadingScreen";
 import { Link } from "react-router-dom";
+import { BiSolidErrorAlt } from "react-icons/bi";
+
 const Categories = () => {
   const {
     data: categories,
@@ -14,9 +16,13 @@ const Categories = () => {
 
   return (
     <Container>
-      <Row>
+      <Row href>
         {isPending && <LoadingScreen />}
-        {error && <p>{error}</p>}
+        {error && (
+          <div className="error">
+            <BiSolidErrorAlt className="error-icon" fontSize={"30px"} /> {error}
+          </div>
+        )}
         {categories &&
           categories.map((category) => (
             <Col key={category.id}>

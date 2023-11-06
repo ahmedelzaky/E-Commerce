@@ -1,6 +1,10 @@
 :root {
   --background-color: #eaeded;
   --hover-color: #cda626;
+  --box-shadow-main: #a7a5a5 10px 13px 15px 10px;
+}
+* {
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
