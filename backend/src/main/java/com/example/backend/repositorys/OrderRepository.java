@@ -10,12 +10,8 @@ import java.util.List;
 
 @Repository
 
-public interface OrderRepository extends JpaRepository<Order,Long> {
-
-
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o where o.orderDate = ?1")
     List<Order> findOrdersByDate(Date orderDate);
-
-
 }
