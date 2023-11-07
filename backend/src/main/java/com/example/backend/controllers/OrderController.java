@@ -9,26 +9,20 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Order")
-
+@CrossOrigin
+@RequestMapping(path = "api/order")
 public class OrderController {
     @Autowired
     private OrderServices orderServices;
-    @PostMapping("/Requestorder")
-    public String sendorder (@RequestBody Order order){
-        orderServices.addorder(order);
-        return "order is sent";
-    }
-    @GetMapping("/all-orders")
-    public List<Order> findallorders(){
+
+    @GetMapping()
+    public List<Order> getAllOrders() {
         return orderServices.findall();
     }
-    @GetMapping("/getorderbydate/{date}")
-    public List<Order> getbydate(@PathVariable("date") Date date){
+
+    @GetMapping("/date/{date}")
+    public List<Order> getByDate(@PathVariable("date") Date date) {
         return orderServices.findOrdersByDate(date);
     }
-    @DeleteMapping("/delete/{id}")
-    public void deletebyid(@PathVariable Long id){
-        orderServices.deletebyid(id);
-}
+
 }
