@@ -16,10 +16,7 @@ public class OrderServices {
     private OrderRepository repository;
 
 
-    public void addorder(Order order) {
-        repository.save(order);
 
-    }
     public List<Order> findOrdersByDate( Date date){
         return repository.findOrdersByDate(date);
 
@@ -27,13 +24,5 @@ public class OrderServices {
     public List<Order> findall(){
        return repository.findAll();
     }
-    public void deletebyid(Long id){
-        Optional<Order> exist =repository.findById(id);
-        if(!exist.isPresent()){
-            throw new IllegalStateException("this order is not found");
-        }
-        else{
-            repository.deleteById(id);
-        }
+
     }
-}
