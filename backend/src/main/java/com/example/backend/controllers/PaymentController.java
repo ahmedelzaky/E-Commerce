@@ -17,4 +17,9 @@ public class PaymentController {
         return paymentServices.getPayment();
     }
 
+    @PostMapping("/pay")
+    public void pay(@RequestBody Payment payment){
+        paymentServices.pay(payment);
+    }
+
 }
