@@ -12,13 +12,15 @@ import java.util.List;
 public class PaymentController {
     @Autowired
     private PaymentServices paymentServices;
+
     @GetMapping()
-    public List<Payment> getPayment(){
+    public List<Payment> getPayment() {
         return paymentServices.getPayment();
     }
 
     @PostMapping("/pay")
-    public void pay(@RequestBody Payment payment){
+    public void pay(@RequestBody Payment payment) {
+        System.out.println(payment);
         paymentServices.pay(payment);
     }
 
