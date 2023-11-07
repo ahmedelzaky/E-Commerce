@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-    @Query("SELECT p FROM Payment p join Order o on p.orderId = o.id where o.customerId = ?1")
+    @Query("SELECT p FROM Payment p join Order o on p.order.customerId = o.id where o.customerId = ?1")
     List<Payment> findPaymentByCustomerId(Long customerId);
 }

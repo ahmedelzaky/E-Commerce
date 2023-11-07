@@ -16,8 +16,6 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "order_id")
-    private Long orderId;
     @Column(name = "payment_date")
     private Date paymentDate;
     @Column(name = "payment_method", columnDefinition = "varchar")
