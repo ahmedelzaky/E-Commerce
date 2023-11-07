@@ -16,20 +16,21 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "order_id")
+    private Long orderId;
     @Column(name = "payment_date")
     private Date paymentDate;
-    @Column(name = "payment_method",
-    columnDefinition ="varchar")
-    private String payment_method;
+    @Column(name = "payment_method", columnDefinition = "varchar")
+    private String paymentMethod;
     @Column(name = "amount")
     private Float amount;
-    @OneToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Order.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
-    public Payment(Date paymentDate, String payment_method, Float amount, Order order) {
+    public Payment(Date paymentDate, String paymentMethod, Float amount, Order order) {
         this.paymentDate = paymentDate;
-        this.payment_method = payment_method;
+        this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.order = order;
     }
