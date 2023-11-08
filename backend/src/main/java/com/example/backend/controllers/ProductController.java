@@ -19,17 +19,36 @@ public class ProductController {
     private ProductServices productServices;
 
     @GetMapping
-    public List<ProductDto> getProducts(@Param("min") Integer min, @Param("max") Integer max) {
-        System.out.println("min: " + min + "  max: " + max);
+    public List<ProductDto> getProducts(@Param("min") Integer min, @Param("max") Integer max, @Param("sortBy") String sortBy) {
+        System.out.println("min: " + min + "  max: " + max + " sortBy: " + sortBy);
+
+        if (min != null && max != null && sortBy != null) {
+            return productServices.getProducts(min, max, sortBy);
+        }
+
         if (min != null && max != null) {
             return productServices.getProducts(min, max);
+        }
+        if (sortBy != null) {
+            return productServices.getProducts(sortBy);
         }
         return productServices.getProducts();
     }
 
-    @GetMapping(path = "category/{productCategory}")
-    public List<ProductDto> getProductsByCategoryName(@PathVariable String productCategory) throws Exception {
-        return productServices.getProductsByCategoryName(productCategory);
+    @GetMapping(path = "category/{categoryName}")
+    public List<ProductDto> getProductsByCategoryName(@PathVariable String categoryName, @Param("min") Integer min, @Param("max") Integer max, @Param("sortBy") String sortBy) throws Exception {
+        System.out.println("categoryName: " + categoryName + " min: " + min + "  max: " + max + " sortBy: " + sortBy);
+        if (min != null && max != null && sortBy != null) {
+            return productServices.getProductsByCategoryName(categoryName, min, max, sortBy);
+        }
+
+        if (min != null && max != null) {
+            return productServices.getProductsByCategoryName(categoryName, min, max);
+        }
+        if (sortBy != null) {
+            return productServices.getProductsByCategoryName(categoryName, sortBy);
+        }
+        return productServices.getProductsByCategoryName(categoryName);
     }
 
     @GetMapping("{productId}")

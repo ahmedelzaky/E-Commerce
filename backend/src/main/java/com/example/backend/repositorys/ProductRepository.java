@@ -20,13 +20,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY p.id")
     List<ProductDto> findAllProducts();
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = ?1")
-    List<ProductDto> findAllByCategoryName(String name);
-
 
     @Query("SELECT p.id AS id, p.title AS title," +
             " p.price AS price, p.stockQuantity As stockQuantity," +
@@ -43,5 +36,56 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             " p.imageUrl As image, p.rating AS rating," +
             " p.description As description, c.name AS category" +
             " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max")
-    List<ProductDto> findProductWithRange(Integer min, Integer max);
+    List<ProductDto> findProductsWithRange(Integer min, Integer max);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
+            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    List<ProductDto> findProductsWithRangeAndSort(Integer min, Integer max, String sortBy);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
+            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    List<ProductDto> findAllProductsAndSort(String sortBy);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = ?1")
+    List<ProductDto> findAllProductsByCategoryName(String name);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName AND p.price >= :min AND p.price <= :max")
+    List<ProductDto> findProductsByCategoryNameAndRange(String categoryName, Integer min, Integer max);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName  ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
+            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    List<ProductDto> findProductsByCategoryNameAndSort(String categoryName, String sortBy);
+
+    @Query("SELECT p.id AS id, p.title AS title," +
+            " p.price AS price, p.stockQuantity As stockQuantity," +
+            " p.imageUrl As image, p.rating AS rating," +
+            " p.description As description, c.name AS category" +
+            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName AND p.price >= :min AND p.price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
+            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    List<ProductDto> findProductsByCategoryNameAndRangeAndSort(String categoryName, Integer min, Integer max, String sortBy);
+
 }
