@@ -21,13 +21,17 @@ public class ProductServices {
         return productRepository.findAllProducts();
     }
 
+    public List<ProductDto> getProducts(Integer min, Integer max) {
+        return productRepository.findProductWithRange(min, max);
+    }
+
 
     public Optional<ProductDto> getProduct(Long productId) {
         Optional<ProductDto> product = productRepository.findSpecific(productId);
         product.orElseThrow(() -> new IllegalStateException(" the product is not exist"));
         return product;
     }
-    
+
 
     public List<ProductDto> getProductsByCategoryName(String categoryName) throws Exception {
         if (!categoryServices.isCategoryExist(categoryName)) {
