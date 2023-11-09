@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Customer_t")
@@ -26,13 +27,18 @@ public class Customer {
     private Date joinDate;
     private String password;
 
+    @OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    List<Address> addresses;
+
     public Customer(String firstName, String lastName, String email, String phone,
-                    Date joinDate, String password) {
+                    Date joinDate, String password, List<Address> addresses) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.joinDate = joinDate;
         this.password = password;
+        this.addresses = addresses;
     }
 }

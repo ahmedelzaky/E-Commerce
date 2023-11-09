@@ -30,7 +30,8 @@ public class Order {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
 
-    public Order(long customerId, Date orderDate, float totalAmount, Date arrivalDate, List<OrderItem> orderItems) {
+    public Order(long customerId, Date orderDate, float totalAmount, Date arrivalDate,
+                 List<OrderItem> orderItems) {
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
