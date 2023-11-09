@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "Payment_t")
 @Getter
 @Setter
 @NoArgsConstructor

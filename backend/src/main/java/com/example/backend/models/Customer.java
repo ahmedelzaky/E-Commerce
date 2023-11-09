@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "Customer_t")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,18 +22,16 @@ public class Customer {
     private String lastName;
     private String email;
     private String phone;
-    private String address;
     @Column(name = "join_date")
     private Date joinDate;
     private String password;
 
     public Customer(String firstName, String lastName, String email, String phone,
-                    String address, Date joinDate, String password) {
+                    Date joinDate, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.address = address;
         this.joinDate = joinDate;
         this.password = password;
     }
