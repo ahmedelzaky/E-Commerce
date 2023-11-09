@@ -10,7 +10,7 @@
   width: 18rem;
   min-height: 400px;
   padding: 10px;
-  box-shadow: #a7a5a5 10px 13px 15px 10px;
+  box-shadow: var(--box-shadow-main);
   border-radius: 30px;
   transition: 1s all;
 }
@@ -43,6 +43,7 @@
 .page-link {
   color: #222;
   margin: 10px;
+  border-radius: 10px;
   box-shadow: var(--box-shadow-main);
   transition: 0.3s all;
 }
@@ -53,6 +54,12 @@
 .page-link:focus {
   color: #222;
   box-shadow: var(--box-shadow-main);
+}
+.active > .page-link,
+.page-link.active {
+  border: 3px solid #ffbf00;
+  background-color: #f8f9fa;
+  color: #d5a517;
 }
 
 @media (max-width: 767px) {
