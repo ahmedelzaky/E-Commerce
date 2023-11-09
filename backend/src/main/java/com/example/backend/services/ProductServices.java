@@ -4,6 +4,7 @@ package com.example.backend.services;
 import com.example.backend.dto.ProductDto;
 import com.example.backend.models.Product;
 import com.example.backend.repositorys.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +74,13 @@ public class ProductServices {
             throw new IllegalStateException("This product is already exist");
         }
         productRepository.save(product);
+    }
+
+    @Transactional
+    public void editStockQuantity(Long id, int qty) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("this product dose not exist"));
+        product.setStockQuantity(product.getStockQuantity() - qty);
+
     }
 }

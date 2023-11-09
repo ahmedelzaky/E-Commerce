@@ -19,10 +19,8 @@ public class Order {
     private long id;
     @Column(name = "customer_id")
     private long customerId;
-    @Column(name = "order_date")
+    @Column(name = "order_date", insertable = false)
     private Date orderDate;
-    @Column(name = "total_amount")
-    private float totalAmount;
     @Column(name = "arrival_date")
     private Date arrivalDate;
 
@@ -30,11 +28,9 @@ public class Order {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
 
-    public Order(long customerId, Date orderDate, float totalAmount, Date arrivalDate,
-                 List<OrderItem> orderItems) {
+    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems) {
         this.customerId = customerId;
         this.orderDate = orderDate;
-        this.totalAmount = totalAmount;
         this.arrivalDate = arrivalDate;
         this.orderItems = orderItems;
     }
