@@ -34,7 +34,7 @@ public class ProductServices {
         return productRepository.findProductsWithRangeAndSort(min, max, sortBy);
     }
 
-    public List<ProductDto> getProductsByCategoryName(String categoryName) throws Exception {
+    public List<ProductDto> getProductsByCategoryName(String categoryName) {
         if (!categoryServices.isCategoryExist(categoryName)) {
             throw new IllegalStateException("category " + categoryName + " dose not exist");
         }
@@ -62,8 +62,14 @@ public class ProductServices {
         return productRepository.findProductsByCategoryNameAndRangeAndSort(categoryName, min, max, sortBy);
     }
 
-    public Optional<ProductDto> getProduct(Long productId) {
-        Optional<ProductDto> product = productRepository.findSpecific(productId);
+    public Optional<Product> getProduct(Long productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        product.orElseThrow(() -> new IllegalStateException(" the product is not exist"));
+        return product;
+    }
+
+    public Optional<ProductDto> getProductDto(Long productId) {
+        Optional<ProductDto> product = productRepository.findProductDtoById(productId);
         product.orElseThrow(() -> new IllegalStateException(" the product is not exist"));
         return product;
     }

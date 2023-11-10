@@ -19,7 +19,9 @@ public class ProductController {
     private ProductServices productServices;
 
     @GetMapping
-    public List<ProductDto> getProducts(@Param("min") Integer min, @Param("max") Integer max, @Param("sortBy") String sortBy) {
+    public List<ProductDto> getProducts(@Param("min") Integer min,
+                                        @Param("max") Integer max,
+                                        @Param("sortBy") String sortBy) {
         System.out.println("min: " + min + "  max: " + max + " sortBy: " + sortBy);
 
         if (min != null && max != null && sortBy != null) {
@@ -36,7 +38,10 @@ public class ProductController {
     }
 
     @GetMapping(path = "category/{categoryName}")
-    public List<ProductDto> getProductsByCategoryName(@PathVariable String categoryName, @Param("min") Integer min, @Param("max") Integer max, @Param("sortBy") String sortBy) throws Exception {
+    public List<ProductDto> getProductsByCategoryName(@PathVariable String categoryName,
+                                                      @Param("min") Integer min,
+                                                      @Param("max") Integer max,
+                                                      @Param("sortBy") String sortBy) {
         System.out.println("categoryName: " + categoryName + " min: " + min + "  max: " + max + " sortBy: " + sortBy);
         if (min != null && max != null && sortBy != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max, sortBy);
@@ -53,7 +58,7 @@ public class ProductController {
 
     @GetMapping("{productId}")
     public Optional<ProductDto> getProduct(@PathVariable Long productId) {
-        return productServices.getProduct(productId);
+        return productServices.getProductDto(productId);
     }
 
     @PostMapping(path = "add")
