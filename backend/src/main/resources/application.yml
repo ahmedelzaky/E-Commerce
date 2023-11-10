@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-cktperunfb1c738p5hig-a.frankfurt-postgres.render.com/ecommerce_vbrg
+    username: root
+    password: rbRNkCxQrciZfGfl7RpngEVKyjdVxjLZ
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+server:
+  error:
+    include-message: always
