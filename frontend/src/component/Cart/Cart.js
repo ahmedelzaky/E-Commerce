@@ -46,7 +46,7 @@ const Cart = () => {
                   </div>
                   <div className="details pt-4">
                     <h4>{item.title}</h4>
-                    <h5> ${item.price.toFixed(2)}</h5>
+                    <h5 className="mt-2"> ${item.price.toFixed(2)}</h5>
                     {item.stockQuantity > 0 ? (
                       item.stockQuantity > 10 ? (
                         <p className="in-stock">in Stock</p>

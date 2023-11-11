@@ -1,5 +1,4 @@
 import "./home.css";
-import { Container } from "react-bootstrap";
 import Categories from "../Categories/Categories";
 import Slider from "./Slider";
 
@@ -18,9 +17,7 @@ const Home = () => {
           }}
         />
       )}
-      <Container>
-        <Categories />
-      </Container>
+      <Categories />
     </div>
   );
 };

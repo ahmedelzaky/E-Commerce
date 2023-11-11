@@ -16,7 +16,7 @@ const Categories = () => {
 
   return (
     <Container>
-      <Row href>
+      <Row>
         {isPending && <LoadingScreen />}
         {error && (
           <div className="error">

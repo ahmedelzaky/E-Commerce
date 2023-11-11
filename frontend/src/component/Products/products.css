@@ -55,6 +55,13 @@
   box-shadow: var(--box-shadow-main);
 }
 
+.active > .page-link,
+.page-link.active {
+  background-color: #ffca2c;
+  color: #000;
+  border-color: #ffca2c;
+}
+
 @media (max-width: 767px) {
   .product-item {
     width: 400px;

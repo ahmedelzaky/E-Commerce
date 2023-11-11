@@ -88,11 +88,15 @@ const GetProducts = ({ url }) => {
       {products && (
         <ul className="pagination">
           {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
+            <li key={number}>
               <a
                 href="#top"
                 onClick={() => handlePageClick(number)}
-                className="btn page-link"
+                className={
+                  currentPage === number
+                    ? " btn page-link active"
+                    : " btn page-link "
+                }
               >
                 {number}
               </a>
