@@ -12,7 +12,6 @@ const Home = () => {
           src="images/mobile.jpg"
           alt=""
           style={{
-            height: "700px",
             width: "100%",
           }}
         />
