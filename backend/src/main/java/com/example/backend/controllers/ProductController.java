@@ -21,17 +21,18 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> getProducts(@Param("min") Integer min,
                                         @Param("max") Integer max,
-                                        @Param("sortBy") String sortBy) {
-        System.out.println("min: " + min + "  max: " + max + " sortBy: " + sortBy);
-
-        if (min != null && max != null && sortBy != null) {
+                                        @Param("sortBy") String sortBy,
+                                        @Param("order") String order) {
+        System.out.println("min: " + min + "  max: " + max + " sortBy: " + sortBy + " order: " + order);
+        if (min != null && max != null && sortBy != null && order != null) {
+            return productServices.getProducts(min, max, sortBy, order);
+        } else if (min != null && max != null && sortBy != null) {
             return productServices.getProducts(min, max, sortBy);
-        }
-
-        if (min != null && max != null) {
+        } else if (min != null && max != null) {
             return productServices.getProducts(min, max);
-        }
-        if (sortBy != null) {
+        } else if (sortBy != null && order != null) {
+            return productServices.getProducts(sortBy, order);
+        } else if (sortBy != null) {
             return productServices.getProducts(sortBy);
         }
         return productServices.getProducts();
@@ -41,16 +42,23 @@ public class ProductController {
     public List<ProductDto> getProductsByCategoryName(@PathVariable String categoryName,
                                                       @Param("min") Integer min,
                                                       @Param("max") Integer max,
-                                                      @Param("sortBy") String sortBy) {
-        System.out.println("categoryName: " + categoryName + " min: " + min + "  max: " + max + " sortBy: " + sortBy);
-        if (min != null && max != null && sortBy != null) {
+                                                      @Param("sortBy") String sortBy,
+                                                      @Param("order") String order) {
+        System.out.println("categoryName: " + categoryName + " min: " + min + "  max: " + max + " sortBy: " + sortBy + " order: " + order);
+
+        if (min != null && max != null && sortBy != null && order != null) {
+            return productServices.getProductsByCategoryName(categoryName, min, max, sortBy, order);
+        }
+        else if (min != null && max != null && sortBy != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max, sortBy);
         }
-
-        if (min != null && max != null) {
+        else if (min != null && max != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max);
         }
-        if (sortBy != null) {
+        else if (sortBy != null && order != null) {
+            return productServices.getProductsByCategoryName(categoryName, sortBy, order);
+        }
+        else if (sortBy != null) {
             return productServices.getProductsByCategoryName(categoryName, sortBy);
         }
         return productServices.getProductsByCategoryName(categoryName);

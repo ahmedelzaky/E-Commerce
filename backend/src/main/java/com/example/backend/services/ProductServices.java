@@ -26,6 +26,13 @@ public class ProductServices {
         return productRepository.findAllProductsAndSort(sortBy);
     }
 
+    public List<ProductDto> getProducts(String sortBy, String order) {
+        if (order.equals("asc")) {
+            return productRepository.findAllProductsAndSortAsc(sortBy);
+        }
+        return productRepository.findAllProductsAndSortDesc(sortBy);
+    }
+
     public List<ProductDto> getProducts(Integer min, Integer max) {
         return productRepository.findProductsWithRange(min, max);
     }
@@ -53,6 +60,16 @@ public class ProductServices {
             throw new IllegalStateException("category " + categoryName + " dose not exist");
         }
         return productRepository.findProductsByCategoryNameAndSort(categoryName, sortBy);
+    }
+
+    public List<ProductDto> getProductsByCategoryName(String categoryName, String sortBy, String order) {
+        if (!categoryServices.isCategoryExist(categoryName)) {
+            throw new IllegalStateException("category " + categoryName + " dose not exist");
+        }
+        if (order.equals("asc")) {
+            return productRepository.findProductsByCategoryNameAndSortAsc(categoryName, sortBy);
+        }
+        return productRepository.findProductsByCategoryNameAndSortDesc(categoryName, sortBy);
     }
 
     public List<ProductDto> getProductsByCategoryName(String categoryName, Integer min, Integer max, String sortBy) {
@@ -88,5 +105,19 @@ public class ProductServices {
                 .orElseThrow(() -> new IllegalStateException("this product dose not exist"));
         product.setStockQuantity(product.getStockQuantity() - qty);
 
+    }
+
+    public List<ProductDto> getProducts(Integer min, Integer max, String sortBy, String order) {
+        if (order.equals("asc")) {
+            return productRepository.findProductsWithRangeAndSortAsc(min, max, sortBy);
+        }
+        return productRepository.findProductsWithRangeAndSortDesc(min, max, sortBy);
+    }
+
+    public List<ProductDto> getProductsByCategoryName(String categoryName, Integer min, Integer max, String sortBy, String order) {
+        if (order.equals("asc")) {
+            return productRepository.findProductsByCategoryNameAndRangeAndSortAsc(categoryName, min, max, sortBy);
+        }
+        return productRepository.findProductsByCategoryNameAndRangeAndSortDesc(categoryName, min, max, sortBy);
     }
 }
