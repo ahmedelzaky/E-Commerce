@@ -8,7 +8,7 @@ const Products = () => {
         paddingTop: "80px",
       }}
     >
-      <GetProducts url={process.env.REACT_APP_API + "products"}></GetProducts>
+      <GetProducts url={"/products"}></GetProducts>
     </Container>
   );
 };

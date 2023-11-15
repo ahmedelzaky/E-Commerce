@@ -1,7 +1,7 @@
 import "./products.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import useFetch from "../UseFetch";
+import useAxios from "../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
 import LoadingScreen from "../LoadingScreen";
 import { Link } from "react-router-dom";
@@ -10,9 +10,10 @@ import { addToCart } from "../../rtk/slices/cart-slice";
 import { FaShoppingCart } from "react-icons/fa";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const GetProducts = ({ url }) => {
-  const { data: products, isPending, error } = useFetch(url);
+  const { data: products, isPending, error } = useAxios(url);
 
   const dispatch = useDispatch();
 
@@ -49,38 +50,45 @@ const GetProducts = ({ url }) => {
         {products &&
           currentProducts.map((product) => (
             <Col key={product.id}>
-              <Card className="product-item">
-                <center>
-                  <Card.Img
-                    variant="top"
-                    src={product.image}
-                    style={{
-                      height: "250px",
-                      width: "250px",
-                    }}
-                  />
-                </center>
-                <Card.Body>
-                  <Card.Title>
-                    <Link to={"/product/" + product.id}>
-                      {product.title.length > 35
-                        ? product.title.substring(0, 35) + "..."
-                        : product.title}
-                    </Link>
-                  </Card.Title>
-                  <p className="price">{product.price}$</p>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="product-item">
                   <center>
-                    <Button
-                      variant="warning"
-                      onClick={() => {
-                        dispatch(addToCart(product));
+                    <Card.Img
+                      variant="top"
+                      src={product.image}
+                      style={{
+                        height: "250px",
+                        width: "250px",
                       }}
-                    >
-                      Add <FaShoppingCart />
-                    </Button>
+                    />
                   </center>
-                </Card.Body>
-              </Card>
+                  <Card.Body>
+                    <Card.Title>
+                      <Link to={"/product/" + product.id}>
+                        {product.title.length > 35
+                          ? product.title.substring(0, 35) + "..."
+                          : product.title}
+                      </Link>
+                    </Card.Title>
+                    <p className="price">{product.price}$</p>
+                    <center>
+                      <Button
+                        variant="warning"
+                        onClick={() => {
+                          dispatch(addToCart(product));
+                        }}
+                      >
+                        Add <FaShoppingCart />
+                      </Button>
+                    </center>
+                  </Card.Body>
+                </Card>
+              </motion.div>
             </Col>
           ))}
       </Row>
