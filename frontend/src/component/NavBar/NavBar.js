@@ -4,15 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
-import useFetch from "../UseFetch";
 import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
+import useAxios from "../../hooks/useAxios";
 
 const NavBar = () => {
-  const { data: categories } = useFetch(
-    process.env.REACT_APP_API + "categories"
-  );
+  const { data: categories } = useAxios("/categories");
   const cart = useSelector((state) => state.cart);
   return (
     <Navbar
