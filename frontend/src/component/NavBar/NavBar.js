@@ -8,10 +8,19 @@ import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
 import useAxios from "../../hooks/useAxios";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const { data: categories } = useAxios("/categories");
   const cart = useSelector((state) => state.cart);
+  const [productCount, setProductCount] = useState(0);
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += Number(item.qty);
+    });
+    setProductCount(count);
+  }, [cart]);
   return (
     <Navbar
       fixed="top"
@@ -42,7 +51,11 @@ const NavBar = () => {
             </Link>
             <Link className="nav-link" to="/cart">
               <BsCart4 size={"25px"} />{" "}
-              {cart.length > 0 ? <Badge bg="warning">{cart.length}</Badge> : ""}
+              {cart.length > 0 ? (
+                <Badge bg="warning">{productCount}</Badge>
+              ) : (
+                ""
+              )}
             </Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               {categories &&
