@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
+    const queryParams = queryString.parse(location.search);
+
+    console.log(queryParams);
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          params: { ...queryParams },
+        });
         if (response.status !== 200) {
           throw new Error("could not fetch data");
         }
@@ -22,7 +30,7 @@ const useFetch = (url) => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [url,location.search]);
 
   return {
     data,
