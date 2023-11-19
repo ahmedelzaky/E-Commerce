@@ -32,7 +32,6 @@ export const cartSlice = createSlice({
       product.qty = action.payload.qty;
     },
   },
-  extraReducers: (builder) => {},
 });
 
 export const { addToCart, addToCartWithQty, update, removeFromCart } =
