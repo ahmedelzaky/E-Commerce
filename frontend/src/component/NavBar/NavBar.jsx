@@ -61,6 +61,7 @@ const NavBar = () => {
               {categories &&
                 categories.map((category) => (
                   <Link
+                    key={category.id}
                     className="dropdown-item"
                     to={"/category/" + category.name}
                   >

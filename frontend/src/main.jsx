@@ -10,15 +10,14 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./rtk/store";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  store.subscribe(() => {
-    localStorage.setItem("cart", JSON.stringify(store.getState().cart));
-  }) && (
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-  )
+store.subscribe(() => {
+  localStorage.setItem("cart", JSON.stringify(store.getState().cart));
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 );

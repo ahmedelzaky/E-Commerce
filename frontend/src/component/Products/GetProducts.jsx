@@ -11,6 +11,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { PropTypes } from "prop-types";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useAxios(url);
@@ -114,6 +115,10 @@ const GetProducts = ({ url }) => {
       )}
     </>
   );
+};
+
+GetProducts.propTypes = {
+  url: PropTypes.string.isRequired,
 };
 
 export default GetProducts;
