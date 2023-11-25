@@ -3,11 +3,17 @@ package com.example.backend.controllers;
 
 import com.example.backend.dto.ProductDto;
 import com.example.backend.models.Product;
+import com.example.backend.services.ImageService;
 import com.example.backend.services.ProductServices;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +23,8 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductServices productServices;
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping
     public List<ProductDto> getProducts(@Param("min") Integer min,
@@ -48,17 +56,13 @@ public class ProductController {
 
         if (min != null && max != null && sortBy != null && order != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max, sortBy, order);
-        }
-        else if (min != null && max != null && sortBy != null) {
+        } else if (min != null && max != null && sortBy != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max, sortBy);
-        }
-        else if (min != null && max != null) {
+        } else if (min != null && max != null) {
             return productServices.getProductsByCategoryName(categoryName, min, max);
-        }
-        else if (sortBy != null && order != null) {
+        } else if (sortBy != null && order != null) {
             return productServices.getProductsByCategoryName(categoryName, sortBy, order);
-        }
-        else if (sortBy != null) {
+        } else if (sortBy != null) {
             return productServices.getProductsByCategoryName(categoryName, sortBy);
         }
         return productServices.getProductsByCategoryName(categoryName);
@@ -69,9 +73,24 @@ public class ProductController {
         return productServices.getProductDto(productId);
     }
 
-    @PostMapping(path = "add")
-    public void addProduct(@RequestBody Product product) {
-        System.out.println(product);
-        productServices.addProduct(product);
+    @PostMapping(path = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> addProduct(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("product") String productJson) {
+        try {
+            System.out.println("file : " + file + " product : " + productJson);
+            Product product = new ObjectMapper().readValue(productJson, Product.class);
+
+            String imageUrl = imageService.uploadImage(file);
+
+            product.setImageUrl(imageUrl);
+
+            productServices.addProduct(product);
+
+            return ResponseEntity.ok().body("Product added successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Failed to add product. Error: " + e.getMessage());
+        }
     }
+
 }
