@@ -13,152 +13,101 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY p.id ASC")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " ORDER BY id ", nativeQuery = true)
     List<ProductDto> findAllProducts();
 
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE  p.id = ?1")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE  id = ?1", nativeQuery = true)
     Optional<ProductDto> findProductDtoById(Long productId);
 
     @Query("select p FROM Product p WHERE  p.title = ?1")
     Optional<Product> findByTittle(String title);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE price >= :min AND price <= :max", nativeQuery = true)
     List<ProductDto> findProductsWithRange(Integer min, Integer max);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE price >= :min AND price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END, " +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsWithRangeAndSort(Integer min, Integer max, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    @Query(value = "SELECT * FROM  get_all_products() ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END, " +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findAllProductsAndSort(String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = ?1")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = ?1", nativeQuery = true)
     List<ProductDto> findAllProductsByCategoryName(String name);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName AND p.price >= :min AND p.price <= :max")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = :categoryName " +
+            " AND price >= :min " +
+            " AND price <= :max", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndRange(String categoryName, Integer min, Integer max);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName  ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = :categoryName  ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END, " +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndSort(String categoryName, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category" +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName AND p.price >= :min AND p.price <= :max ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END, " +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = :categoryName " +
+            " AND price >= :min " +
+            " AND price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END, " +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndRangeAndSort(String categoryName, Integer min, Integer max, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ASC")
+    @Query(value = "SELECT * FROM  get_all_products()  " +
+            " WHERE price >= :min AND price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END," +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsWithRangeAndSortAsc(Integer min, Integer max, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating," +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE p.price >= :min AND p.price <= :max ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END DESC")
+    @Query(value = "SELECT * FROM  get_all_products()  " +
+            " WHERE price >= :min AND price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END DESC," +
+            " CASE WHEN :sortBy = 'price' THEN price END DESC", nativeQuery = true)
     List<ProductDto> findProductsWithRangeAndSortDesc(Integer min, Integer max, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ASC")
+    @Query(value = "SELECT * FROM  get_all_products() ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END," +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findAllProductsAndSortAsc(String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END DESC")
+    @Query(value = "SELECT * FROM  get_all_products() ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END DESC ," +
+            " CASE WHEN :sortBy = 'price' THEN price END DESC", nativeQuery = true)
     List<ProductDto> findAllProductsAndSortDesc(String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName " +
-            " AND p.price >= :min AND p.price <= :max  ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ASC")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = :categoryName " +
+            " AND price >= :min AND price <= :max  ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END," +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndRangeAndSortAsc(String categoryName, Integer min, Integer max, String sortBy);
 
-    @Query("SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName" +
-            " AND p.price >= :min AND p.price <= :max ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END DESC")
+    @Query(value = "SELECT * FROM  get_all_products() WHERE category = :categoryName" +
+            " AND price >= :min AND price <= :max ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END DESC," +
+            " CASE WHEN :sortBy = 'price' THEN price END DESC", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndRangeAndSortDesc(String categoryName, Integer min, Integer max, String sortBy);
 
-    @Query(" SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END ASC")
+    @Query(value = "SELECT * FROM  get_all_products() " +
+            " WHERE category = :categoryName ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END," +
+            " CASE WHEN :sortBy = 'price' THEN price END ", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndSortAsc(String categoryName, String sortBy);
 
-    @Query(" SELECT p.id AS id, p.title AS title," +
-            " p.price AS price, p.stockQuantity As stockQuantity," +
-            " p.imageUrl As image, p.rating AS rating, " +
-            " p.description As description, c.name AS category " +
-            " FROM Product p JOIN Category c ON c.id = p.categoryId WHERE c.name = :categoryName ORDER BY " +
-            " CASE WHEN :sortBy = 'title' THEN p.title END," +
-            " CASE WHEN :sortBy = 'price' THEN p.price END DESC")
+    @Query(value = " SELECT * FROM  get_all_products() " +
+            " WHERE  category = :categoryName ORDER BY " +
+            " CASE WHEN :sortBy = 'title' THEN title END DESC," +
+            " CASE WHEN :sortBy = 'price' THEN price END DESC" , nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndSortDesc(String categoryName, String sortBy);
 }
