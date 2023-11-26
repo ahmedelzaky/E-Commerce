@@ -1,5 +1,5 @@
 .error {
-  width: 200px;
+  width: 300px;
   padding: 12px;
   display: flex;
   flex-direction: row;
@@ -7,6 +7,7 @@
   justify-content: flex-start;
   background: #ef665b;
   border-radius: 8px;
+  margin:  auto;
   box-shadow: 0px 0px 5px -3px #111;
 }
 .error .error-icon {
