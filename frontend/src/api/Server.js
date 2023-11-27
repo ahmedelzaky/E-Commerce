@@ -12,7 +12,9 @@ const uploadProduct = async (formData) => {
     });
   } catch (err) {
     console.error("Error uploading product:", err);
-    error = err.response.data.message;
+    console.error("Error response:", err.response);
+    if (err.response.data.message) error = err.response.data.message;
+    else error = "Error uploading product";
   }
   isPending = false;
 
