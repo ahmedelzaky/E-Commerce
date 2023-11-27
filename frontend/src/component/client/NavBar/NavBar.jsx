@@ -66,6 +66,7 @@ const NavBar = ({ children }) => {
                       key={category.id}
                       className="dropdown-item"
                       to={"/category/" + category.name}
+                      style={{ textTransform: "capitalize" }}
                     >
                       {category.name}
                     </Link>

@@ -29,14 +29,14 @@ const Categories = () => {
                   <center>
                     <Card.Img
                       variant="top"
-                      src={`images/${category.name}.jpg`}
+                      src={category.imageUrl}
                       style={{
                         height: "400px",
                       }}
                     />
                   </center>
                   <Card.Body>
-                    <Card.Title>
+                    <Card.Title style={{textTransform:"capitalize"}}>
                       <Link to={"/category/" + category.name}>
                         {category.name}
                       </Link>
