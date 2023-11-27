@@ -22,7 +22,6 @@ public class ProductController {
         return productServices.getProducts();
     }
 
-
     @GetMapping(path = "category/{productCategory}")
     public List<ProductDto> getProductsByCategoryName(@PathVariable String productCategory) throws Exception {
         return productServices.getProductsByCategoryName(productCategory);

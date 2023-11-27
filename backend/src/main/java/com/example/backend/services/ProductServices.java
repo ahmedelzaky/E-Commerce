@@ -23,8 +23,11 @@ public class ProductServices {
 
 
     public Optional<ProductDto> getProduct(Long productId) {
-        return productRepository.findSpecific(productId);
+        Optional<ProductDto> product = productRepository.findSpecific(productId);
+        product.orElseThrow(() -> new IllegalStateException(" the product is not exist"));
+        return product;
     }
+    
 
     public List<ProductDto> getProductsByCategoryName(String categoryName) throws Exception {
         if (!categoryServices.isCategoryExist(categoryName)) {
@@ -34,7 +37,7 @@ public class ProductServices {
     }
 
     public void addProduct(Product product) {
-        Optional exist = productRepository.findByTittle(product.getTitle());
+        Optional<Product> exist = productRepository.findByTittle(product.getTitle());
         if (exist.isPresent()) {
             throw new IllegalStateException("This product is already exist");
         }
