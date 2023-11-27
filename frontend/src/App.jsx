@@ -1,20 +1,46 @@
 import "./App.css";
-import Cart from "./component/Cart/Cart";
-import Home from "./component/Home/Home";
-import NavBar from "./component/NavBar/NavBar";
-import NotFound from "./component/NotFound/NotFound";
-import Products from "./component/Products/Products";
+import AddProduct from "./component/admin/AddProduct";
+import Cart from "./component/client/Cart/Cart";
+import Home from "./component/client/Home/Home";
+import NavBar from "./component/client/NavBar/NavBar";
+import NotFound from "./component/client/NotFound/NotFound";
+import Products from "./component/client/Products/Products";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <div className="app">
-        <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/all" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/"
+            element={
+              <NavBar>
+                <Home />
+              </NavBar>
+            }
+          />
+          <Route
+            path="/all"
+            element={
+              <NavBar>
+                <Products />
+              </NavBar>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <NavBar>
+                <Cart />
+              </NavBar>
+            }
+          />
+
+          {/* admin */}
+          <Route path="/admin/addproduct" element={<AddProduct />} />
+
+          {/* not found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

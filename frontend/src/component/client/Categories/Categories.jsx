@@ -1,12 +1,12 @@
 import "./categories.css";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
-import LoadingScreen from "../LoadingScreen";
+import LoadingScreen from "../../LoadingScreen";
 import { Link } from "react-router-dom";
-import { BiSolidErrorAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
+import ErrorMessage from "../../ErrorMessage";
 
 const Categories = () => {
   const { data: categories, isPending, error } = useAxios("/categories");
@@ -15,11 +15,7 @@ const Categories = () => {
     <Container>
       <Row>
         {isPending && <LoadingScreen />}
-        {error && (
-          <div className="error">
-            <BiSolidErrorAlt className="error-icon" fontSize={"30px"} /> {error}
-          </div>
-        )}
+        {error && <ErrorMessage> {error} </ErrorMessage>}
         {categories &&
           categories.map((category) => (
             <Col key={category.id}>

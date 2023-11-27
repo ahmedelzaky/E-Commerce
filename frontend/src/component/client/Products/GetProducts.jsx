@@ -1,17 +1,17 @@
 import "./products.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
-import LoadingScreen from "../LoadingScreen";
+import LoadingScreen from "../../LoadingScreen";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../rtk/slices/cart-slice";
+import { addToCart } from "../../../rtk/slices/cart-slice";
 import { FaShoppingCart } from "react-icons/fa";
-import { BiSolidErrorAlt } from "react-icons/bi";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PropTypes } from "prop-types";
+import ErrorMessage from "../../ErrorMessage";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useAxios(url);
@@ -20,7 +20,7 @@ const GetProducts = ({ url }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const productsPerPage = 8;
+  const productsPerPage = 12;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const pageNumbers = [];
@@ -43,11 +43,7 @@ const GetProducts = ({ url }) => {
     <>
       <Row id="#top">
         {isPending && <LoadingScreen />}
-        {error && (
-          <div className="error">
-            <BiSolidErrorAlt className="error-icon" fontSize={"30px"} /> {error}
-          </div>
-        )}
+        {error && <ErrorMessage> {error} </ErrorMessage>}
         {products &&
           currentProducts.map((product) => (
             <Col key={product.id}>
@@ -79,6 +75,7 @@ const GetProducts = ({ url }) => {
                     <p className="price">{product.price}$</p>
                     <center>
                       <Button
+                        disabled={product.stockQuantity === 0}
                         variant="warning"
                         onClick={() => {
                           dispatch(addToCart(product));
