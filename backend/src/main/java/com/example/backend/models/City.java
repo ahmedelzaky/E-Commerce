@@ -4,22 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "Category_t")
+@Table(name = "City_t")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Category {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "category_name")
+    private long id;
     private String name;
-    public Category(String name) {
+
+    public City(String name) {
         this.name = name;
     }
 }
-
-
-

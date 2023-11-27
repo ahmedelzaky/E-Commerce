@@ -1,0 +1,41 @@
+.category {
+  width: 375px;
+  padding: 20px;
+  box-shadow: #a7a5a5 10px 13px 15px 10px;
+  transition: 1s all;
+  margin-bottom: 20px;
+}
+.category:hover {
+  scale: 1.1;
+  border-radius: 10px;
+}
+
+.category p.price {
+  font-size: 20px;
+  font-weight: 600;
+}
+.category .card-title {
+  height: 45px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.category .card-title a {
+  text-decoration: none;
+  color: var(--bs-body-color);
+}
+.category .card-title a:hover {
+  color: var(--hover-color);
+}
+
+@media (max-width: 767px) {
+  .category {
+    scale: 0.9;
+  }
+  .category:hover {
+    scale: 1;
+  }
+  .col {
+    display: flex;
+    justify-content: center;
+  }
+}
