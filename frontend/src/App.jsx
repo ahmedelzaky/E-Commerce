@@ -1,5 +1,5 @@
 import "./App.css";
-import AddProduct from "./component/admin/addProduct";
+import AddProduct from "./component/admin/AddProduct";
 import Cart from "./component/client/Cart/Cart";
 import Home from "./component/client/Home/Home";
 import NavBar from "./component/client/NavBar/NavBar";

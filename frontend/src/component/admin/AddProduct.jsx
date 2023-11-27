@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Col, Row } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import uploadProduct from "../../api/Server";
 import ErrorMessage from "../ErrorMessage";
@@ -35,6 +35,11 @@ const AddProduct = () => {
     setFile(event.target.files[0]);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleUpload();
+  };
+
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append("file", file);
@@ -51,72 +56,102 @@ const AddProduct = () => {
   return (
     <div style={{ padding: "80px" }}>
       <h2>Product Form</h2>
-      <Form>
-        <Form.Group controlId="formTitle">
-          <Form.Label>Product title:</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={product.title}
-            required
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formPrice">
-          <Form.Label>Price:</Form.Label>
-          <Form.Control
-            type="text"
-            name="price"
-            required
-            value={product.price}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formDescription">
-          <Form.Label>Description:</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="description"
-            value={product.description}
-            required
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-
-        <Form.Select aria-label="Default select example" className="mt-3 mb-3">
-          <option>choose a category</option>
-          {categories &&
-            categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-        </Form.Select>
-        <Form.Group controlId="formImage">
-          <Form.Label>Select Image:</Form.Label>
-          <Form.Control type="file" onChange={handleFileChange} />
-          {file && (
-            <img
-              src={URL.createObjectURL(file)}
-              alt="product"
-              style={{
-                width: "100px",
-                height: "100px",
-                margin: "10px",
-                borderRadius: "10px",
-              }}
+      <Form onSubmit={handleSubmit}>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="8" controlId="formTitle">
+            <Form.Label>Product title:</Form.Label>
+            <Form.Control
+              type="text"
+              name="title"
+              value={product.title}
+              required
+              onChange={handleInputChange}
             />
-          )}
-        </Form.Group>
+          </Form.Group>
+
+          <Form.Group as={Col} md="4" controlId="formPrice">
+            <Form.Label>Price:</Form.Label>
+            <Form.Control
+              type="text"
+              name="price"
+              required
+              value={product.price}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} md="4" controlId="formRating">
+            <Form.Label>Rating:</Form.Label>
+            <Form.Control
+              type="text"
+              name="rating"
+              value={product.rating}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} md="4" controlId="formStockQuantity">
+            <Form.Label>Stock Quantity:</Form.Label>
+            <Form.Control
+              type="text"
+              name="stockQuantity"
+              required
+              value={product.stockQuantity}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} md="4" controlId="formCategory">
+            <Form.Label>Category:</Form.Label>
+            <Form.Control
+              as="select"
+              name="categoryId"
+              required
+              value={product.categoryId}
+              onChange={handleInputChange}
+            >
+              {categories &&
+                categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="formDescription">
+            <Form.Label>Description:</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="description"
+              value={product.description}
+              required
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="formImage">
+            <Form.Label>Select Image:</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange} />
+            {file && (
+              <img
+                src={URL.createObjectURL(file)}
+                alt="product"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  margin: "10px",
+                  borderRadius: "10px",
+                }}
+              />
+            )}
+          </Form.Group>
+        </Row>
 
         <Button
           className="mt-3"
           variant="primary"
           disabled={isPending}
-          type="button"
-          onClick={handleUpload}
+          type="submit"
         >
           Add Product
         </Button>
