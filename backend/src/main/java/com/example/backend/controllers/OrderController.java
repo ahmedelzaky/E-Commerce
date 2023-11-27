@@ -5,6 +5,7 @@ import com.example.backend.services.OrderServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +17,12 @@ public class OrderController {
     private OrderServices orderServices;
 
     @GetMapping()
-    public List<Order> getOrders(){
-        return orderServices.findall();
+    public List<Order> getOrders() {
+        return orderServices.findAll();
     }
-    @GetMapping("/getorderbydate/{date}")
-    public List<Order> getbydate(@PathVariable("date") Date date){
+
+    @GetMapping("/getOrderByDate/{date}")
+    public List<Order> getByDate(@PathVariable("date") LocalDate date) {
         return orderServices.findOrdersByDate(date);
     }
 }
