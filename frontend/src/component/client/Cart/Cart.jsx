@@ -2,6 +2,7 @@ import "./cart.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, update } from "../../../rtk/slices/cart-slice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -45,7 +46,9 @@ const Cart = () => {
                     <img src={item.image} alt={item.title} />
                   </div>
                   <div className="details pt-4">
-                    <h4>{item.title}</h4>
+                    <h4>
+                      <Link to={`/product/${item.id}`}>{item.title}</Link>
+                    </h4>
                     <h5 className="mt-2"> ${item.price.toFixed(2)}</h5>
                     {item.stockQuantity > 0 ? (
                       item.stockQuantity > 10 ? (

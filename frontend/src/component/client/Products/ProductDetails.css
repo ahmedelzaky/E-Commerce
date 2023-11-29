@@ -53,6 +53,20 @@
   font-size: 1.2rem;
   font-weight: 400;
 }
+
+.in-stock {
+  color: green;
+  font-weight: 500;
+}
+.med-stock {
+  color: orange;
+  font-weight: 500;
+}
+.out-stock {
+  color: red;
+  font-weight: 500;
+}
+
 .suggestions {
   margin-top: 100px;
   margin-bottom: 50px;
@@ -81,7 +95,6 @@
 .suggestions .card .card-title a:hover {
   color: var(--hover-color);
 }
-
 
 @media (max-width: 767px) {
   .product-details {
