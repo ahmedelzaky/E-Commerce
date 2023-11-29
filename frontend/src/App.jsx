@@ -7,6 +7,7 @@ import NotFound from "./component/client/NotFound/NotFound";
 import Products from "./component/client/Products/Products";
 import ProductsDetails from "./component/client/Products/ProductDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CategoriesPage from "./component/client/Categories/CategoriesPage";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
             element={
               <NavBar>
                 <ProductsDetails />
+              </NavBar>
+            }
+          />
+          <Route
+            path="/category/:categoryName"
+            element={
+              <NavBar>
+                <CategoriesPage />
               </NavBar>
             }
           />
