@@ -38,7 +38,7 @@ const ProductsFilter = () => {
         <Form.Group
           className="justify-content-end"
           as={Col}
-          md="3"
+          md="2"
           controlId="sort"
         >
           <Form.Label>Sort By:</Form.Label>
@@ -51,7 +51,7 @@ const ProductsFilter = () => {
           </Form.Control>
         </Form.Group>
 
-        <Form.Group as={Col} md="2" controlId="min">
+        <Form.Group as={Col} md="1" controlId="min">
           <Form.Label>Min:</Form.Label>
 
           <Form.Control
@@ -61,7 +61,7 @@ const ProductsFilter = () => {
             onBlur={handleFilter}
           ></Form.Control>
         </Form.Group>
-        <Form.Group as={Col} md="2" controlId="max">
+        <Form.Group as={Col} md="1" controlId="max">
           <Form.Label>Max:</Form.Label>
 
           <Form.Control

@@ -17,3 +17,9 @@
 .filter .row {
   justify-content: flex-end;
 }
+@media (max-width: 768px) {
+  .filter input[type="number"],
+  .filter label {
+    display: none;
+  }
+}

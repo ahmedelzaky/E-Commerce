@@ -15,14 +15,15 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   console.log(qty);
-  const { data: product, isLoading, error } = useAxios(`/products/${id}`);
+  const { data: product, isPending, error } = useAxios(`/products/${id}`);
 
   return (
     <>
       <div className="product-details">
+        {isPending && <LoadingScreen />}
+        {error && <ErrorMessage> {error} </ErrorMessage>}
+
         <Container>
-          {error && <ErrorMessage> {error} </ErrorMessage>}
-          {isLoading && <LoadingScreen />}
           {product && (
             <Row>
               <Col>

@@ -3,7 +3,6 @@ import useAxios from "../../../hooks/useAxios";
 import LoadingScreen from "../../LoadingScreen";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 const responsive = {
@@ -45,7 +44,11 @@ const Suggestions = ({ category, currendId }) => {
                   <Card.Img variant="top" src={product.image} />
                   <Card.Body>
                     <Card.Title>
-                      <Link to={`/product/${product.id}`}>{product.title}</Link>
+                      <a href={`/product/${product.id}`}>
+                        {product.title.length < 50
+                          ? product.title
+                          : product.title.slice(0, 50) + "..."}
+                      </a>
                     </Card.Title>
                   </Card.Body>
                 </center>
