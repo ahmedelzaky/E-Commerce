@@ -44,6 +44,9 @@ const GetProducts = ({ url }) => {
       <Row id="#top">
         {isPending && <LoadingScreen />}
         {error && <ErrorMessage> {error} </ErrorMessage>}
+        {products && products.length === 0 && (
+          <ErrorMessage> No products found </ErrorMessage>
+        )}
         {products &&
           currentProducts.map((product) => (
             <Col key={product.id}>
