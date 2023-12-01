@@ -12,9 +12,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PropTypes } from "prop-types";
 import ErrorMessage from "../../ErrorMessage";
+import AddedPopup from "./AddedPopup";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useAxios(url);
+  const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -38,6 +40,13 @@ const GetProducts = ({ url }) => {
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const handleAddToCart = (product) => {
+    setShow(true);
+    dispatch(addToCart(product));
+    setTimeout(() => {
+      setShow(false);
+    }, 500);
+  };
 
   return (
     <>
@@ -47,6 +56,7 @@ const GetProducts = ({ url }) => {
         {products && products.length === 0 && (
           <ErrorMessage> No products found </ErrorMessage>
         )}
+        {show && <AddedPopup />}
         {products &&
           currentProducts.map((product) => (
             <Col key={product.id}>
@@ -81,7 +91,7 @@ const GetProducts = ({ url }) => {
                         disabled={product.stockQuantity === 0}
                         variant="warning"
                         onClick={() => {
-                          dispatch(addToCart(product));
+                          handleAddToCart(product);
                         }}
                       >
                         Add <FaShoppingCart />

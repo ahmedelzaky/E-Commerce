@@ -17,6 +17,26 @@
 .filter .row {
   justify-content: flex-end;
 }
+.added-popup {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  border-radius: 30px;
+  background-color: rgb(143, 219, 143);
+  width: 250px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.added-popup svg{
+  margin-right: 10px;
+}
+.added-popup p{
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .filter input[type="number"],
   .filter label {

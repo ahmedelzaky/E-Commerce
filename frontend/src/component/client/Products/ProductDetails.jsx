@@ -9,19 +9,29 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { addToCartWithQty } from "../../../rtk/slices/cart-slice";
 import Suggestions from "./Suggestions";
+import AddedPopup from "./AddedPopup";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
-  console.log(qty);
   const { data: product, isPending, error } = useAxios(`/products/${id}`);
+  const [show, setShow] = useState(false);
+
+  const handleAddToCart = (product, qty) => {
+    setShow(true);
+    dispatch(addToCartWithQty({ ...product, qty }));
+    setTimeout(() => {
+      setShow(false);
+    }, 500);
+  };
 
   return (
     <>
       <div className="product-details">
         {isPending && <LoadingScreen />}
         {error && <ErrorMessage> {error} </ErrorMessage>}
+        {show && <AddedPopup />}
 
         <Container>
           {product && (
@@ -63,7 +73,7 @@ const ProductDetails = () => {
                     disabled={product.stockQuantity === 0}
                     variant="warning"
                     onClick={() => {
-                      dispatch(addToCartWithQty({ ...product, qty: qty }));
+                      handleAddToCart(product, qty);
                     }}
                   >
                     Add <FaShoppingCart />
