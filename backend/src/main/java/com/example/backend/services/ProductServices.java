@@ -7,7 +7,9 @@ import com.example.backend.repositorys.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ public class ProductServices {
     private ProductRepository productRepository;
     @Autowired
     private CategoryServices categoryServices;
+    @Autowired
+    private ImageService imageService;
 
     public List<ProductDto> getProducts() {
         return productRepository.findAllProducts();
@@ -91,18 +95,20 @@ public class ProductServices {
         return product;
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(Product product, MultipartFile image) throws IOException {
         Optional<Product> exist = productRepository.findByTittle(product.getTitle());
         if (exist.isPresent()) {
-            throw new IllegalStateException("This product is already exist");
+            throw new IllegalStateException("There is a another product with the same title");
         }
+        String imageUrl = imageService.uploadImage(image);
+
+        product.setImageUrl(imageUrl);
         productRepository.save(product);
     }
 
     @Transactional
     public void editStockQuantity(Long id, int qty) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("this product dose not exist"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("this product dose not exist"));
         product.setStockQuantity(product.getStockQuantity() - qty);
 
     }
@@ -119,5 +125,38 @@ public class ProductServices {
             return productRepository.findProductsByCategoryNameAndRangeAndSortAsc(categoryName, min, max, sortBy);
         }
         return productRepository.findProductsByCategoryNameAndRangeAndSortDesc(categoryName, min, max, sortBy);
+    }
+
+    public void deleteProduct(Long productId) {
+        boolean exist = productRepository.existsById(productId);
+        if (!exist) {
+            throw new IllegalStateException("the product dose not exist");
+        }
+        productRepository.deleteById(productId);
+    }
+
+    @Transactional
+    public void updateProduct(Long productId, Product UpdatedProduct, MultipartFile image) throws IOException {
+
+        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("the product dose not exist"));
+        if (UpdatedProduct.getTitle() != null && !UpdatedProduct.getTitle().isEmpty() && !UpdatedProduct.getTitle().equals(product.getTitle())) {
+            product.setTitle(UpdatedProduct.getTitle());
+        }
+        if (UpdatedProduct.getDescription() != null && !UpdatedProduct.getDescription().isEmpty() && !UpdatedProduct.getDescription().equals(product.getDescription())) {
+            product.setDescription(UpdatedProduct.getDescription());
+        }
+        if (UpdatedProduct.getPrice() != null && !UpdatedProduct.getPrice().equals(product.getPrice())) {
+            product.setPrice(UpdatedProduct.getPrice());
+        }
+        if (UpdatedProduct.getStockQuantity() != null && !UpdatedProduct.getStockQuantity().equals(product.getStockQuantity())) {
+            product.setStockQuantity(UpdatedProduct.getStockQuantity());
+        }
+        if (UpdatedProduct.getCategoryId() != null && !UpdatedProduct.getCategoryId().equals(product.getCategoryId())) {
+            product.setCategoryId(UpdatedProduct.getCategoryId());
+        }
+        if (image != null) {
+            String imageUrl = imageService.uploadImage(image);
+            product.setImageUrl(imageUrl);
+        }
     }
 }

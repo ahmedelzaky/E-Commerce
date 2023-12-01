@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM  get_all_products() " +
-            " ORDER BY id ", nativeQuery = true)
+            " ORDER BY id DESC ", nativeQuery = true)
     List<ProductDto> findAllProducts();
 
 
@@ -108,6 +108,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = " SELECT * FROM  get_all_products() " +
             " WHERE  category = :categoryName ORDER BY " +
             " CASE WHEN :sortBy = 'title' THEN title END DESC," +
-            " CASE WHEN :sortBy = 'price' THEN price END DESC" , nativeQuery = true)
+            " CASE WHEN :sortBy = 'price' THEN price END DESC", nativeQuery = true)
     List<ProductDto> findProductsByCategoryNameAndSortDesc(String categoryName, String sortBy);
 }
