@@ -128,10 +128,9 @@ public class ProductServices {
     }
 
     public void deleteProduct(Long productId) {
-        boolean exist = productRepository.existsById(productId);
-        if (!exist) {
-            throw new IllegalStateException("the product dose not exist");
-        }
+        Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new IllegalStateException("the product dose not exist"));
+        imageService.deleteImage(product.getImageUrl());
         productRepository.deleteById(productId);
     }
 
