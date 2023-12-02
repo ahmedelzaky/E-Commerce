@@ -24,6 +24,10 @@ public class Order {
     @Column(name = "arrival_date")
     private Date arrivalDate;
 
+    @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
     @OneToMany(targetEntity = OrderItem.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
