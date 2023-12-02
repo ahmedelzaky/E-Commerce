@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -34,7 +33,7 @@ public class User {
     List<Address> addresses;
 
     public User(String firstName, String lastName, String email, String phone,
-                    Date joinDate, String password, List<Address> addresses,String role ) {
+                Date joinDate, String password, List<Address> addresses,String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
