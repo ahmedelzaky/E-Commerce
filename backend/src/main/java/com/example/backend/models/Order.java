@@ -32,10 +32,11 @@ public class Order {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
 
-    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems) {
+    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems, Address address) {
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.arrivalDate = arrivalDate;
         this.orderItems = orderItems;
+        this.address = address;
     }
 }
