@@ -15,6 +15,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query("SELECT p FROM Payment p where p.order.customerId = ?1")
     List<Payment> findPaymentByCustomerId(Long customerId);
     @Query("SELECT p FROM Payment p where DATE(p.paymentDate)  = ?1")
-
     List<Payment> findPaymentByDate(LocalDate date);
+
+    @Query("SELECT p FROM Payment p where MONTH(p.paymentDate)  = ?1")
+    List<Payment> findPaymentsByMonth(Integer month);
 }
