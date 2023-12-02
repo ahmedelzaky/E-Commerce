@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Customer_t")
+@Table(name = "user_t")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Customer {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,13 +26,14 @@ public class Customer {
     @Column(name = "join_date")
     private Date joinDate;
     private String password;
+    private  String role;
 
     @OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     List<Address> addresses;
 
-    public Customer(String firstName, String lastName, String email, String phone,
-                    Date joinDate, String password, List<Address> addresses) {
+    public User(String firstName, String lastName, String email, String phone,
+                Date joinDate, String password, List<Address> addresses,String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -40,5 +41,6 @@ public class Customer {
         this.joinDate = joinDate;
         this.password = password;
         this.addresses = addresses;
+        this.role = role;
     }
 }
