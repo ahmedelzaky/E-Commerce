@@ -5,6 +5,7 @@ import com.example.backend.services.PaymentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -18,11 +19,20 @@ public class PaymentController {
     public List<Payment> getPayment() {
         return paymentServices.getPayment();
     }
+    @GetMapping("/customer/{id}")
+    public List<Payment> getPaymentByCustomerId(@PathVariable("id") Long id) {
+        return paymentServices.getPaymentByCustomerId(id);
+    }
+    @GetMapping("/getPaymentByDate/{date}")
+    public List<Payment> getPaymentByDate(@PathVariable("date")LocalDate date){
+        return paymentServices.getPaymentByDate(date);
+    }
 
     @PostMapping("/pay")
     public void pay(@RequestBody Payment payment) {
         System.out.println(payment);
         paymentServices.pay(payment);
     }
+
 
 }

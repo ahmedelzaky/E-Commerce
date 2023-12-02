@@ -7,6 +7,7 @@ import com.example.backend.repositorys.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -45,5 +46,11 @@ public class PaymentServices {
 
         paymentRepository.save(payment);
     }
+    public List<Payment> getPaymentByCustomerId(long id){
+        return paymentRepository.findPaymentByCustomerId(id);
+    }
 
+    public List<Payment> getPaymentByDate(LocalDate date) {
+        return paymentRepository.findPaymentByDate(date);
+    }
 }
