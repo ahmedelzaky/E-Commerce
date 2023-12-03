@@ -23,7 +23,7 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
-    @Column(name = "join_date")
+    @Column(name = "join_date", insertable = false)
     private Date joinDate;
     private String password;
     private  String role;
