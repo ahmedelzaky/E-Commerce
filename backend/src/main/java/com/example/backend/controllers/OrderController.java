@@ -26,4 +26,10 @@ public class OrderController {
     public List<Order> getByDate(@PathVariable("date") LocalDate date) {
         return orderServices.findOrdersByDate(date);
     }
+
+    @GetMapping("/customer/{id}")
+    public List<Order> getOrderByCustomerId(@PathVariable("id") Long id) {
+        return orderServices.getOrderByCustomerId(id);
+    }
+
 }

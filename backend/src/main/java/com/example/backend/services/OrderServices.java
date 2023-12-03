@@ -25,5 +25,8 @@ public class OrderServices {
     public List<Order> findAll(){
        return repository.findAll();
     }
+    public List<Order> getOrderByCustomerId(long id) {
+        return repository.findOrderByCustomerId(id);
+    }
 
     }
