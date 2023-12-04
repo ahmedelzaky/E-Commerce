@@ -10,6 +10,7 @@ import { useState } from "react";
 import { addToCartWithQty } from "../../../rtk/slices/cart-slice";
 import Suggestions from "../../../component/Product/Suggestions";
 import AddedPopup from "../../../component/Product/AddedPopup";
+import NavBar from "../../../component/NavBar/NavBar";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <>
+    <NavBar>
       <div className="product-details">
         {isPending && <LoadingScreen />}
         {error && <ErrorMessage> {error} </ErrorMessage>}
@@ -90,7 +91,7 @@ const ProductDetails = () => {
           <Suggestions category={product.category} currendId={product.id} />
         )}
       </Container>
-    </>
+    </NavBar>
   );
 };
 
