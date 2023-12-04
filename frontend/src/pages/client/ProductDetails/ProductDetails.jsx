@@ -1,15 +1,15 @@
 import "./ProductDetails.css";
 import { useParams } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
-import ErrorMessage from "../../ErrorMessage";
-import LoadingScreen from "../../LoadingScreen";
+import ErrorMessage from "../../../component/ErrorMessage";
+import LoadingScreen from "../../../component/LoadingScreen";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { addToCartWithQty } from "../../../rtk/slices/cart-slice";
-import Suggestions from "./Suggestions";
-import AddedPopup from "./AddedPopup";
+import Suggestions from "../../../component/Product/Suggestions";
+import AddedPopup from "../../../component/Product/AddedPopup";
 
 const ProductDetails = () => {
   const { id } = useParams();

@@ -1,12 +1,12 @@
 import "./categories.css";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import useAxios from "../../../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
-import LoadingScreen from "../../LoadingScreen";
+import LoadingScreen from "../../component/LoadingScreen";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import ErrorMessage from "../../ErrorMessage";
+import ErrorMessage from "../../component/ErrorMessage";
 
 const Categories = () => {
   const { data: categories, isPending, error } = useAxios("/categories");
@@ -36,7 +36,7 @@ const Categories = () => {
                     />
                   </center>
                   <Card.Body>
-                    <Card.Title style={{textTransform:"capitalize"}}>
+                    <Card.Title style={{ textTransform: "capitalize" }}>
                       <Link to={"/category/" + category.name}>
                         {category.name}
                       </Link>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Alert, Col, Row } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import uploadProduct from "../../api/Server";
-import ErrorMessage from "../ErrorMessage";
+import ErrorMessage  from "../../component/ErrorMessage";
 import { motion } from "framer-motion";
 
 const AddProduct = () => {

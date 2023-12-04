@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import useAxios from "../../../hooks/useAxios";
-import LoadingScreen from "../../LoadingScreen";
+import useAxios from "../../hooks/useAxios";
+import LoadingScreen from "../LoadingScreen";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card } from "react-bootstrap";

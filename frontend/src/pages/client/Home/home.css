@@ -6,3 +6,9 @@
 .carousel img {
   height: 600px;
 }
+
+@media (max-width: 767px) {
+  .home {
+    padding-top: 30px;
+  }
+}
