@@ -3,8 +3,6 @@ package com.example.backend.controllers;
 
 import com.example.backend.models.Category;
 import com.example.backend.services.CategoryServices;
-import com.example.backend.services.ImageService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,8 +20,7 @@ public class CategoryController {
 
     @Autowired
     private CategoryServices categoryServices;
-    @Autowired
-    private ImageService imageServices;
+
 
     @GetMapping
     public List<Category> getCategories() {
@@ -31,21 +28,38 @@ public class CategoryController {
     }
 
     @PostMapping(path = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> addCategory(@RequestParam("category") String categoryJson, @RequestParam("image") MultipartFile image) throws IOException {
+    public ResponseEntity<String> addCategory(@RequestParam("category") String categoryJson, @RequestParam("image") MultipartFile image) {
         try {
-            System.out.println(categoryJson);
-
             Category category = new ObjectMapper().readValue(categoryJson, Category.class);
+            System.out.println(category);
 
-            String imageUrl = imageServices.uploadImage(image);
-
-            category.setImageUrl(imageUrl);
-
-            categoryServices.addCategory(category);
+            categoryServices.addCategory(category, image);
 
             return ResponseEntity.ok().body("category added successfully.");
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Failed to add category. Error: " + e.getMessage());
         }
     }
+
+    @PutMapping(path = "update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> editCategory(@RequestParam("category") String categoryJson, @RequestParam(value = "image", required = false) MultipartFile image, @PathVariable Long id) {
+        try {
+            Category category = new ObjectMapper().readValue(categoryJson, Category.class);
+            System.out.println(category);
+
+            categoryServices.updateCategory(id, category, image);
+
+            return ResponseEntity.ok().body("category updated successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Failed to updated category. Error: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+        categoryServices.deleteCategory(id);
+        return ResponseEntity.ok().body("category deleted successfully.");
+    }
+
+
 }
