@@ -5,7 +5,6 @@
 }
 * {
   scroll-behavior: smooth;
-  text-transform: capitalize;
 }
 body {
   margin: 0;

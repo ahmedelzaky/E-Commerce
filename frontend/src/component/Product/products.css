@@ -26,6 +26,7 @@
 .product-item .card-title {
   height: 45px;
   text-decoration: none;
+  text-transform: capitalize;
   cursor: pointer;
 }
 .product-item .card-title a {

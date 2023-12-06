@@ -44,6 +44,8 @@ const ProductsFilter = () => {
           <Form.Label>Sort By:</Form.Label>
           <Form.Control as="select" name="sortBy" onChange={handleFilter}>
             <option value="">Defuault</option>
+            <option value="id&order=desc">Latest</option>
+            <option value="id">Oldest</option>
             <option value="price">Price (low - high)</option>
             <option value="price&order=desc">Price (high - low)</option>
             <option value="title">Title (A - Z)</option>
