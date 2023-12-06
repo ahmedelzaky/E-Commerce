@@ -8,23 +8,39 @@ import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
 import useAxios from "../../hooks/useAxios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 const NavBar = ({ children }) => {
   const { data: categories } = useAxios("/categories");
   const cart = useSelector((state) => state.cart);
   const [productCount, setProductCount] = useState(0);
+  const [prevScrollpos, setPrevScrollpos] = useState(window.scrollY);
+  const ref = useRef(null);
+
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+    const visible = prevScrollpos > currentScrollPos;
+    setPrevScrollpos(currentScrollPos);
+    if (ref.current) {
+      ref.current.style.top = visible ? "0" : "-100px";
+    }
+  }, [prevScrollpos, ref]);
+
   useEffect(() => {
-    let count = 0;
-    cart.forEach((item) => {
-      count += Number(item.qty);
-    });
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    const count = cart.reduce((total, item) => total + Number(item.qty), 0);
     setProductCount(count);
   }, [cart]);
+
   return (
     <>
       <Navbar
+        ref={ref}
         fixed="top"
         collapseOnSelect
         expand="lg"
@@ -32,11 +48,7 @@ const NavBar = ({ children }) => {
       >
         <Container>
           <Link to={"/"}>
-            <img
-              src="images/512.png"
-              alt="E-Commerce"
-              className="logo"
-            />
+            <img src="/images/512.png" alt="E-Commerce" className="logo" />
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

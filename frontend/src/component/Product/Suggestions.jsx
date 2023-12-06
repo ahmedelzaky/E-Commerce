@@ -29,7 +29,6 @@ const Suggestions = ({ category, currendId }) => {
   const { data: products, isLoading } = useAxios(
     `/products/category/${category}`
   );
-  console.log(products);
   return (
     <>
       <h2>Suggestions For You</h2>

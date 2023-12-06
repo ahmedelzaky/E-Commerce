@@ -11,7 +11,6 @@ const useAxios = (url) => {
 
   useEffect(() => {
     const queryParams = queryString.parse(location.search);
-    console.log(queryParams);
     const fetchData = async () => {
       try {
         const response = await axios.get(url, {
