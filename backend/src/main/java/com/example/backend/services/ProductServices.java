@@ -129,7 +129,7 @@ public class ProductServices {
 
     public void deleteProduct(Long productId) {
         Product product = productRepository.findById(productId)
-        .orElseThrow(() -> new IllegalStateException("the product dose not exist"));
+                .orElseThrow(() -> new IllegalStateException("the product dose not exist"));
         imageService.deleteImage(product.getImageUrl());
         productRepository.deleteById(productId);
     }
@@ -157,5 +157,19 @@ public class ProductServices {
             String imageUrl = imageService.uploadImage(image);
             product.setImageUrl(imageUrl);
         }
+    }
+
+    public List<ProductDto> searchProducts(String searchText) {
+        searchText = "%" + searchText + "%";
+        return productRepository.searchProducts(searchText);
+    }
+
+    public List<ProductDto> searchProductsByCategoryName(String searchText, String categoryName) {
+        searchText = "%" + searchText + "%";
+        return productRepository.searchProductsByCategoryName(searchText, categoryName);
+    }
+
+    public List<ProductDto> getTopSellingProducts() {
+        return productRepository.findTopSellingProducts();
     }
 }

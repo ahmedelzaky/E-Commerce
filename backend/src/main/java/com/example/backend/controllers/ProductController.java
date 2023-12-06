@@ -111,4 +111,20 @@ public class ProductController {
         return ResponseEntity.ok().body("Product deleted successfully.");
     }
 
+    @GetMapping(path = "search/{searchText}")
+    public List<ProductDto> searchProducts(@PathVariable String searchText) {
+        return productServices.searchProducts(searchText);
+    }
+
+    @GetMapping(path = "search/{categoryName}/{searchText}")
+    public List<ProductDto> searchProductsByCategoryName(@PathVariable String searchText, @PathVariable String categoryName) {
+        System.out.println("searchText: " + searchText + " categoryName: " + categoryName);
+        return productServices.searchProductsByCategoryName(searchText, categoryName);
+    }
+
+    @GetMapping(path = "top-selling")
+    public List<ProductDto> getTopSellingProducts() {
+        return productServices.getTopSellingProducts();
+    }
+
 }
