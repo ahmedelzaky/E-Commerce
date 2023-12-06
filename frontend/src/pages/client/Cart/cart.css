@@ -75,7 +75,7 @@
 
 .cart .payment {
   position: fixed;
-  right: 60px;
+  left: calc(50% + 300px);
   background-color: #fff;
   width: 300px;
   padding: 20px;
