@@ -11,6 +11,7 @@ const Products = () => {
           paddingTop: "80px",
         }}
       >
+        <h1 className="mt-3"> All Products </h1>
         <ProductsFilter></ProductsFilter>
         <GetProducts url={"/products"}></GetProducts>
       </Container>

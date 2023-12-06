@@ -1,0 +1,11 @@
+.category-page {
+  padding-top: 100px;
+}
+
+.category-page .category-name{
+    font-size: 30px;
+    font-weight: 500;
+    background-color: #eee;
+    padding: 150px  30px 30px;
+    
+}

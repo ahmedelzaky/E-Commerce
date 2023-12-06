@@ -4,7 +4,7 @@ import Home from "./pages/client/Home/Home";
 import All from "./pages/client/All/All";
 import Cart from "./pages/client/Cart/Cart";
 import ProductsDetails from "./pages/client/ProductDetails/ProductDetails";
-import Categorie from "./pages/client/Categories/Categorie";
+import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
 import AddProduct from "./pages/admin/AddProduct";
 
@@ -17,7 +17,7 @@ function App() {
           <Route path="/all" element={<All />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<ProductsDetails />} />
-          <Route path="/category/:categoryName" element={<Categorie />} />
+          <Route path="/category/:categoryName" element={<Category />} />
 
           {/* admin */}
           <Route path="/admin/addproduct" element={<AddProduct />} />
