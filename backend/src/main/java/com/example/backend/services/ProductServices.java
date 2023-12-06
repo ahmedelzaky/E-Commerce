@@ -160,12 +160,12 @@ public class ProductServices {
     }
 
     public List<ProductDto> searchProducts(String searchText) {
-        searchText = "%" + searchText + "%";
+        searchText = "%" + searchText.toLowerCase() + "%";
         return productRepository.searchProducts(searchText);
     }
 
     public List<ProductDto> searchProductsByCategoryName(String searchText, String categoryName) {
-        searchText = "%" + searchText + "%";
+        searchText = "%" + searchText.toLowerCase() + "%";
         return productRepository.searchProductsByCategoryName(searchText, categoryName);
     }
 

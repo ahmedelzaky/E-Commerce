@@ -117,13 +117,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<ProductDto> findProductsByCategoryNameAndSortDesc(String categoryName, String sortBy);
 
     @Query(value = " SELECT * FROM  get_all_products()  " +
-            " WHERE title    LIKE    :searchText " +
-            " OR description LIKE    :searchText ", nativeQuery = true)
+            " WHERE lower(title)    LIKE    :searchText ", nativeQuery = true)
     List<ProductDto> searchProducts(String searchText);
 
     @Query(value = " SELECT * FROM  get_all_product_by_category(:categoryName)  " +
-            " WHERE title    LIKE    :searchText " +
-            " OR description LIKE    :searchText ", nativeQuery = true)
+            " WHERE lower(title)    LIKE    :searchText ", nativeQuery = true)
     List<ProductDto> searchProductsByCategoryName(String searchText, String categoryName);
 
     @Query(value = "SELECT * FROM get_top_selling() LIMIT 4", nativeQuery = true)
