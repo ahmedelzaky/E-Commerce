@@ -93,9 +93,14 @@
   .cart .container {
     justify-content: center;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
   .cart .item {
     flex-direction: column;
   }
+
   .cart .payment {
     position: inherit;
   }

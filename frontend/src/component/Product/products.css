@@ -69,9 +69,9 @@
   border-color: #ffca2c;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .product-item {
-    width: 400px;
+    width: 350px;
     scale: 0.9;
   }
   .product-item:hover {
