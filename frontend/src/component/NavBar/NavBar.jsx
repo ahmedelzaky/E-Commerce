@@ -134,7 +134,7 @@ const NavBar = ({ children }) => {
                 </Collapse>
               )}
             </Form>
-            <Link className="btn btn-warning login" to={`/login`}>
+            <Link className="btn btn-warning login-btn" to={`/login`}>
               Login
             </Link>
           </Navbar.Collapse>
