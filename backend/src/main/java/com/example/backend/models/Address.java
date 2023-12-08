@@ -19,21 +19,9 @@ public class Address {
     private String street;
     @Column(name = "postal_code")
     private String postalCode;
+    @Column(name = "city_id")
+    private Long cityId;
+    @Column(name = "country_id")
+    private Long countryId;
 
-    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
-    City city;
-
-    @ManyToOne(targetEntity = Country.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id", referencedColumnName = "id")
-    Country country;
-
-
-    public Address(Long customerId, String street, String postalCode, City city, Country country) {
-        this.customerId = customerId;
-        this.street = street;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
-    }
 }
