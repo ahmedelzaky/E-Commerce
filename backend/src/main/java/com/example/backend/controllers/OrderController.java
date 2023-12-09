@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "api/order")
+@RequestMapping(path = "api/orders")
 
 public class OrderController {
     @Autowired
@@ -22,7 +22,7 @@ public class OrderController {
         return orderServices.findAll();
     }
 
-    @GetMapping("/getOrderByDate/{date}")
+    @GetMapping("/get-order-by-date/{date}")
     public List<Order> getByDate(@PathVariable("date") LocalDate date) {
         return orderServices.findOrdersByDate(date);
     }

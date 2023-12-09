@@ -1,6 +1,7 @@
 package com.example.backend.controllers;
 
 import com.example.backend.models.Country;
+import com.example.backend.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/country")
+@RequestMapping("api/countries")
 public class CountryController {
 
     @Autowired
@@ -19,7 +20,7 @@ public class CountryController {
 
 
     @GetMapping
-    public List<Country> getcountry(){
+    public List<Country> getCountries() {
         return countryServices.findAll();
 
     }

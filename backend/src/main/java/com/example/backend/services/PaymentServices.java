@@ -46,7 +46,8 @@ public class PaymentServices {
 
         paymentRepository.save(payment);
     }
-    public List<Payment> getPaymentByCustomerId(long id){
+
+    public List<Payment> getPaymentByCustomerId(long id) {
         return paymentRepository.findPaymentByCustomerId(id);
     }
 

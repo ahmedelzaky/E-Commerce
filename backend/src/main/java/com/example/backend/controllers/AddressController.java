@@ -27,7 +27,7 @@ public class AddressController {
         }
     }
 
-    @GetMapping("getAddressByCustomerId/{id}")
+    @GetMapping("get-address-by-customer-id/{id}")
     public List<AddressDto> getAddressByCustomerId(@PathVariable("id") Long customerId) {
         return addressServices.getAddressByCustomerId(customerId);
     }

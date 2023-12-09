@@ -23,7 +23,7 @@ public class PaymentController {
     public List<Payment> getPaymentByCustomerId(@PathVariable("id") Long id) {
         return paymentServices.getPaymentByCustomerId(id);
     }
-    @GetMapping("/getPaymentByDate/{date}")
+    @GetMapping("/get-payment-by-date/{date}")
     public List<Payment> getPaymentByDate(@PathVariable("date")LocalDate date){
         return paymentServices.getPaymentByDate(date);
     }

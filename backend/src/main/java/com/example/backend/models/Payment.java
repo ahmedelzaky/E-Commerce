@@ -20,6 +20,7 @@ public class Payment {
     @Column(name = "payment_date")
     private Date paymentDate;
     @Column(name = "payment_method", columnDefinition = "varchar")
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
     @Column(name = "amount")
     private Float amount;
