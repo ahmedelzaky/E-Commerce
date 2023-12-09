@@ -16,6 +16,8 @@ import List from "./pages/admin/list/List";
 import { productInputs, userInputs } from "./formSource";
 import { useContext } from "react";
 import { darkContext } from "./context/darkModeContext";
+import Orderslist from "./pages/admin/orderslist/Orderslist";
+import Productslist from "./pages/admin/productslist/Productslist";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -37,6 +39,7 @@ function App() {
             <Route index element={<Dashboard />} />
 
             <Route path="addproduct" element={<AddProduct />} />
+
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
@@ -47,7 +50,16 @@ function App() {
             </Route>
 
             <Route path="products">
-              <Route index element={<List />} />
+              <Route index element={<Productslist />} />
+              <Route path=":productId" element={<Single />} />
+              <Route
+                path="new"
+                element={<New inputs={productInputs} title="Add New Product" />}
+              />
+            </Route>
+
+            <Route path="orders">
+              <Route index element={<Orderslist />} />
               <Route path=":productId" element={<Single />} />
               <Route
                 path="new"
