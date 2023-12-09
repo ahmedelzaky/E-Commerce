@@ -1,17 +1,17 @@
 import "./products.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
-import LoadingScreen from "../LoadingScreen";
+import LoadingScreen from "../../LoadingScreen";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../rtk/slices/cart-slice";
+import { addToCart } from "../../../rtk/slices/cart-slice";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PropTypes } from "prop-types";
-import ErrorMessage from "../ErrorMessage";
+import ErrorMessage from "../../ErrorMessage";
 import AddedPopup from "./AddedPopup";
 
 const GetProducts = ({ url }) => {

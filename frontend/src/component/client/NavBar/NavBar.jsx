@@ -6,12 +6,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { BsCart4 } from "react-icons/bs";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import PropTypes from "prop-types";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { useSelector } from "react-redux";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Collapse, Row } from "react-bootstrap";
-import axios from "../../api/axios";
+import axios from "../../../api/axios";
 
 const NavBar = ({ children }) => {
   const { data: categories } = useAxios("/categories");

@@ -1,9 +1,9 @@
 import "./category.css";
 import { useParams } from "react-router-dom";
-import GetProducts from "../../../component/Product/GetProducts";
 import { Container } from "react-bootstrap";
-import ProductsFilter from "../../../component/Product/ProductsFilter";
-import NavBar from "../../../component/NavBar/NavBar";
+import NavBar from "../../../component/client/NavBar/NavBar";
+import GetProducts from "../../../component/client/Product/GetProducts";
+import ProductsFilter from "../../../component/client/Product/ProductsFilter";
 
 const Category = () => {
   const { categoryName } = useParams();

@@ -8,9 +8,9 @@ import { useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { addToCartWithQty } from "../../../rtk/slices/cart-slice";
-import Suggestions from "../../../component/Product/Suggestions";
-import AddedPopup from "../../../component/Product/AddedPopup";
-import NavBar from "../../../component/NavBar/NavBar";
+import NavBar from "../../../component/client/NavBar/NavBar";
+import AddedPopup from "../../../component/client/Product/AddedPopup";
+import Suggestions from "../../../component/client/Product/Suggestions";
 
 const ProductDetails = () => {
   const { id } = useParams();

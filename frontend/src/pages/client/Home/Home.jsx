@@ -1,8 +1,9 @@
-import "./home.css";
-import Categories from "../../../component/Categories/GetCategories";
+import Categories from "../../../component/client/Categories/GetCategories";
+import NavBar from "../../../component/client/NavBar/NavBar";
+import GetProducts from "../../../component/client/Product/GetProducts";
 import Slider from "../../../component/Slider";
-import NavBar from "../../../component/NavBar/NavBar";
-import GetProducts from "../../../component/Product/GetProducts";
+import "./home.css";
+
 import { Container } from "react-bootstrap";
 
 const Home = () => {

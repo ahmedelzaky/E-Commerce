@@ -1,12 +1,12 @@
 import "./categories.css";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { Col, Row } from "react-bootstrap";
-import LoadingScreen from "../../component/LoadingScreen";
+import LoadingScreen from "../../../component/LoadingScreen";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import ErrorMessage from "../../component/ErrorMessage";
+import ErrorMessage from "../../ErrorMessage";
 
 const Categories = () => {
   const { data: categories, isPending, error } = useAxios("/categories");

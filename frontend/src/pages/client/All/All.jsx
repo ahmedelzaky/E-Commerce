@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
-import GetProducts from "../../../component/Product/GetProducts";
-import ProductsFilter from "../../../component/Product/ProductsFilter";
-import NavBar from "../../../component/NavBar/NavBar";
+import NavBar from "../../../component/client/NavBar/NavBar";
+import GetProducts from "../../../component/client/Product/GetProducts";
+import ProductsFilter from "../../../component/client/Product/ProductsFilter";
 
 const Products = () => {
   return (

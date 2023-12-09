@@ -3,8 +3,8 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, update } from "../../../rtk/slices/cart-slice";
 import { Link, useNavigate } from "react-router-dom";
-import NavBar from "../../../component/NavBar/NavBar";
 import { useMemo } from "react";
+import NavBar from "../../../component/client/NavBar/NavBar";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
