@@ -9,11 +9,20 @@ import NotFound from "./pages/NotFound/NotFound";
 import AddProduct from "./pages/admin/AddProduct";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
+import Dashboard from "./pages/admin/home/Dashboard";
+import Single from "./pages/admin/single/Single";
+import New from "./pages/admin/new/New";
+import List from "./pages/admin/list/List";
+import { productInputs, userInputs } from "./formSource";
+import { useContext } from "react";
+import { darkContext } from "./context/darkModeContext";
 
 function App() {
+  const { dark } = useContext(darkContext);
+
   return (
     <Router>
-      <div className="app">
+      <div className={dark ? "app dark" : "app"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/all" element={<All />} />
@@ -24,7 +33,28 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
 
           {/* admin */}
-          <Route path="/admin/addproduct" element={<AddProduct />} />
+          <Route path="/admin">
+            <Route index element={<Dashboard />} />
+
+            <Route path="addproduct" element={<AddProduct />} />
+            <Route path="users">
+              <Route index element={<List />} />
+              <Route path=":userId" element={<Single />} />
+              <Route
+                path="new"
+                element={<New inputs={userInputs} title="Add New User" />}
+              />
+            </Route>
+
+            <Route path="products">
+              <Route index element={<List />} />
+              <Route path=":productId" element={<Single />} />
+              <Route
+                path="new"
+                element={<New inputs={productInputs} title="Add New Product" />}
+              />
+            </Route>
+          </Route>
 
           {/* not found */}
           <Route path="*" element={<NotFound />} />

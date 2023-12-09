@@ -12,6 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.7",
+    "@mui/x-data-grid": "^5.17.22",
+    "react-circular-progressbar": "^2.1.0",
+    "recharts": "^2.3.2",
     "@fontsource/roboto": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",

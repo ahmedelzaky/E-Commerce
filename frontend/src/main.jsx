@@ -9,6 +9,7 @@ import "@fontsource/roboto/700.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import store from "./rtk/store";
+import DarkContextProvider from "./context/darkModeContext";
 
 store.subscribe(() => {
   localStorage.setItem("cart", JSON.stringify(store.getState().cart));
@@ -17,7 +18,9 @@ store.subscribe(() => {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <DarkContextProvider>
+        <App />
+      </DarkContextProvider>
     </Provider>
   </React.StrictMode>
 );
