@@ -20,6 +20,7 @@ import Orderslist from "./pages/admin/orderslist/Orderslist";
 import Productslist from "./pages/admin/productslist/Productslist";
 import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
 import AddCategory from "./component/admin/add/AddCategory";
+import Delivery from "./pages/admin/delivery/Delivery";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -85,6 +86,7 @@ function App() {
             />
             <Route path=":categoryId" element={<Single />} />
           </Route>
+          <Route path="delivery" element={<Delivery />} />
         </Route>
 
         {/* not found */}

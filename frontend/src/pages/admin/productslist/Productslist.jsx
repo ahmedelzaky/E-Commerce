@@ -12,8 +12,9 @@ const Productslist = () => {
         <Datatable
           url={`/products`}
           columns={productColumns}
-          title={"products"}
+          title={"Products"}
           actionColum={productsActionColums}
+          addNew={true}
         />
       </div>
     </div>

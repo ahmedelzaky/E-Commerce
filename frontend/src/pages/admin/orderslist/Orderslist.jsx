@@ -10,7 +10,7 @@ const Orderslist = () => {
       <div className="listContainerr">
         <Navbar />
         <Datatable
-          url={`/orders`}
+          url={`/orders/delivered-orders`}
           columns={orderColumns}
           title={"orders"}
           actionColum={ordersActionColum}

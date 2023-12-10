@@ -6,15 +6,17 @@ import ErrorMessage from "../../ErrorMessage";
 import LoadingScreen from "../../LoadingScreen";
 import PropTypes from "prop-types";
 
-const Datatable = ({ columns, url, title, actionColum }) => {
+const Datatable = ({ columns, url, title, actionColum, addNew }) => {
   const { data, isPending, error } = useAxios(url);
   return (
     <div className="datatable">
       <div className="datatableTitle">
         {title}
-        <Link to="new" className="link" style={{ textDecoration: "none" }}>
-          Add New
-        </Link>
+        {addNew && (
+          <Link to="new" className="link" style={{ textDecoration: "none" }}>
+            Add New
+          </Link>
+        )}
       </div>
       {error && <ErrorMessage> {error} </ErrorMessage>}
       {isPending && <LoadingScreen />}
@@ -36,6 +38,7 @@ Datatable.propTypes = {
   actionColum: PropTypes.array,
   url: PropTypes.string,
   title: PropTypes.string,
+  addNew: PropTypes.bool,
 };
 
 export default Datatable;

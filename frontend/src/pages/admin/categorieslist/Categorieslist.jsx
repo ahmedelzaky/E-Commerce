@@ -15,8 +15,9 @@ const Categorieslist = () => {
         <Datatable
           url={`/categories`}
           columns={categoryColumns}
-          title={"categories"}
+          title={"Categories"}
           actionColum={categoriesActionColum}
+          addNew={true}
         />
       </div>
     </div>
