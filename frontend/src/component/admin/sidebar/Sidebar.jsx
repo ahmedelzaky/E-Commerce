@@ -5,6 +5,7 @@ import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantity
 import GradingIcon from "@mui/icons-material/Grading";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -38,6 +39,13 @@ const Sidebar = () => {
             <li>
               <ProductionQuantityLimitsIcon className="icon" />
               <span>Products</span>
+            </li>
+          </Link>
+
+          <Link to="/admin/categories" style={{ textDecoration: "none" }}>
+            <li>
+              <CategoryOutlinedIcon className="icon" />
+              <span>categories</span>
             </li>
           </Link>
 

@@ -7,7 +7,7 @@
   scroll-behavior: smooth;
 }
 *::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 *::-webkit-scrollbar-track {
   background-color: #eee;
@@ -16,9 +16,7 @@
   background-color: #888;
   border-radius: 6px;
 }
-*::-webkit-scrollbar-thumb {
-  background-color: #ffca2c;
-}
+
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--hover-color);
 }
