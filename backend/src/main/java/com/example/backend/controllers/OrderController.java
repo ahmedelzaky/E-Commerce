@@ -1,5 +1,6 @@
 package com.example.backend.controllers;
 
+import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.services.OrderServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class OrderController {
     @GetMapping("/customer/{id}")
     public List<Order> getOrderByCustomerId(@PathVariable("id") Long id) {
         return orderServices.getOrderByCustomerId(id);
+    }
+    @PutMapping("/update-order-status/{id}")
+    public void updateOrderStatus(@PathVariable("id") Long id,@RequestParam OrderStatus status){
+        orderServices.updateOrderStatus(id, status);
     }
 
 }

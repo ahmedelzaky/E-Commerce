@@ -1,5 +1,6 @@
 package com.example.backend.models;
 
+import com.example.backend.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,9 @@ public class Order {
     private Date orderDate;
     @Column(name = "arrival_date")
     private Date arrivalDate;
+    @Column(name = "statue")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")

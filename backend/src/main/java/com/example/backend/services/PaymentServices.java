@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
 import com.example.backend.models.Product;
@@ -24,8 +25,7 @@ public class PaymentServices {
 
     private void CheckProductsQuantity(List<OrderItem> orderItems) {
         for (OrderItem item : orderItems) {
-            Product product = productServices.getProduct(item.getProductId())
-                    .orElseThrow(() -> new IllegalStateException("this product dose not exist"));
+            Product product = productServices.getProduct(item.getProductId()).orElseThrow(() -> new IllegalStateException("this product dose not exist"));
 
             if (product.getStockQuantity() < item.getQuantity()) {
                 throw new IllegalStateException("There is no enough stock of " + product.getTitle());
@@ -43,6 +43,8 @@ public class PaymentServices {
         CheckProductsQuantity(payment.getOrder().getOrderItems());
 
         editProductsStockQuantity(payment.getOrder().getOrderItems());
+
+        payment.getOrder().setStatus(OrderStatus.PENDING);
 
         paymentRepository.save(payment);
     }
