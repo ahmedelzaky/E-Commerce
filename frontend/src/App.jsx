@@ -6,12 +6,10 @@ import Cart from "./pages/client/Cart/Cart";
 import ProductsDetails from "./pages/client/ProductDetails/ProductDetails";
 import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
-import AddProduct from "./component/admin/add/AddProduct";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
 import Dashboard from "./pages/admin/home/Dashboard";
 import Single from "./pages/admin/single/Single";
-import New from "./pages/admin/new/New";
 import List from "./pages/admin/list/List";
 import { userInputs } from "./formSource";
 import { useContext } from "react";
@@ -19,8 +17,9 @@ import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
 import Productslist from "./pages/admin/productslist/Productslist";
 import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
-import AddCategory from "./component/admin/add/AddCategory";
 import Delivery from "./pages/admin/delivery/Delivery";
+import AddProduct from "./pages/admin/add/AddProduct";
+import AddCategory from "./pages/admin/add/AddCategory";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -50,22 +49,11 @@ function App() {
           <Route path="users">
             <Route index element={<List />} />
             <Route path=":userId" element={<Single />} />
-            <Route
-              path="new"
-              element={<New inputs={userInputs} title="Add New User" />}
-            />
           </Route>
 
           <Route path="products">
             <Route index element={<Productslist />} />
-            <Route
-              path="new"
-              element={
-                <New title="Add New Product">
-                  <AddProduct />
-                </New>
-              }
-            />
+            <Route path="new" element={<AddProduct />} />
             <Route path=":productId" element={<Single />} />
           </Route>
 
@@ -76,14 +64,7 @@ function App() {
 
           <Route path="categories">
             <Route index element={<Categorieslist />} />
-            <Route
-              path="new"
-              element={
-                <New title="Add New Category">
-                  <AddCategory />
-                </New>
-              }
-            />
+            <Route path="new" element={<AddCategory />} />
             <Route path=":categoryId" element={<Single />} />
           </Route>
           <Route path="delivery" element={<Delivery />} />
