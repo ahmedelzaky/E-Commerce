@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { deleteCategory, deleteProduct } from "./api/Server";
+
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -81,6 +83,12 @@ export const productColumns = [
   },
 ];
 
+const handleProdcutDelete = (id) => {
+  if (window.confirm("Are you sure you want to delete this product?")) {
+    // deleteProduct(id);
+  }
+};
+
 export const productsActionColums = [
   {
     field: "action",
@@ -99,7 +107,7 @@ export const productsActionColums = [
 
           <div
             className="deleteButton"
-            onClick={() => console.log(params.row.id)}
+            onClick={() => handleProdcutDelete(params.row.id)}
           >
             Delete
           </div>
@@ -120,7 +128,6 @@ export const orderColumns = [
     field: "orderDate",
     headerName: "orderDate",
     width: 250,
-    //make it apper like 29 jan 2021
     renderCell: (params) => {
       return <div>{new Date(params.row.orderDate).toUTCString()}</div>;
     },
@@ -142,7 +149,11 @@ export const ordersActionColum = [
     renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link className="viewButton" to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+          <Link
+            className="viewButton"
+            to={`${params.row.id}`}
+            style={{ textDecoration: "none" }}
+          >
             View
           </Link>
         </div>
@@ -171,6 +182,13 @@ export const categoryColumns = [
     width: 150,
   },
 ];
+
+const handleCategoryDelete = (id) => {
+  if (window.confirm("Are you sure you want to delete this category?")) {
+    // deleteCategory(id);
+  }
+};
+
 export const categoriesActionColum = [
   {
     field: "action",
@@ -189,7 +207,7 @@ export const categoriesActionColum = [
 
           <div
             className="deleteButton"
-            onClick={() => console.log(params.row.id)}
+            onClick={() => handleCategoryDelete(params.row.id)}
           >
             Delete
           </div>

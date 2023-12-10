@@ -96,4 +96,24 @@ export const updateCategory = async (formData) => {
   };
 };
 
+export const deleteProduct = async (id) => {
+  try {
+    await axios.delete(`/products/delete/${id}`);
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    console.error("Error response:", err.response);
+  }
+  window.location.reload();
+};
+
+export const deleteCategory = async (id) => {
+  try {
+    await axios.delete(`/categories/delete/${id}`);
+  } catch (err) {
+    console.error("Error deleting category:", err);
+    console.error("Error response:", err.response);
+  }
+  window.location.reload();
+};
+
 export default uploadProduct;
