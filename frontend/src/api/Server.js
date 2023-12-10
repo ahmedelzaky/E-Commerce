@@ -116,4 +116,22 @@ export const deleteCategory = async (id) => {
   window.location.reload();
 };
 
+export const updateOrderStatus = async (id, status) => {
+  try {
+    await axios.put(
+      `/orders/update-order-status/${id}`,
+      {},
+      {
+        params: {
+          status: status,
+        },
+      }
+    );
+  } catch (err) {
+    console.error("Error updating order status:", err);
+    console.error("Error response:", err.response);
+  }
+  window.location.reload();
+};
+
 export default uploadProduct;

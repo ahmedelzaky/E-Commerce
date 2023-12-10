@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { deleteCategory, deleteProduct } from "./api/Server";
+import { deleteCategory, deleteProduct, updateOrderStatus } from "./api/Server";
+import { Button } from "@mui/material";
 
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -141,6 +142,7 @@ export const orderColumns = [
     },
   },
 ];
+
 export const ordersActionColum = [
   {
     field: "action",
@@ -161,6 +163,83 @@ export const ordersActionColum = [
     },
   },
 ];
+
+export const deliveryColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "customerId",
+    headerName: "customerId",
+    width: 150,
+  },
+  {
+    field: "orderDate",
+    headerName: "orderDate",
+    width: 250,
+    renderCell: (params) => {
+      return <div>{new Date(params.row.orderDate).toUTCString()}</div>;
+    },
+  },
+];
+
+const handleOrderStatus = (id, status) => {
+  updateOrderStatus(id, status);
+};
+
+export const pendingOrderActionColum = [
+  {
+    field: "action",
+    headerName: "Actions",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Button
+            onClick={() => handleOrderStatus(params.row.id, "IN_PROGRESS")}
+            variant="outlined"
+          >
+            Accept
+          </Button>
+          <Button
+            onClick={() => handleOrderStatus(params.row.id, "CANCELLED")}
+            variant="outlined"
+            color="error"
+          >
+            Reject
+          </Button>
+        </div>
+      );
+    },
+  },
+];
+
+export const inProgressOrderActionColum = [
+  {
+    field: "action",
+    headerName: "Actions",
+    width: 250,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Button
+            variant="outlined"
+            color="success"
+            onClick={() => handleOrderStatus(params.row.id, "COMPLETED")}
+          >
+            Delivered
+          </Button>
+          <Button
+            onClick={() => handleOrderStatus(params.row.id, "CANCELLED")}
+            variant="outlined"
+            color="error"
+          >
+            Cancel
+          </Button>
+        </div>
+      );
+    },
+  },
+];
+
 export const categoryColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {

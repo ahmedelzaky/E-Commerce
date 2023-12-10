@@ -1,7 +1,11 @@
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import Navbar from "../../../component/admin/navbar/Navbar";
 import Datatable from "../../../component/admin/datatable/Datatable";
-import { orderColumns, ordersActionColum } from "../../../datatablesource";
+import {
+  deliveryColumns,
+  inProgressOrderActionColum,
+  pendingOrderActionColum,
+} from "../../../datatablesource";
 
 const Delivery = () => {
   return (
@@ -11,15 +15,15 @@ const Delivery = () => {
         <Navbar />
         <Datatable
           url={`/orders/in-progress-orders`}
-          columns={orderColumns}
+          columns={deliveryColumns}
           title={"In Progress Orders"}
-          actionColum={ordersActionColum}
+          actionColum={inProgressOrderActionColum}
         />
         <Datatable
           url={`/orders/pending-orders`}
-          columns={orderColumns}
+          columns={deliveryColumns}
           title={"Pending Orders"}
-          actionColum={ordersActionColum}
+          actionColum={pendingOrderActionColum}
         />
       </div>
     </div>
