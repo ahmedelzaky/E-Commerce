@@ -2,6 +2,8 @@ import "./order.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
+import LoadingScreen from "../../LoadingScreen";
+import ErrorMessage from "../../ErrorMessage";
 
 const Orders = () => {
   const orderColumns = [
@@ -48,11 +50,13 @@ const Orders = () => {
     },
   ];
 
-  const { data: orders } = useAxios("/orders");
+  const { data: orders, isPending, error } = useAxios("/orders");
   console.log(orders);
 
   return (
     <div className="orders">
+      {error && <ErrorMessage> {error} </ErrorMessage>}
+      {isPending && <LoadingScreen />}
       {orders && (
         <DataGrid
           className="datagrid"

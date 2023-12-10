@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Alert, Col, Row } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import uploadProduct from "../../api/Server";
-import ErrorMessage  from "../../component/ErrorMessage";
+import ErrorMessage from "../../component/ErrorMessage";
 import { motion } from "framer-motion";
 
 const AddProduct = () => {
@@ -60,8 +60,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div style={{ padding: "80px" }}>
-      <h2>Product Form</h2>
+    <div className="d-flex flex-column">
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} md="8" controlId="formTitle">
@@ -78,7 +77,9 @@ const AddProduct = () => {
           <Form.Group as={Col} md="4" controlId="formPrice">
             <Form.Label>Price:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
+              step="0.01"
+              min={0}
               name="price"
               required
               value={product.price}
@@ -89,8 +90,11 @@ const AddProduct = () => {
           <Form.Group as={Col} md="4" controlId="formRating">
             <Form.Label>Rating:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
+              step="0.1"
               name="rating"
+              min={0}
+              max={5}
               value={product.rating}
               onChange={handleInputChange}
             />
@@ -99,7 +103,8 @@ const AddProduct = () => {
           <Form.Group as={Col} md="4" controlId="formStockQuantity">
             <Form.Label>Stock Quantity:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
+              min={0}
               name="stockQuantity"
               required
               value={product.stockQuantity}

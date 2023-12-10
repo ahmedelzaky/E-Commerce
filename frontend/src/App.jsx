@@ -38,8 +38,6 @@ function App() {
           <Route path="/admin">
             <Route index element={<Dashboard />} />
 
-            <Route path="addproduct" element={<AddProduct />} />
-
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
@@ -51,11 +49,15 @@ function App() {
 
             <Route path="products">
               <Route index element={<Productslist />} />
-              <Route path=":productId" element={<Single />} />
               <Route
                 path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
+                element={
+                  <New title="Add New Product">
+                    <AddProduct />
+                  </New>
+                }
               />
+              <Route path=":productId" element={<Single />} />
             </Route>
 
             <Route path="orders">

@@ -30,10 +30,10 @@
   justify-content: center;
   z-index: 999;
 }
-.added-popup svg{
+.added-popup svg {
   margin-right: 10px;
 }
-.added-popup p{
+.added-popup p {
   margin: 0;
 }
 
@@ -42,4 +42,16 @@
   .filter label {
     display: none;
   }
+}
+.in-stock {
+  color: green;
+  font-weight: 500;
+}
+.med-stock {
+  color: orange;
+  font-weight: 500;
+}
+.out-stock {
+  color: red;
+  font-weight: 500;
 }

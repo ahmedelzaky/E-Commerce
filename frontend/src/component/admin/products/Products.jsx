@@ -2,6 +2,8 @@ import "./products.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
+import LoadingScreen from "../../LoadingScreen";
+import ErrorMessage from "../../ErrorMessage";
 
 const Products = () => {
   const productColumns = [
@@ -12,7 +14,7 @@ const Products = () => {
       width: 100,
       renderCell: (params) => {
         return (
-          <div className="cellWithImg">
+          <div>
             <img width={60} height={50} src={params.row.image} alt="avatar" />
             {params.row.username}
           </div>
@@ -40,11 +42,17 @@ const Products = () => {
       headerName: "Price",
       width: 100,
     },
+    {
+      field: "stockQuantity",
+      headerName: "Quantity",
+      width: 100,
+    },
   ];
-  const { data: products } = useAxios("/products");
+  const { data: products, isPending, error } = useAxios("/products");
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
+      console.log(id);
       // axios.delete(`/products/${id}`).then((res) => {
       //   alert("Product has been deleted");
       // });
@@ -82,19 +90,21 @@ const Products = () => {
       <div className="productsTitle">
         Add New Product
         <Link
-          to="/admin/addproduct"
+          to="new"
           className="link"
           style={{ textDecoration: "none" }}
         >
           Add New
         </Link>
       </div>
+      {error && <ErrorMessage> {error} </ErrorMessage>}
+      {isPending && <LoadingScreen />}
       {products && (
         <DataGrid
           className="datagrid"
           rows={products}
           columns={productColumns.concat(actionColum)}
-          pageSize={15}
+          pageSize={9}
           rowsPerPageOptions={[9]}
         />
       )}
