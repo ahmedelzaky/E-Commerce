@@ -1,14 +1,54 @@
 import "./products.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../dataproducts";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import useAxios from "../../../hooks/useAxios";
 
 const Products = () => {
-  const [data, setData] = useState(userRows);
+  const productColumns = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "image",
+      headerName: "Image",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <div className="cellWithImg">
+            <img width={60} height={50} src={params.row.image} alt="avatar" />
+            {params.row.username}
+          </div>
+        );
+      },
+    },
+    {
+      field: "title",
+      headerName: "Title",
+      width: 200,
+    },
+    {
+      field: "category",
+      headerName: "Category",
+      width: 200,
+    },
+    {
+      field: "description",
+      headerName: "Description",
+      width: 230,
+    },
+
+    {
+      field: "price",
+      headerName: "Price",
+      width: 100,
+    },
+  ];
+  const { data: products } = useAxios("/products");
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      // axios.delete(`/products/${id}`).then((res) => {
+      //   alert("Product has been deleted");
+      // });
+    }
   };
 
   const actionColum = [
@@ -16,13 +56,19 @@ const Products = () => {
       field: "action",
       headerName: "Actions",
       width: 200,
-      renderCell: () => {
+      renderCell: (data) => {
         return (
           <div className="cellAction">
-            <Link to="/users" style={{ textDecoration: "none" }}>
+            <Link
+              to={`/admin/product/${data.row.id}`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">Edit</div>
             </Link>
-            <div className="deleteButton" onClick={() => handleDelete(data.id)}>
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(data.row.id)}
+            >
               Delete
             </div>
           </div>
@@ -43,14 +89,15 @@ const Products = () => {
           Add New
         </Link>
       </div>
-      <DataGrid
-        className="datagrid"
-        rows={userRows}
-        columns={userColumns.concat(actionColum)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
+      {products && (
+        <DataGrid
+          className="datagrid"
+          rows={products}
+          columns={productColumns.concat(actionColum)}
+          pageSize={15}
+          rowsPerPageOptions={[9]}
+        />
+      )}
     </div>
   );
 };
