@@ -1,58 +1,42 @@
 import "./datatable.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import useAxios from "../../../hooks/useAxios";
+import ErrorMessage from "../../ErrorMessage";
+import LoadingScreen from "../../LoadingScreen";
+import PropTypes from "prop-types";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-
-  const actionColum = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: () => {
-        return (
-          <div className="cellAction">
-            <Link to="/users" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div className="deleteButton" onClick={() => handleDelete(data.id)}>
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
+const Datatable = ({ columns, url, title, actionColum }) => {
+  const { data, isPending, error } = useAxios(url);
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link
-          to="/admin/users/new"
-          className="link"
-          style={{ textDecoration: "none" }}
-        >
+        {title}
+        <Link to="new" className="link" style={{ textDecoration: "none" }}>
           Add New
         </Link>
       </div>
-      <DataGrid
-        className="datagrid"
-        rows={userRows}
-        columns={userColumns.concat(actionColum)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
+      {error && <ErrorMessage> {error} </ErrorMessage>}
+      {isPending && <LoadingScreen />}
+      {data && (
+        <DataGrid
+          className="datagrid"
+          rows={data}
+          columns={columns.concat(actionColum)}
+          pageSize={9}
+          rowsPerPageOptions={[9]}
+        />
+      )}
     </div>
   );
+};
+
+Datatable.propTypes = {
+  columns: PropTypes.array,
+  actionColum: PropTypes.array,
+  url: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default Datatable;

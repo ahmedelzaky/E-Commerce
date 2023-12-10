@@ -1,6 +1,7 @@
+import Datatable from "../../../component/admin/datatable/Datatable";
 import Navbar from "../../../component/admin/navbar/Navbar";
-import Products from "../../../component/admin/products/Products";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
+import { productColumns, productsActionColums } from "../../../datatablesource";
 import "./productslist.css";
 
 const Productslist = () => {
@@ -9,7 +10,12 @@ const Productslist = () => {
       <Sidebar />
       <div className="listContainerr">
         <Navbar />
-        <Products />
+        <Datatable
+          url={`/products`}
+          columns={productColumns}
+          title={"products"}
+          actionColum={productsActionColums}
+        />
       </div>
     </div>
   );
