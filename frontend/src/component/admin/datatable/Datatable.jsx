@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 
 const Datatable = ({ columns, url, title, actionColum }) => {
   const { data, isPending, error } = useAxios(url);
-
   return (
     <div className="datatable">
       <div className="datatableTitle">

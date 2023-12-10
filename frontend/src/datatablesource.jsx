@@ -90,11 +90,13 @@ export const productsActionColums = [
       return (
         <div className="cellAction">
           <Link
-            to={`${params.row.id}`}
-            style={{ textDecoration: "none", zIndex: "10000" }}
+            className="editButton"
+            to={`edit/${params.row.id}`}
+            style={{ textDecoration: "none" }}
           >
-            View
+            Edit
           </Link>
+
           <div
             className="deleteButton"
             onClick={() => console.log(params.row.id)}
@@ -127,6 +129,9 @@ export const orderColumns = [
     field: "arrivalDate",
     headerName: "arrivalDate",
     width: 250,
+    renderCell: (params) => {
+      return <div>{new Date(params.row.arrivalDate).toUTCString()}</div>;
+    },
   },
 ];
 export const ordersActionColum = [
@@ -137,10 +142,7 @@ export const ordersActionColum = [
     renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link
-            to={`${params.row.id}`}
-            style={{ textDecoration: "none", zIndex: "10000" }}
-          >
+          <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
             View
           </Link>
         </div>
@@ -148,7 +150,54 @@ export const ordersActionColum = [
     },
   },
 ];
+export const categoryColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "imageUrl",
+    headerName: "Image",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div>
+          <img width={60} height={50} src={params.row.imageUrl} alt="avatar" />
+          {params.row.username}
+        </div>
+      );
+    },
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 150,
+  },
+];
+export const categoriesActionColum = [
+  {
+    field: "action",
+    headerName: "Actions",
+    width: 300,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Link
+            className="editButton"
+            to={`edit/${params.row.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            Edit
+          </Link>
 
+          <div
+            className="deleteButton"
+            onClick={() => console.log(params.row.id)}
+          >
+            Delete
+          </div>
+        </div>
+      );
+    },
+  },
+];
 //temporary data
 export const userRows = [
   {

@@ -2,7 +2,6 @@ import Datatable from "../../../component/admin/datatable/Datatable";
 import Navbar from "../../../component/admin/navbar/Navbar";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import { orderColumns, ordersActionColum } from "../../../datatablesource";
-import "./orderslist.css";
 
 const Orderslist = () => {
   return (

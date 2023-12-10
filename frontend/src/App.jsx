@@ -6,18 +6,19 @@ import Cart from "./pages/client/Cart/Cart";
 import ProductsDetails from "./pages/client/ProductDetails/ProductDetails";
 import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
-import AddProduct from "./pages/admin/AddProduct";
+import AddProduct from "./component/admin/add/AddProduct";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
 import Dashboard from "./pages/admin/home/Dashboard";
 import Single from "./pages/admin/single/Single";
 import New from "./pages/admin/new/New";
 import List from "./pages/admin/list/List";
-import { productInputs, userInputs } from "./formSource";
+import { userInputs } from "./formSource";
 import { useContext } from "react";
 import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
 import Productslist from "./pages/admin/productslist/Productslist";
+import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -68,11 +69,20 @@ function App() {
 
           <Route path="orders">
             <Route index element={<Orderslist />} />
-            <Route path=":productId" element={<Single />} />
+            <Route path=":orderId" element={<Single />} />
+          </Route>
+
+          <Route path="categories">
+            <Route index element={<Categorieslist />} />
             <Route
               path="new"
-              element={<New inputs={productInputs} title="Add New Product" />}
+              element={
+                <New title="Add New Product">
+                  <AddProduct />
+                </New>
+              }
             />
+            <Route path=":categoryId" element={<Single />} />
           </Route>
         </Route>
 
