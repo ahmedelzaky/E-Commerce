@@ -10,6 +10,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./rtk/store";
 import DarkContextProvider from "./context/darkModeContext";
+import { BrowserRouter as Router } from "react-router-dom";
 
 store.subscribe(() => {
   localStorage.setItem("cart", JSON.stringify(store.getState().cart));
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <DarkContextProvider>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </DarkContextProvider>
     </Provider>
   </React.StrictMode>
