@@ -37,4 +37,16 @@ public class OrderServices {
         Order order = repository.findById(id).orElseThrow(() -> new IllegalStateException("this order dose not exist"));
         order.setStatus(status);
     }
+
+    public List<Order> getPendingOrders() {
+        return repository.findPendingOrders();
+    }
+
+    public List<Order> getInProgressOrders() {
+        return repository.findInProgressOrders();
+    }
+
+    public List<Order> getDeliveredOrders() {
+        return repository.findDeliveredOrders();
+    }
 }

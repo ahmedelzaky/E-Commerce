@@ -32,6 +32,18 @@ public class OrderController {
     public List<Order> getOrderByCustomerId(@PathVariable("id") Long id) {
         return orderServices.getOrderByCustomerId(id);
     }
+    @GetMapping("pending-orders")
+    public List<Order> getPendingOrders(){
+        return orderServices.getPendingOrders();
+    }
+    @GetMapping("in-progress-orders")
+    public List<Order> getInProgressOrders(){
+        return orderServices.getInProgressOrders();
+    }
+    @GetMapping("delivered-orders")
+    public List<Order> getDeliveredOrders(){
+        return orderServices.getDeliveredOrders();
+    }
     @PutMapping("/update-order-status/{id}")
     public void updateOrderStatus(@PathVariable("id") Long id,@RequestParam OrderStatus status){
         orderServices.updateOrderStatus(id, status);

@@ -22,4 +22,13 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o where o.customerId= ?1")
     List<Order> findOrderByCustomerId(Long customerId);
+
+    @Query("SELECT o FROM Order o where o.status='PENDING'")
+    List<Order> findPendingOrders();
+
+    @Query("SELECT o FROM Order o where o.status='IN_PROGRESS'")
+    List<Order> findInProgressOrders();
+
+    @Query("SELECT o FROM Order o where o.status='COMPLETED'")
+    List<Order> findDeliveredOrders();
 }
