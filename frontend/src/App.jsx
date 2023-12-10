@@ -19,6 +19,7 @@ import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
 import Productslist from "./pages/admin/productslist/Productslist";
 import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
+import AddCategory from "./component/admin/add/AddCategory";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -77,8 +78,8 @@ function App() {
             <Route
               path="new"
               element={
-                <New title="Add New Product">
-                  <AddProduct />
+                <New title="Add New Category">
+                  <AddCategory />
                 </New>
               }
             />

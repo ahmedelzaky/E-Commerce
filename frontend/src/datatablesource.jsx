@@ -142,7 +142,7 @@ export const ordersActionColum = [
     renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+          <Link className="viewButton" to={`${params.row.id}`} style={{ textDecoration: "none" }}>
             View
           </Link>
         </div>
