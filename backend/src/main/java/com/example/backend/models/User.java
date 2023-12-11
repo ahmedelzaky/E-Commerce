@@ -38,7 +38,7 @@ public class User implements UserDetails {
     List<Address> addresses;
 
     public User(String firstName, String lastName, String email, String phone,
-                Date joinDate, String password, List<Address> addresses) {
+                Date joinDate, String password, List<Address> addresses ,Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -46,6 +46,7 @@ public class User implements UserDetails {
         this.joinDate = joinDate;
         this.password = password;
         this.addresses = addresses;
+        this.role=role;
 
     }
     @Enumerated(EnumType.STRING)

@@ -1,0 +1,37 @@
+package com.example.backend.services;
+
+import com.example.backend.dto.AuthenticationRequest;
+import com.example.backend.dto.AuthenticationResponse;
+import com.example.backend.dto.RegisterReqest;
+import com.example.backend.jwt.JwtUtils;
+import com.example.backend.models.User;
+import com.example.backend.repositorys.UserRepository;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+
+public class AuthenticationService {
+    private UserRepository repository;
+
+    private PasswordEncoder passwordEncoder;
+    private JwtUtils jwtUtils;
+    private AuthenticationManager authenticationManager;
+    public AuthenticationResponse register(RegisterReqest request){
+        var user = User.builder()
+            .firstName(request.getFirstName())
+            .lastName(request.getLastName())
+            .email(request.getEmail())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .role(request.getRole())
+            .build();
+        var savedUser = repository.save(user);
+        var jwtToken = jwtUtils.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
+
+
+
+    }
+
+}
