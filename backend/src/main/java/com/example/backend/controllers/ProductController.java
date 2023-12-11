@@ -127,4 +127,9 @@ public class ProductController {
         return productServices.getTopSellingProducts();
     }
 
+    @GetMapping(path = "native/{productId}")
+    public Product getNativeProduct(@PathVariable Long productId) {
+        return productServices.getProduct(productId);
+    }
+
 }

@@ -83,9 +83,8 @@ public class ProductServices {
         return productRepository.findProductsByCategoryNameAndRangeAndSort(categoryName, min, max, sortBy);
     }
 
-    public Optional<Product> getProduct(Long productId) {
-        Optional<Product> product = productRepository.findById(productId);
-        product.orElseThrow(() -> new IllegalStateException(" the product is not exist"));
+    public Product getProduct(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException(" the product is not exist"));
         return product;
     }
 
@@ -128,8 +127,7 @@ public class ProductServices {
     }
 
     public void deleteProduct(Long productId) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalStateException("the product dose not exist"));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("the product dose not exist"));
         imageService.deleteImage(product.getImageUrl());
         productRepository.deleteById(productId);
     }

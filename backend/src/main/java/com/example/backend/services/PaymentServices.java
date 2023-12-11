@@ -25,7 +25,8 @@ public class PaymentServices {
 
     private void CheckProductsQuantity(List<OrderItem> orderItems) {
         for (OrderItem item : orderItems) {
-            Product product = productServices.getProduct(item.getProductId()).orElseThrow(() -> new IllegalStateException("this product dose not exist"));
+
+            Product product = productServices.getProduct(item.getProductId());
 
             if (product.getStockQuantity() < item.getQuantity()) {
                 throw new IllegalStateException("There is no enough stock of " + product.getTitle());
