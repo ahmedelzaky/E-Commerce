@@ -174,4 +174,8 @@ public class ProductServices {
     public List<ProductDto> getLowStockProducts() {
         return productRepository.findLowStockProducts();
     }
+
+    public int getLowStockCount() {
+        return productRepository.findLowStockCount();
+    }
 }

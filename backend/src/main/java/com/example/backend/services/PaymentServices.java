@@ -1,6 +1,7 @@
 package com.example.backend.services;
 
 import com.example.backend.enums.OrderStatus;
+import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
 import com.example.backend.models.Product;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,6 +49,10 @@ public class PaymentServices {
 
         payment.getOrder().setStatus(OrderStatus.PENDING);
 
+        if (payment.getPaymentMethod() == PaymentMethod.VISA)
+            payment.setPaymentDate(new Date());
+
+
         paymentRepository.save(payment);
     }
 
@@ -66,7 +72,7 @@ public class PaymentServices {
         return paymentRepository.getEarningsToday();
     }
 
-    public List<Payment>  getLatestPayments() {
+    public List<Payment> getLatestPayments() {
         return paymentRepository.findLatestPayments();
     }
 }

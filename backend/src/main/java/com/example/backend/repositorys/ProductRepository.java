@@ -129,4 +129,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM get_all_products() WHERE stockquantity <= 10", nativeQuery = true)
     List<ProductDto> findLowStockProducts();
+
+    @Query(value = "SELECT COUNT(p) FROM Product p WHERE p.stockQuantity <= 10")
+    int findLowStockCount();
 }
