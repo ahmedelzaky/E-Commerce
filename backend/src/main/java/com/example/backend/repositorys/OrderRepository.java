@@ -1,5 +1,6 @@
 package com.example.backend.repositorys;
 
+import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.models.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,4 +32,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o where o.status='COMPLETED'")
     List<Order> findDeliveredOrders();
+    @Query("SELECT COUNT(o) FROM Order o where o.status=?1")
+    Long countOrdersByStatus(OrderStatus status);
 }

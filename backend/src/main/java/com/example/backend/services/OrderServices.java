@@ -49,4 +49,8 @@ public class OrderServices {
     public List<Order> getDeliveredOrders() {
         return repository.findDeliveredOrders();
     }
+
+    public Long getOrdersCount(OrderStatus status) {
+        return repository.countOrdersByStatus(status);
+    }
 }

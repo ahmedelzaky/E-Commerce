@@ -19,12 +19,24 @@ public class PaymentController {
     public List<Payment> getPayment() {
         return paymentServices.getPayment();
     }
+
+    @GetMapping("/earnings")
+    public Double getEarnings() {
+        return paymentServices.getEarnings();
+    }
+
+    @GetMapping("/earnings-today")
+    public Double getEarningsToday() {
+        return paymentServices.getEarningsToday();
+    }
+
     @GetMapping("/customer/{id}")
     public List<Payment> getPaymentByCustomerId(@PathVariable("id") Long id) {
         return paymentServices.getPaymentByCustomerId(id);
     }
+
     @GetMapping("/get-payment-by-date/{date}")
-    public List<Payment> getPaymentByDate(@PathVariable("date")LocalDate date){
+    public List<Payment> getPaymentByDate(@PathVariable("date") LocalDate date) {
         return paymentServices.getPaymentByDate(date);
     }
 

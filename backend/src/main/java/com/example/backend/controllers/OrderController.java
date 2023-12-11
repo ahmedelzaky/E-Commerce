@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,6 +22,11 @@ public class OrderController {
         return orderServices.findAll();
     }
 
+    @GetMapping("/orders-count/{status}")
+    public Long getOrdersCount(@PathVariable("status") OrderStatus status) {
+        return orderServices.getOrdersCount(status);
+    }
+
     @GetMapping("/get-order-by-date/{date}")
     public List<Order> getByDate(@PathVariable("date") LocalDate date) {
         return orderServices.findOrdersByDate(date);
@@ -32,20 +36,24 @@ public class OrderController {
     public List<Order> getOrderByCustomerId(@PathVariable("id") Long id) {
         return orderServices.getOrderByCustomerId(id);
     }
+
     @GetMapping("pending-orders")
-    public List<Order> getPendingOrders(){
+    public List<Order> getPendingOrders() {
         return orderServices.getPendingOrders();
     }
+
     @GetMapping("in-progress-orders")
-    public List<Order> getInProgressOrders(){
+    public List<Order> getInProgressOrders() {
         return orderServices.getInProgressOrders();
     }
+
     @GetMapping("delivered-orders")
-    public List<Order> getDeliveredOrders(){
+    public List<Order> getDeliveredOrders() {
         return orderServices.getDeliveredOrders();
     }
+
     @PutMapping("/update-order-status/{id}")
-    public void updateOrderStatus(@PathVariable("id") Long id,@RequestParam OrderStatus status){
+    public void updateOrderStatus(@PathVariable("id") Long id, @RequestParam OrderStatus status) {
         orderServices.updateOrderStatus(id, status);
     }
 

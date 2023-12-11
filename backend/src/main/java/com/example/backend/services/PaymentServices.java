@@ -57,4 +57,12 @@ public class PaymentServices {
     public List<Payment> getPaymentByDate(LocalDate date) {
         return paymentRepository.findPaymentByDate(date);
     }
+
+    public Double getEarnings() {
+        return paymentRepository.getEarnings();
+    }
+
+    public Double getEarningsToday() {
+        return paymentRepository.getEarningsToday();
+    }
 }
