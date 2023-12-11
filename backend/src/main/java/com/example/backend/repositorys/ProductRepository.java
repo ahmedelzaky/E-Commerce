@@ -127,4 +127,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM get_top_selling() LIMIT 4", nativeQuery = true)
     List<ProductDto> findTopSellingProducts();
 
+    @Query(value = "SELECT * FROM get_all_products() WHERE stockquantity <= 10", nativeQuery = true)
+    List<ProductDto> findLowStockProducts();
 }

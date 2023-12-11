@@ -40,6 +40,11 @@ public class PaymentController {
         return paymentServices.getPaymentByDate(date);
     }
 
+    @GetMapping("/get-latest-payment")
+    public List<Payment> getLatestPayment() {
+        return paymentServices.getLatestPayments();
+    }
+
     @PostMapping("/pay")
     public void pay(@RequestBody Payment payment) {
         System.out.println(payment);

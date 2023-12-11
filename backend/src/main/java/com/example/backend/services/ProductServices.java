@@ -170,4 +170,8 @@ public class ProductServices {
     public List<ProductDto> getTopSellingProducts() {
         return productRepository.findTopSellingProducts();
     }
+
+    public List<ProductDto> getLowStockProducts() {
+        return productRepository.findLowStockProducts();
+    }
 }

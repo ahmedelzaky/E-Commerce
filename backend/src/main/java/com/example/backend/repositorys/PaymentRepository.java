@@ -26,4 +26,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     @Query("SELECT SUM(p.amount) FROM Payment p where p.order.status='COMPLETED' AND DATE(p.order.arrivalDate)  = CURRENT_DATE")
     Double getEarningsToday();
+
+    @Query("SELECT p FROM Payment p  ORDER BY p.id DESC limit 5")
+    List<Payment> findLatestPayments();
 }

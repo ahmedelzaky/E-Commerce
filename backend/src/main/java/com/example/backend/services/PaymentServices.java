@@ -65,4 +65,8 @@ public class PaymentServices {
     public Double getEarningsToday() {
         return paymentRepository.getEarningsToday();
     }
+
+    public List<Payment>  getLatestPayments() {
+        return paymentRepository.findLatestPayments();
+    }
 }

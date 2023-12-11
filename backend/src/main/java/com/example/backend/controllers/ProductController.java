@@ -132,4 +132,9 @@ public class ProductController {
         return productServices.getProduct(productId);
     }
 
+    @GetMapping("low-stock")
+    public List<ProductDto> getLowStockProducts() {
+        return productServices.getLowStockProducts();
+    }
+
 }
