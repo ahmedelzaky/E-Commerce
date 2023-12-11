@@ -1,5 +1,4 @@
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
-import Navbar from "../../../component/admin/navbar/Navbar";
 import Datatable from "../../../component/admin/datatable/Datatable";
 import {
   deliveryColumns,
@@ -12,7 +11,6 @@ const Delivery = () => {
     <div className="list">
       <Sidebar />
       <div className="listContainerr">
-        <Navbar />
         <Datatable
           url={`/orders/in-progress-orders`}
           columns={deliveryColumns}

@@ -1,6 +1,5 @@
 import "./single.css";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
-import Navbar from "../../../component/admin/navbar/Navbar";
 import profile from "../../../assets/profile.jpeg";
 import Chart from "../../../component/admin/chart/Chart";
 
@@ -9,7 +8,6 @@ const Single = () => {
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
-        <Navbar />
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>

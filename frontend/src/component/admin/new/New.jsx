@@ -1,4 +1,3 @@
-import Navbar from "../../../component/admin/navbar/Navbar";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import "./new.css";
 import { PropTypes } from "prop-types";
@@ -8,7 +7,6 @@ const New = ({ children, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        <Navbar />
         <div className="top">
           <h1>{title}</h1>
         </div>

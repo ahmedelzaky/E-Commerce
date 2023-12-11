@@ -1,5 +1,4 @@
 import "./dashboard.css";
-import Navbar from "../../../component/admin/navbar/Navbar";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import Widget from "../../../component/admin/widget/Widget";
 import Featured from "../../../component/admin/featured/Featured";
@@ -11,7 +10,6 @@ const Dashboard = () => {
     <div className="dashboard">
       <Sidebar />
       <div className="homeContainer">
-        <Navbar />
         <div className="widgets">
           <Widget type="user" />
           <Widget type="order" />

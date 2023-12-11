@@ -1,5 +1,4 @@
 import Datatable from "../../../component/admin/datatable/Datatable";
-import Navbar from "../../../component/admin/navbar/Navbar";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import {
   categoriesActionColum,
@@ -11,7 +10,6 @@ const Categorieslist = () => {
     <div className="list">
       <Sidebar />
       <div className="listContainerr">
-        <Navbar />
         <Datatable
           url={`/categories`}
           columns={categoryColumns}
