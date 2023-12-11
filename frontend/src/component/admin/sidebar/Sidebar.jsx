@@ -7,8 +7,21 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
 import { Link } from "react-router-dom";
+import useAxios from "../../../hooks/useAxios";
+import { Badge } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
+  const [lowStockProducts, setLowStockProducts] = useState(
+    localStorage.getItem("lowStockProductsCount") || 0
+  );
+  const { data } = useAxios("/products/low-stock");
+  useEffect(() => {
+    if (data?.length > 0) {
+      setLowStockProducts(data.length);
+      localStorage.setItem("lowStockProductsCount", data.length);
+    }
+  }, [data]);
   return (
     <div className="sidebar">
       <div className="top">
@@ -61,11 +74,15 @@ const Sidebar = () => {
               <span>Delivery</span>
             </li>
           </Link>
-
-          <li>
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <span>Notifications</span>
-          </li>
+          <Link to="/admin/notigications" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsNoneOutlinedIcon className="icon" />
+              {lowStockProducts > 0 && (
+                <Badge badgeContent={lowStockProducts}></Badge>
+              )}
+              <span>Notifications</span>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>

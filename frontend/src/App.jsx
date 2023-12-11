@@ -8,7 +8,6 @@ import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
-import Dashboard from "./pages/admin/home/Dashboard";
 import Single from "./pages/admin/single/Single";
 import List from "./pages/admin/list/List";
 import { useContext } from "react";
@@ -21,6 +20,8 @@ import AddProduct from "./pages/admin/add/AddProduct";
 import AddCategory from "./pages/admin/add/AddCategory";
 import EditProduct from "./pages/admin/edit/EditProduct";
 import EditCategory from "./pages/admin/edit/EditCategory";
+import Dashboard from "./pages/admin/Dashboard/Dashboard";
+import Notifications from "./pages/admin/notigications/Notigications";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -69,6 +70,7 @@ function App() {
             <Route path="edit/:categoryId" element={<EditCategory />} />
           </Route>
           <Route path="delivery" element={<Delivery />} />
+          <Route path="notigications" element={<Notifications />} />
         </Route>
 
         {/* not found */}
