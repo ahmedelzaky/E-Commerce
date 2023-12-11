@@ -27,6 +27,11 @@ public class CategoryController {
         return categoryServices.getAllCategories();
     }
 
+    @GetMapping(path = "{id}")
+    public Category getCategory(@PathVariable Long id) {
+        return categoryServices.getCategory(id);
+    }
+
     @PostMapping(path = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> addCategory(@RequestParam("category") String categoryJson, @RequestParam("image") MultipartFile image) {
         try {

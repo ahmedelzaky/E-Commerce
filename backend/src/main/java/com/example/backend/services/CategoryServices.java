@@ -40,9 +40,7 @@ public class CategoryServices {
     @Transactional
     public void updateCategory(Long id, Category updatedCategory, MultipartFile image) throws IOException {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new IllegalStateException("this category dose not exist"));
-        if (updatedCategory.getName() != null
-                && !updatedCategory.getName().isEmpty()
-                && !updatedCategory.getName().equals(category.getName())) {
+        if (updatedCategory.getName() != null && !updatedCategory.getName().isEmpty() && !updatedCategory.getName().equals(category.getName())) {
             category.setName(updatedCategory.getName());
         }
         if (image != null) {
@@ -56,5 +54,9 @@ public class CategoryServices {
         if (!exist) throw new IllegalStateException("this category dose not exist");
 
         categoryRepository.deleteById(id);
+    }
+
+    public Category getCategory(Long id) {
+        return categoryRepository.findById(id).orElseThrow(() -> new IllegalStateException("this category dose not exist"));
     }
 }
