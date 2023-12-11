@@ -4,7 +4,7 @@ import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import Widget from "../../../component/admin/widget/Widget";
 import Featured from "../../../component/admin/featured/Featured";
 import Chart from "../../../component/admin/chart/Chart";
-import Table from "../../../component/admin/table/Table";
+import LatestPayments from "../../../component/admin/LatestPayments/LatestPayments";
 
 const Dashboard = () => {
   return (
@@ -23,7 +23,7 @@ const Dashboard = () => {
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>
-          <Table />
+          <LatestPayments />
         </div>
       </div>
     </div>
