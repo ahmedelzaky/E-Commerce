@@ -12,14 +12,14 @@ import { Badge } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const Sidebar = () => {
-  const [lowStockProducts, setLowStockProducts] = useState(
+  const [lowStockCount, setLowStockCount] = useState(
     localStorage.getItem("lowStockProductsCount") || 0
   );
-  const { data } = useAxios("/products/low-stock");
+  const { data } = useAxios("/products/Low-stock-count");
   useEffect(() => {
-    if (data?.length > 0) {
-      setLowStockProducts(data.length);
-      localStorage.setItem("lowStockProductsCount", data.length);
+    if (data > 0) {
+      setLowStockCount(data);
+      localStorage.setItem("lowStockProductsCount", data);
     }
   }, [data]);
   return (
@@ -77,8 +77,8 @@ const Sidebar = () => {
           <Link to="/admin/notigications" style={{ textDecoration: "none" }}>
             <li>
               <NotificationsNoneOutlinedIcon className="icon" />
-              {lowStockProducts > 0 && (
-                <Badge badgeContent={lowStockProducts}></Badge>
+              {lowStockCount > 0 && (
+                <Badge badgeContent={lowStockCount}></Badge>
               )}
               <span>Notifications</span>
             </li>

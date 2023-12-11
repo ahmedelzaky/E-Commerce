@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Button, Alert } from "react-bootstrap";
 import { uploadCategory } from "../../../api/Server";
-import ErrorMessage from "../../../component/ErrorMessage";
-import { motion } from "framer-motion";
 import New from "../../../component/admin/new/New";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
+import FormStatus from "../../../component/admin/forms/FormStatus";
 
 const AddCategory = () => {
   const [isPending, setIsPending] = useState(false);
@@ -37,31 +35,7 @@ const AddCategory = () => {
     <New title="Add New Category">
       <div className="d-flex flex-column">
         <CategoryForm handleSubmit={handleSubmit} isPending={isPending} />
-        {error && <ErrorMessage> {error} </ErrorMessage>}
-        {success && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Alert show={show} className="mt-3" variant="success">
-              <Alert.Heading> {success} </Alert.Heading>
-              <hr />
-              <div className="d-flex justify-content-end">
-                <Button
-                  onClick={() => {
-                    setShow(false);
-                    setSuccess(null);
-                  }}
-                  variant="outline-success"
-                >
-                  Close me
-                </Button>
-              </div>
-            </Alert>
-          </motion.div>
-        )}
+        <FormStatus error={error} success={success} show={show} />
       </div>
     </New>
   );

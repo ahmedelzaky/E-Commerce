@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { Button, Alert } from "react-bootstrap";
 import { updateCategory } from "../../../api/Server";
-import ErrorMessage from "../../../component/ErrorMessage";
-import { motion } from "framer-motion";
 import New from "../../../component/admin/new/New";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
 import { useParams } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
+import FormStatus from "../../../component/admin/forms/FormStatus";
 
 const EditCategory = () => {
   const { categoryId } = useParams();
@@ -50,31 +48,7 @@ const EditCategory = () => {
           isPending={isPending}
           categoryData={data}
         />
-        {error && <ErrorMessage> {error} </ErrorMessage>}
-        {success && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Alert show={show} className="mt-3" variant="success">
-              <Alert.Heading> {success} </Alert.Heading>
-              <hr />
-              <div className="d-flex justify-content-end">
-                <Button
-                  onClick={() => {
-                    setShow(false);
-                    setSuccess(null);
-                  }}
-                  variant="outline-success"
-                >
-                  Close me
-                </Button>
-              </div>
-            </Alert>
-          </motion.div>
-        )}
+        <FormStatus error={error} success={success} show={show} />
       </div>
     </New>
   );

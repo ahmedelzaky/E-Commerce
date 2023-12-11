@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
 import New from "../../../component/admin/new/New";
-import { Alert, Button } from "react-bootstrap";
-import ErrorMessage from "../../../component/ErrorMessage";
 import { useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import { updateProduct } from "../../../api/Server";
-import { motion } from "framer-motion";
 import ProductForm from "../../../component/admin/forms/ProductForm";
+import FormStatus from "../../../component/admin/forms/FormStatus";
 
 const EditProduct = () => {
   const { productId } = useParams();
@@ -55,31 +53,7 @@ const EditProduct = () => {
           isPending={isPending}
           productData={data}
         />
-        {error && <ErrorMessage> {error} </ErrorMessage>}
-        {success && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Alert show={show} className="mt-3" variant="success">
-              <Alert.Heading> {success} </Alert.Heading>
-              <hr />
-              <div className="d-flex justify-content-end">
-                <Button
-                  onClick={() => {
-                    setShow(false);
-                    setSuccess(null);
-                  }}
-                  variant="outline-success"
-                >
-                  Close me
-                </Button>
-              </div>
-            </Alert>
-          </motion.div>
-        )}
+        <FormStatus error={error} success={success} show={show} />
       </div>
     </New>
   );

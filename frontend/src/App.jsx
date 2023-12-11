@@ -20,7 +20,7 @@ import AddProduct from "./pages/admin/add/AddProduct";
 import AddCategory from "./pages/admin/add/AddCategory";
 import EditProduct from "./pages/admin/edit/EditProduct";
 import EditCategory from "./pages/admin/edit/EditCategory";
-import Dashboard from "./pages/admin/Dashboard/Dashboard";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Notifications from "./pages/admin/notigications/Notigications";
 
 function App() {
@@ -70,7 +70,10 @@ function App() {
             <Route path="edit/:categoryId" element={<EditCategory />} />
           </Route>
           <Route path="delivery" element={<Delivery />} />
-          <Route path="notigications" element={<Notifications />} />
+          <Route path="notigications">
+            <Route index element={<Notifications />} />
+            <Route path="edit/:productId" element={<EditProduct />} />
+          </Route>
         </Route>
 
         {/* not found */}
