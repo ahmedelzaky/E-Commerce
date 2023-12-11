@@ -72,12 +72,12 @@ export const updateProduct = async (id, formData) => {
   };
 };
 
-export const updateCategory = async (formData) => {
+export const updateCategory = async (id, formData) => {
   let isPending = true;
   let error = null;
 
   try {
-    await axios.put("/categories/update", formData, {
+    await axios.put("/categories/update/" + id, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

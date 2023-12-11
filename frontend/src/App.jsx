@@ -20,6 +20,7 @@ import Delivery from "./pages/admin/delivery/Delivery";
 import AddProduct from "./pages/admin/add/AddProduct";
 import AddCategory from "./pages/admin/add/AddCategory";
 import EditProduct from "./pages/admin/edit/EditProduct";
+import EditCategory from "./pages/admin/edit/EditCategory";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -55,7 +56,6 @@ function App() {
             <Route index element={<Productslist />} />
             <Route path="new" element={<AddProduct />} />
             <Route path="edit/:productId" element={<EditProduct />} />
-            <Route path=":productId" element={<Single />} />
           </Route>
 
           <Route path="orders">
@@ -66,7 +66,7 @@ function App() {
           <Route path="categories">
             <Route index element={<Categorieslist />} />
             <Route path="new" element={<AddCategory />} />
-            <Route path=":categoryId" element={<Single />} />
+            <Route path="edit/:categoryId" element={<EditCategory />} />
           </Route>
           <Route path="delivery" element={<Delivery />} />
         </Route>

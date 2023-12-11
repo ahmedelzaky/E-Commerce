@@ -1,41 +1,36 @@
-import { useParams } from "react-router-dom";
-import New from "../../../component/admin/new/New";
-import { Alert, Button } from "react-bootstrap";
-import ErrorMessage from "../../../component/ErrorMessage";
 import { useState } from "react";
-import useAxios from "../../../hooks/useAxios";
-import { updateProduct } from "../../../api/Server";
+import { Button, Alert } from "react-bootstrap";
+import { updateCategory } from "../../../api/Server";
+import ErrorMessage from "../../../component/ErrorMessage";
 import { motion } from "framer-motion";
-import ProductForm from "../../../component/admin/forms/ProductForm";
+import New from "../../../component/admin/new/New";
+import CategoryForm from "../../../component/admin/forms/CategoryForm";
+import { useParams } from "react-router-dom";
+import useAxios from "../../../hooks/useAxios";
 
-const EditProduct = () => {
-  const { productId } = useParams();
-
-  const { data } = useAxios(`/products/native/${productId}`);
-
+const EditCategory = () => {
+  const { categoryId } = useParams();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [show, setShow] = useState(true);
 
-  const handleSubmit = (product, file) => {
-    handleUpload(product, file);
-  };
+  const { data } = useAxios(`/categories/${categoryId}`);
 
-  const handleUpload = async (product, file) => {
+  const handleSubmit = async (category, file) => {
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("product", JSON.stringify(product));
+    formData.append("image", file);
+    formData.append("category", JSON.stringify(category));
     setIsPending(true);
-    const { Pending, error } = await updateProduct(product.id, formData);
+    const { Pending, error } = await updateCategory(categoryId, formData);
     setError(error);
     if (!error) {
-      setSuccess("Product Edited successfully");
+      setSuccess("Category Edited successfully");
       setShow(true);
       setTimeout(() => {
-        setShow(false);
+        setSuccess(null);
         window.location.reload();
-      }, 2000);
+      }, 3000);
     } else {
       setTimeout(() => {
         setError(null);
@@ -45,15 +40,15 @@ const EditProduct = () => {
   };
 
   return (
-    <New title={`Edit Product #${productId}`}>
+    <New title={`Edit ${data?.name} Category`}>
       <div className="d-flex flex-column">
         <center>
           <img src={data?.imageUrl} alt="" />
         </center>
-        <ProductForm
+        <CategoryForm
           handleSubmit={handleSubmit}
           isPending={isPending}
-          productData={data}
+          categoryData={data}
         />
         {error && <ErrorMessage> {error} </ErrorMessage>}
         {success && (
@@ -85,4 +80,4 @@ const EditProduct = () => {
   );
 };
 
-export default EditProduct;
+export default EditCategory;

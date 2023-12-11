@@ -124,18 +124,20 @@ const ProductForm = ({ handleSubmit, isPending, productData }) => {
         <Form.Group controlId="formImage">
           <Form.Label>Select Image:</Form.Label>
           <Form.Control type="file" onChange={handleFileChange} />
-          {file && (
-            <img
-              src={URL.createObjectURL(file)}
-              alt="product"
-              style={{
-                width: "100px",
-                height: "100px",
-                margin: "10px",
-                borderRadius: "10px",
-              }}
-            />
-          )}
+          <center>
+            {file && (
+              <img
+                src={URL.createObjectURL(file)}
+                alt="product"
+                style={{
+                  width: "300px",
+                  height: "200px",
+                  margin: "10px",
+                  borderRadius: "10px",
+                }}
+              />
+            )}
+          </center>
         </Form.Group>
       </Row>
       <center>

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Form, Button, Alert, Col, Row } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { uploadCategory } from "../../../api/Server";
 import ErrorMessage from "../../../component/ErrorMessage";
 import { motion } from "framer-motion";
 import New from "../../../component/admin/new/New";
+import CategoryForm from "../../../component/admin/forms/CategoryForm";
 
 const AddCategory = () => {
   const [isPending, setIsPending] = useState(false);
@@ -11,39 +12,19 @@ const AddCategory = () => {
   const [success, setSuccess] = useState(null);
   const [show, setShow] = useState(true);
 
-  const [product, setProduct] = useState({
-    name: "",
-  });
-
-  const [file, setFile] = useState(null);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProduct({
-      ...product,
-      [name]: value,
-    });
-  };
-
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleUpload();
-  };
-
-  const handleUpload = async () => {
+  const handleSubmit = async (category, file) => {
     const formData = new FormData();
     formData.append("image", file);
-    formData.append("category", JSON.stringify(product));
+    formData.append("category", JSON.stringify(category));
     setIsPending(true);
     const { Pending, error } = await uploadCategory(formData);
     setError(error);
     if (!error) {
       setSuccess("Category added successfully");
       setShow(true);
+      setTimeout(() => {
+        setSuccess(null);
+      }, 3000);
     } else {
       setTimeout(() => {
         setError(null);
@@ -55,46 +36,7 @@ const AddCategory = () => {
   return (
     <New title="Add New Category">
       <div className="d-flex flex-column">
-        <Form onSubmit={handleSubmit}>
-          <Row className="mb-3">
-            <Form.Group as={Col} md="8" controlId="formTitle">
-              <Form.Label>Category name:</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={product.title}
-                required
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formImage">
-              <Form.Label>Select Image:</Form.Label>
-              <Form.Control type="file" onChange={handleFileChange} />
-              {file && (
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt="product"
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    margin: "10px",
-                    borderRadius: "10px",
-                  }}
-                />
-              )}
-            </Form.Group>
-          </Row>
-
-          <Button
-            className="mt-3"
-            variant="primary"
-            disabled={isPending}
-            type="submit"
-          >
-            {isPending ? "Adding..." : "Add"}
-          </Button>
-        </Form>
+        <CategoryForm handleSubmit={handleSubmit} isPending={isPending} />
         {error && <ErrorMessage> {error} </ErrorMessage>}
         {success && (
           <motion.div
