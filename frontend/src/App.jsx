@@ -11,7 +11,6 @@ import SignUp from "./pages/signup/Signup";
 import Dashboard from "./pages/admin/home/Dashboard";
 import Single from "./pages/admin/single/Single";
 import List from "./pages/admin/list/List";
-import { userInputs } from "./formSource";
 import { useContext } from "react";
 import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
@@ -20,6 +19,7 @@ import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
 import Delivery from "./pages/admin/delivery/Delivery";
 import AddProduct from "./pages/admin/add/AddProduct";
 import AddCategory from "./pages/admin/add/AddCategory";
+import EditProduct from "./pages/admin/edit/EditProduct";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -54,6 +54,7 @@ function App() {
           <Route path="products">
             <Route index element={<Productslist />} />
             <Route path="new" element={<AddProduct />} />
+            <Route path="edit/:productId" element={<EditProduct />} />
             <Route path=":productId" element={<Single />} />
           </Route>
 

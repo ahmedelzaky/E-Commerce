@@ -1,29 +1,40 @@
-import { useState } from "react";
-import { Button, Alert } from "react-bootstrap";
-import uploadProduct from "../../../api/Server";
-import ErrorMessage from "../../../component/ErrorMessage";
-import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
 import New from "../../../component/admin/new/New";
+import { Alert, Button } from "react-bootstrap";
+import ErrorMessage from "../../../component/ErrorMessage";
+import { useState } from "react";
+import useAxios from "../../../hooks/useAxios";
+import { updateProduct } from "../../../api/Server";
+import { motion } from "framer-motion";
 import ProductForm from "../../../component/admin/forms/ProductForm";
 
-const AddProduct = () => {
+const EditProduct = () => {
+  const { productId } = useParams();
+
+  const { data } = useAxios(`/products/native/${productId}`);
+
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [show, setShow] = useState(true);
 
-  const handleSubmit = async (product, file) => {
+  const handleSubmit = (product, file) => {
+    handleUpload(product, file);
+  };
+
+  const handleUpload = async (product, file) => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("product", JSON.stringify(product));
     setIsPending(true);
-    const { Pending, error } = await uploadProduct(formData);
+    const { Pending, error } = await updateProduct(product.id, formData);
     setError(error);
     if (!error) {
       setSuccess("Product added successfully");
       setShow(true);
       setTimeout(() => {
         setShow(false);
+        window.location.reload();
       }, 3000);
     } else {
       setTimeout(() => {
@@ -34,9 +45,25 @@ const AddProduct = () => {
   };
 
   return (
-    <New title="Add New Product">
+    <New title={`Edit Product #${productId}`}>
       <div className="d-flex flex-column">
-        <ProductForm handleSubmit={handleSubmit} isPending={isPending} />
+        <div className="left">
+          <img
+            src={data?.imageUrl}
+            alt=""
+            style={{
+              width: "400px",
+              height: "400px",
+              objectFit: "fill",
+              borderRadius: "0",
+            }}
+          />
+        </div>
+        <ProductForm
+          handleSubmit={handleSubmit}
+          isPending={isPending}
+          productData={data}
+        />
         {error && <ErrorMessage> {error} </ErrorMessage>}
         {success && (
           <motion.div
@@ -67,4 +94,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;

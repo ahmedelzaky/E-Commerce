@@ -48,12 +48,12 @@ export const uploadCategory = async (formData) => {
   };
 };
 
-export const updateProduct = async (formData) => {
+export const updateProduct = async (id, formData) => {
   let isPending = true;
   let error = null;
 
   try {
-    await axios.put("/products/update", formData, {
+    await axios.put("/products/update/" + id, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
