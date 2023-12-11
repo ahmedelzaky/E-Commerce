@@ -12,7 +12,7 @@ const Orderslist = () => {
         <Datatable
           url={`/orders/delivered-orders`}
           columns={orderColumns}
-          title={"orders"}
+          title={"Orders"}
           actionColum={ordersActionColum}
         />
       </div>

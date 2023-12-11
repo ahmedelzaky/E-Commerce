@@ -1,52 +1,47 @@
 import "./featured.css";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import "../../../style/dark.css";
+import useAxios from "../../../hooks/useAxios";
 
 const Featured = () => {
+  const { data: earnings } = useAxios("/payment/earnings-today");
+  const target = 10000;
   return (
     <div className="featured">
       <div className="top">
         <div className="title">Total Revenue</div>
-        <MoreVertIcon fontSize="small" />
       </div>
 
       <div className="bottom">
         <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
+          <CircularProgressbar
+            value={Math.round((earnings / target) * 100)}
+            text={`${Math.round((earnings / target) * 100)}%`}
+            strokeWidth={5}
+          />
         </div>
-        <p className="title">Total sales made today</p>
-        <p className="amount">$420</p>
-        <p className="desc">
-          Previous transactions proceessing. Last payments may not be included.
-        </p>
+        <p className="title">Total earnings made today</p>
+        <p className="amount">${earnings}</p>
         <div className="summary">
           <div className="item">
             <div className="itemTitle">Target</div>
-
-            <div className="itemResult negative">
-              <KeyboardArrowDownIcon fontSize="small" />
-              <div className="resultAmount">$12.4k</div>
-            </div>
-          </div>
-          <div className="item">
-            <div className="itemTitle">Last Week</div>
-
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlinedIcon fontSize="small" />
-              <div className="resultAmount">$12.4k</div>
-            </div>
-          </div>
-          <div className="item">
-            <div className="itemTitle">Last Month</div>
-
-            <div className="itemResult positive">
-              <KeyboardArrowDownIcon fontSize="small" />
-              <div className="resultAmount">$12.4k</div>
-            </div>
+            <center>
+              <div
+                className={`itemResult ${
+                  target > earnings ? "negative" : "positive"
+                }`}
+              >
+                {target > earnings ? (
+                  <KeyboardArrowDownIcon fontSize="small" />
+                ) : (
+                  <KeyboardArrowUpOutlinedIcon fontSize="small" />
+                )}
+                <div className="resultAmount">${target}</div>
+              </div>
+            </center>
           </div>
         </div>
       </div>

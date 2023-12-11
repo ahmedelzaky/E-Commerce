@@ -1,22 +1,24 @@
 import "./widget.css";
 import "../../../style/dark.css";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import PropTypes from "prop-types";
+import useAxios from "../../../hooks/useAxios";
+import { Link } from "react-router-dom";
 
 const Widget = ({ type }) => {
-  const amount = 100;
-  const diff = 20;
+  const { data: amount } = useAxios(
+    type === "earning" ? "/payment/earnings" : "/orders/orders-count/COMPLETED"
+  );
 
   let data;
   switch (type) {
     case "user":
       data = {
         title: "USERS",
+        link: "View all Users",
         isMoney: false,
-        link: "See all users",
         icon: (
           <PersonOutlineOutlinedIcon
             className="icon"
@@ -31,7 +33,7 @@ const Widget = ({ type }) => {
 
     case "order":
       data = {
-        title: "ORDERS",
+        title: "Completed ORDERS",
         isMoney: false,
         link: "View all orders",
         icon: (
@@ -50,30 +52,12 @@ const Widget = ({ type }) => {
       data = {
         title: "ERARNINGS",
         isMoney: true,
-        link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{
               color: "green",
               background: "rgba(0,128,0,0.2)",
-            }}
-          />
-        ),
-      };
-      break;
-
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              color: "purple",
-              background: "rgba(128,0,128,0.2)",
             }}
           />
         ),
@@ -90,17 +74,21 @@ const Widget = ({ type }) => {
         <span className="counter">
           {data.isMoney && "$"} {amount}
         </span>
-        <span className="link">{data.link}</span>
+        <Link
+          style={{ textDecoration: "none" }}
+          to={`${type}s`}
+          className="link"
+        >
+          {data.link}
+        </Link>
       </div>
-      <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpOutlinedIcon />
-          {diff} %
-        </div>
-        {data.icon}
-      </div>
+      <div className="right">{data.icon}</div>
     </div>
   );
+};
+
+Widget.propTypes = {
+  type: PropTypes.string,
 };
 
 export default Widget;
