@@ -151,13 +151,11 @@ export const ordersActionColum = [
     renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link
-            className="viewButton"
-            to={`${params.row.id}`}
-            style={{ textDecoration: "none" }}
-          >
-            View
-          </Link>
+          <Button variant="outlined">
+            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+              View
+            </Link>
+          </Button>
         </div>
       );
     },
@@ -189,7 +187,7 @@ export const pendingOrderActionColum = [
   {
     field: "action",
     headerName: "Actions",
-    width: 200,
+    width: 300,
     renderCell: (params) => {
       return (
         <div className="cellAction">
@@ -206,6 +204,11 @@ export const pendingOrderActionColum = [
           >
             Reject
           </Button>
+          <Button variant="outlined">
+            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+              View
+            </Link>
+          </Button>
         </div>
       );
     },
@@ -216,7 +219,7 @@ export const inProgressOrderActionColum = [
   {
     field: "action",
     headerName: "Actions",
-    width: 250,
+    width: 300,
     renderCell: (params) => {
       return (
         <div className="cellAction">
@@ -233,6 +236,11 @@ export const inProgressOrderActionColum = [
             color="error"
           >
             Cancel
+          </Button>
+          <Button variant="outlined">
+            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+              View
+            </Link>
           </Button>
         </div>
       );

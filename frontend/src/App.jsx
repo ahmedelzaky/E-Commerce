@@ -22,6 +22,7 @@ import EditProduct from "./pages/admin/edit/EditProduct";
 import EditCategory from "./pages/admin/edit/EditCategory";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Notifications from "./pages/admin/notigications/Notigications";
+import OrderDetails from "./pages/admin/orderdetails/OrderDetails";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -61,7 +62,7 @@ function App() {
 
           <Route path="orders">
             <Route index element={<Orderslist />} />
-            <Route path=":orderId" element={<Single />} />
+            <Route path=":orderId" element={<OrderDetails />} />
           </Route>
 
           <Route path="categories">
@@ -69,10 +70,14 @@ function App() {
             <Route path="new" element={<AddCategory />} />
             <Route path="edit/:categoryId" element={<EditCategory />} />
           </Route>
-          <Route path="delivery" element={<Delivery />} />
+          <Route path="delivery">
+            <Route index element={<Delivery />} />
+            <Route path=":orderId" element={<OrderDetails />} />
+          </Route>
           <Route path="notigications">
             <Route index element={<Notifications />} />
             <Route path="edit/:productId" element={<EditProduct />} />
+            <Route path=":orderId" element={<OrderDetails />} />
           </Route>
         </Route>
 
