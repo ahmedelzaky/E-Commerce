@@ -47,12 +47,9 @@ public class PaymentServices {
 
         editProductsStockQuantity(payment.getOrder().getOrderItems());
 
-        payment.getOrder().setStatus(OrderStatus.PENDING);
-
         if (payment.getPaymentMethod() == PaymentMethod.VISA)
             payment.setPaymentDate(new Date());
-
-
+        
         paymentRepository.save(payment);
     }
 
