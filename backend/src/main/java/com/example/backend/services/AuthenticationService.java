@@ -18,28 +18,21 @@ import org.springframework.stereotype.Service;
 @Service
 
 public class AuthenticationService {
-    @Autowired
 
+    @Autowired
     private UserRepository repository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
 
+    @Autowired
     private JwtUtils jwtUtils;
-    @Autowired
 
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterReqest request) {
-        var user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .phone(request.getPhone())
-                .build();
+        var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
         var savedUser = repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
@@ -49,11 +42,12 @@ public class AuthenticationService {
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
 
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new Exception("Invalid credentials");
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        } catch (Exception e) {
+            throw new Exception("Invalid username/password");
         }
-
+        var user = repository.findByEmail(request.getEmail()).orElseThrow();
 
         var jwtToken = jwtUtils.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
