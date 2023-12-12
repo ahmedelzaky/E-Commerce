@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.dto.OrderDetailsDTO;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.repositorys.OrderRepository;
@@ -44,5 +45,9 @@ public class OrderServices {
 
     public List<Order> getOrdersByStatus(OrderStatus status) {
         return repository.findOrdersByStatus(status);
+    }
+
+    public OrderDetailsDTO getOrderDetailsById(Long id) {
+        return repository.findOrderDetails(id).orElseThrow(() -> new IllegalStateException("this order dose not exist"));
     }
 }

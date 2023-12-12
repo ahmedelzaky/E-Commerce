@@ -1,5 +1,6 @@
 package com.example.backend.repositorys;
 
+import com.example.backend.dto.OrderDetailsDTO;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.models.Payment;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 
@@ -28,4 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o where o.status=?1 ORDER BY o.id DESC")
     List<Order> findOrdersByStatus(OrderStatus status);
+
+    @Query(value = "SELECT * FROM get_order_details(:id)", nativeQuery = true)
+    Optional<OrderDetailsDTO> findOrderDetails(Long id);
 }

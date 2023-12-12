@@ -24,23 +24,21 @@ public class Order {
     private Date orderDate;
     @Column(name = "arrival_date")
     private Date arrivalDate;
-    @Column(name = "statue", insertable = false)
+    @Column(name = "order_status", insertable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+    @Column(name = "address_id")
+    private long addressId;
 
     @OneToMany(targetEntity = OrderItem.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
 
-    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems, Address address) {
+    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems) {
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.arrivalDate = arrivalDate;
         this.orderItems = orderItems;
-        this.address = address;
     }
 }
