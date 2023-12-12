@@ -1,12 +1,16 @@
 package com.example.backend.services;
 
+import ch.qos.logback.classic.spi.EventArgUtil;
 import com.example.backend.dto.AuthenticationRequest;
 import com.example.backend.dto.AuthenticationResponse;
 import com.example.backend.dto.RegisterReqest;
 import com.example.backend.jwt.JwtUtils;
 import com.example.backend.models.User;
 import com.example.backend.repositorys.UserRepository;
+
+
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +37,15 @@ public class AuthenticationService {
 
 
     }
+    public AuthenticationResponse authenticate (AuthenticationRequest request){
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail()
+                        ,request.getPassword()));
+        var user =repository.findByEmail(request.getEmail()).orElseThrow();
+        var jwtToken = jwtUtils.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
+    }
+
+
 
 }

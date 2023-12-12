@@ -27,10 +27,11 @@ public class AuthenticationController {
             @RequestBody RegisterReqest request) {
         return ResponseEntity.ok(service.register(request));
     }
-//@PostMapping("authenticate")
-//    public ResponseEntity<AuthenticationResponse> register(
-//            @RequestBody AuthenticationRequest request) {
-//    }
+@PostMapping("authenticate")
+    public ResponseEntity<AuthenticationResponse> register(
+            @RequestBody AuthenticationRequest request) {
+    return ResponseEntity.ok(service.authenticate(request));
+    }
 
 
 }
