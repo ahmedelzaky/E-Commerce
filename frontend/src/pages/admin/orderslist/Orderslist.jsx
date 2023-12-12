@@ -8,7 +8,7 @@ const Orderslist = () => {
       <Sidebar />
       <div className="listContainerr">
         <Datatable
-          url={`/orders/delivered-orders`}
+          url={`/orders/get-orders-by-status/COMPLETED`}
           columns={orderColumns}
           title={"Orders"}
           actionColum={ordersActionColum}

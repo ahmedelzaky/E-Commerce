@@ -1,6 +1,6 @@
 import Datatable from "../../../component/admin/datatable/Datatable";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
-import { productColumns, productsActionColums } from "../../../datatablesource";
+import { deliveryColumns, pendingOrderActionColum, productColumns, productsActionColums } from "../../../datatablesource";
 
 const Notigications = () => {
   return (
@@ -13,6 +13,12 @@ const Notigications = () => {
           title={"Low Stock Products"}
           actionColum={productsActionColums}
           addNew={true}
+        />
+        <Datatable
+          url={`/orders/get-orders-by-status/PENDING`}
+          columns={deliveryColumns}
+          title={"Pending Orders"}
+          actionColum={pendingOrderActionColum}
         />
       </div>
     </div>

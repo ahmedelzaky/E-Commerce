@@ -12,16 +12,35 @@ import { Badge } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const Sidebar = () => {
-  const [lowStockCount, setLowStockCount] = useState(
-    localStorage.getItem("lowStockProductsCount") || 0
+  const [notificationCount, setNotificationCount] = useState(
+    localStorage.getItem("notificationCount") || 0
   );
-  const { data } = useAxios("/products/Low-stock-count");
+
+  const [delevary, setDelevary] = useState(
+    localStorage.getItem("delevary") || 0
+  );
+
+  const { data: lowStock } = useAxios("/products/Low-stock-count");
+  const { data: pending } = useAxios("/orders/orders-count/PENDING");
+  const { data: inprogress } = useAxios("/orders/orders-count/IN_PROGRESS");
+
   useEffect(() => {
-    if (data > 0) {
-      setLowStockCount(data);
-      localStorage.setItem("lowStockProductsCount", data);
+    if (inprogress) {
+      setDelevary(inprogress);
+      localStorage.setItem("delevary", parseInt(inprogress));
     }
-  }, [data]);
+  }, [inprogress]);
+
+  useEffect(() => {
+    if (lowStock && pending) {
+      setNotificationCount(parseInt(lowStock) + parseInt(pending));
+      localStorage.setItem(
+        "notificationCount",
+        parseInt(lowStock) + parseInt(pending)
+      );
+    }
+  }, [lowStock, pending]);
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -71,14 +90,15 @@ const Sidebar = () => {
           <Link to="/admin/delivery" style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
+              {delevary > 0 && <Badge badgeContent={delevary}></Badge>}
               <span>Delivery</span>
             </li>
           </Link>
           <Link to="/admin/notigications" style={{ textDecoration: "none" }}>
             <li>
               <NotificationsNoneOutlinedIcon className="icon" />
-              {lowStockCount > 0 && (
-                <Badge badgeContent={lowStockCount}></Badge>
+              {notificationCount > 0 && (
+                <Badge badgeContent={notificationCount}></Badge>
               )}
               <span>Notifications</span>
             </li>

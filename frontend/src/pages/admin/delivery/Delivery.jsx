@@ -3,7 +3,6 @@ import Datatable from "../../../component/admin/datatable/Datatable";
 import {
   deliveryColumns,
   inProgressOrderActionColum,
-  pendingOrderActionColum,
 } from "../../../datatablesource";
 
 const Delivery = () => {
@@ -12,16 +11,10 @@ const Delivery = () => {
       <Sidebar />
       <div className="listContainerr">
         <Datatable
-          url={`/orders/in-progress-orders`}
+          url={`/orders/get-orders-by-status/IN_PROGRESS`}
           columns={deliveryColumns}
           title={"In Progress Orders"}
           actionColum={inProgressOrderActionColum}
-        />
-        <Datatable
-          url={`/orders/pending-orders`}
-          columns={deliveryColumns}
-          title={"Pending Orders"}
-          actionColum={pendingOrderActionColum}
         />
       </div>
     </div>
