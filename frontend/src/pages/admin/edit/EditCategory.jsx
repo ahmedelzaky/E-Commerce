@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { updateCategory } from "../../../api/Server";
-import New from "../../../component/admin/new/New";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
 import { useParams } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
 import FormStatus from "../../../component/admin/forms/FormStatus";
+import MainContainer from "../../../component/admin/new/MainContainer";
 
 const EditCategory = () => {
   const { categoryId } = useParams();
@@ -38,7 +38,7 @@ const EditCategory = () => {
   };
 
   return (
-    <New title={`Edit ${data?.name} Category`}>
+    <MainContainer title={`Edit ${data?.name} Category`}>
       <div className="d-flex flex-column">
         <center>
           <img src={data?.imageUrl} alt="" />
@@ -50,7 +50,7 @@ const EditCategory = () => {
         />
         <FormStatus error={error} success={success} show={show} />
       </div>
-    </New>
+    </MainContainer>
   );
 };
 

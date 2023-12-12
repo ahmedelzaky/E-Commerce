@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import New from "../../../component/admin/new/New";
 import { useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import { updateProduct } from "../../../api/Server";
 import ProductForm from "../../../component/admin/forms/ProductForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
+import MainContainer from "../../../component/admin/new/MainContainer";
 
 const EditProduct = () => {
   const { productId } = useParams();
@@ -43,7 +43,7 @@ const EditProduct = () => {
   };
 
   return (
-    <New title={`Edit Product #${productId}`}>
+    <MainContainer title={`Edit Product #${productId}`}>
       <div className="d-flex flex-column">
         <center>
           <img src={data?.imageUrl} alt="" />
@@ -55,7 +55,7 @@ const EditProduct = () => {
         />
         <FormStatus error={error} success={success} show={show} />
       </div>
-    </New>
+    </MainContainer>
   );
 };
 

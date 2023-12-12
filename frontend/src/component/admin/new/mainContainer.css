@@ -1,12 +1,12 @@
-.new {
+.main {
   width: 100%;
   display: flex;
 }
-.new .newContainer {
+.main .mainContainer {
   flex: 6;
 }
-.newContainer .top,
-.newContainer .bottom {
+.mainContainer .top,
+.mainContainer .bottom {
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
@@ -14,45 +14,45 @@
   display: flex;
   flex-direction: column;
 }
-.newContainer .top,
-.newContainer .bottom {
+.mainContainer .top,
+.mainContainer .bottom {
   color: lightgray;
   font-size: 20px;
 }
 
-.newContainer .bottom img {
+.mainContainer .bottom img {
   width: 400px;
   height: 300px;
   border-radius: 10px;
   object-fit: fill;
 }
-.formInput label {
+.form-label  {
   color: #000;
 }
-.newContainer .bottom .right form {
+.mainContainer .bottom .right form {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: space-around;
 }
-.newContainer .bottom .right .formInput {
+.mainContainer .bottom .right .formInput {
   width: 40%;
 }
-.newContainer .bottom .right .formInput label {
+.mainContainer .bottom .right .formInput label {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.newContainer .bottom .right .formInput label .icon {
+.mainContainer .bottom .right .formInput label .icon {
   cursor: pointer;
 }
-.newContainer .bottom .right .formInput input {
+.mainContainer .bottom .right .formInput input {
   width: 100%;
   padding: 5px;
   border: none;
   border-bottom: 1px solid gray;
 }
-.newContainer .bottom button {
+.mainContainer .bottom button {
   width: 150px;
   padding: 10px;
   border: none;

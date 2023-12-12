@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { uploadCategory } from "../../../api/Server";
-import New from "../../../component/admin/new/New";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
+import MainContainer from "../../../component/admin/new/MainContainer";
 
 const AddCategory = () => {
   const [isPending, setIsPending] = useState(false);
@@ -32,12 +32,12 @@ const AddCategory = () => {
   };
 
   return (
-    <New title="Add New Category">
+    <MainContainer title="Add New Category">
       <div className="d-flex flex-column">
         <CategoryForm handleSubmit={handleSubmit} isPending={isPending} />
         <FormStatus error={error} success={success} show={show} />
       </div>
-    </New>
+    </MainContainer>
   );
 };
 

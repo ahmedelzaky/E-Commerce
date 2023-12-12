@@ -1,8 +1,8 @@
 import { useState } from "react";
 import uploadProduct from "../../../api/Server";
-import New from "../../../component/admin/new/New";
 import ProductForm from "../../../component/admin/forms/ProductForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
+import MainContainer from "../../../component/admin/new/MainContainer";
 
 const AddProduct = () => {
   const [isPending, setIsPending] = useState(false);
@@ -32,12 +32,12 @@ const AddProduct = () => {
   };
 
   return (
-    <New title="Add New Product">
+    <MainContainer title="Add New Product">
       <div className="d-flex flex-column">
         <ProductForm handleSubmit={handleSubmit} isPending={isPending} />
         <FormStatus error={error} success={success} show={show} />
       </div>
-    </New>
+    </MainContainer>
   );
 };
 

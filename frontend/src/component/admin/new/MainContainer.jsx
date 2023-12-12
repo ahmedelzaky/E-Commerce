@@ -1,12 +1,12 @@
-import Sidebar from "../../../component/admin/sidebar/Sidebar";
-import "./new.css";
+import Sidebar from "../sidebar/Sidebar";
+import "./mainContainer.css";
 import { PropTypes } from "prop-types";
 
-const New = ({ children, title }) => {
+const MainContainer = ({ children, title }) => {
   return (
-    <div className="new">
+    <div className="main">
       <Sidebar />
-      <div className="newContainer">
+      <div className="mainContainer">
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -17,9 +17,9 @@ const New = ({ children, title }) => {
   );
 };
 
-New.propTypes = {
+MainContainer.propTypes = {
   children: PropTypes.element,
   title: PropTypes.string.isRequired,
 };
 
-export default New;
+export default MainContainer;
