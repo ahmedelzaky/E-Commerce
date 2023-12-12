@@ -18,20 +18,14 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT o FROM Order o where DATE(o.orderDate)  = ?1")
     List<Order> findOrdersByDate(LocalDate orderDate);
 
-    @Query("SELECT o FROM Order o where MONTH(o.orderDate)  = ?1")
-    List<Payment> findOrdersByMonth(Integer month);
 
     @Query("SELECT o FROM Order o where o.customerId= ?1")
     List<Order> findOrderByCustomerId(Long customerId);
 
-    @Query("SELECT o FROM Order o where o.status='PENDING'")
-    List<Order> findPendingOrders();
 
-    @Query("SELECT o FROM Order o where o.status='IN_PROGRESS'")
-    List<Order> findInProgressOrders();
-
-    @Query("SELECT o FROM Order o where o.status='COMPLETED'")
-    List<Order> findDeliveredOrders();
     @Query("SELECT COUNT(o) FROM Order o where o.status=?1")
     Long countOrdersByStatus(OrderStatus status);
+
+    @Query("SELECT o FROM Order o where o.status=?1 ORDER BY o.id DESC")
+    List<Order> findOrdersByStatus(OrderStatus status);
 }

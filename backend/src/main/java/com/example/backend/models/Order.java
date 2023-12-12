@@ -24,7 +24,7 @@ public class Order {
     private Date orderDate;
     @Column(name = "arrival_date")
     private Date arrivalDate;
-    @Column(name = "statue")
+    @Column(name = "statue", insertable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 

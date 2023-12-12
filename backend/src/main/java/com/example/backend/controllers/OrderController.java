@@ -37,19 +37,9 @@ public class OrderController {
         return orderServices.getOrderByCustomerId(id);
     }
 
-    @GetMapping("pending-orders")
-    public List<Order> getPendingOrders() {
-        return orderServices.getPendingOrders();
-    }
-
-    @GetMapping("in-progress-orders")
-    public List<Order> getInProgressOrders() {
-        return orderServices.getInProgressOrders();
-    }
-
-    @GetMapping("delivered-orders")
-    public List<Order> getDeliveredOrders() {
-        return orderServices.getDeliveredOrders();
+    @GetMapping("get-orders-by-status/{status}")
+    public List<Order> getOrdersByStatus(@PathVariable("status") OrderStatus status) {
+        return orderServices.getOrdersByStatus(status);
     }
 
     @PutMapping("/update-order-status/{id}")

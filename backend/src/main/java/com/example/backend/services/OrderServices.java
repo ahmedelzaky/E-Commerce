@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 
@@ -38,19 +37,12 @@ public class OrderServices {
         order.setStatus(status);
     }
 
-    public List<Order> getPendingOrders() {
-        return repository.findPendingOrders();
-    }
-
-    public List<Order> getInProgressOrders() {
-        return repository.findInProgressOrders();
-    }
-
-    public List<Order> getDeliveredOrders() {
-        return repository.findDeliveredOrders();
-    }
 
     public Long getOrdersCount(OrderStatus status) {
         return repository.countOrdersByStatus(status);
+    }
+
+    public List<Order> getOrdersByStatus(OrderStatus status) {
+        return repository.findOrdersByStatus(status);
     }
 }
