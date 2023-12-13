@@ -24,7 +24,7 @@ const Datatable = ({ columns, url, title, actionColum, addNew }) => {
         <DataGrid
           className="datagrid"
           rows={data}
-          columns={columns.concat(actionColum)}
+          columns={actionColum ? columns.concat(actionColum) : columns}
           pageSize={9}
           rowsPerPageOptions={[9]}
         />

@@ -134,9 +134,20 @@ const NavBar = ({ children }) => {
                 </Collapse>
               )}
             </Form>
-            <Link className="btn btn-warning login-btn" to={`/sign-in`}>
-              Signin
-            </Link>
+            {!localStorage.getItem("token") ? (
+              <Link className="btn btn-warning login-btn" to={`/sign-in`}>
+                Signin
+              </Link>
+            ) : (
+              <NavDropdown title={"Welcome Back"} id="navbarScrollingDropdown">
+                <Link className="dropdown-item" to="/profile">
+                  Profile
+                </Link>
+                <Link className="dropdown-item" to="/logout">
+                  Logout
+                </Link>
+              </NavDropdown>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

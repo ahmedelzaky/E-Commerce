@@ -11,11 +11,13 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const from = location.state?.from;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { errorMessage } = await logIn(email, password);
+    const { response, errorMessage } = await logIn(email, password);
     if (!errorMessage) {
-      navigate("/");
+      if (!response.customerDto) navigate("/admin");
+      else navigate(from ? from : "/", { replace: true });
     } else {
       setErrorMessage(errorMessage);
     }

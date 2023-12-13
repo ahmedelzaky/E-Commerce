@@ -8,8 +8,6 @@ import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
-import Single from "./pages/admin/single/Single";
-import List from "./pages/admin/list/List";
 import { useContext } from "react";
 import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
@@ -24,6 +22,7 @@ import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Notifications from "./pages/admin/notigications/Notigications";
 import OrderDetails from "./pages/admin/orderdetails/OrderDetails";
 import RequireAuth from "./component/RequireAuth";
+import Customers from "./pages/admin/customers/Customers";
 
 function App() {
   const ROLES = {
@@ -56,9 +55,8 @@ function App() {
           <Route path="/admin">
             <Route index element={<Dashboard />} />
 
-            <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
+            <Route path="customers">
+              <Route index element={<Customers />} />
             </Route>
 
             <Route path="products">

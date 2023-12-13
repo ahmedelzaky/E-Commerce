@@ -14,14 +14,13 @@ const logIn = async (email, password) => {
       "user",
       JSON.stringify(response.data.customerDto || { role: "ADMIN" })
     );
-    return response.data;
   } catch (error) {
     console.log(error);
     errorMessage = "Invalid email or password";
   }
   isPending = false;
 
-  return { errorMessage, isPending };
+  return { response, errorMessage, isPending };
 };
 
 export const signUp = async (user) => {

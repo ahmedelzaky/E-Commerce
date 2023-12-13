@@ -9,15 +9,19 @@ import { Link } from "react-router-dom";
 
 const Widget = ({ type }) => {
   const { data: amount } = useAxios(
-    type === "earning" ? "/payment/earnings" : "/orders/orders-count/COMPLETED"
+    type === "earning"
+      ? "/payment/earnings"
+      : type == "order"
+      ? "/orders/orders-count/COMPLETED"
+      : "/customers/count"
   );
 
   let data;
   switch (type) {
-    case "user":
+    case "customer":
       data = {
-        title: "USERS",
-        link: "View all Users",
+        title: "Customers",
+        link: "View all Customers",
         isMoney: false,
         icon: (
           <PersonOutlineOutlinedIcon

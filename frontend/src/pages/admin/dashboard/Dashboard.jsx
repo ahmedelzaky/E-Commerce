@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="homeContainer">
         <div className="widgets">
-          <Widget type="user" />
+          <Widget type="customer" />
           <Widget type="order" />
           <Widget type="earning" />
         </div>

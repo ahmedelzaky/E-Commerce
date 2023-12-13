@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 const RequireAuth = ({ role }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const location = useLocation();
-  console.log(user?.role == role);
 
   return user?.role == role ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
+    <Navigate to="/sign-in" state={{ from: location }} replace />
   );
 };
 
