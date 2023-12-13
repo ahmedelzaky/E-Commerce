@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
 @RequestMapping(path = "api/products")
 public class ProductController {
     @Autowired
@@ -136,6 +135,7 @@ public class ProductController {
     public List<ProductDto> getLowStockProducts() {
         return productServices.getLowStockProducts();
     }
+
     @GetMapping("Low-stock-count")
     public int getLowStockCount() {
         return productServices.getLowStockCount();

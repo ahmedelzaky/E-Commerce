@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping(path = "api/payment")
 public class PaymentController {
     @Autowired

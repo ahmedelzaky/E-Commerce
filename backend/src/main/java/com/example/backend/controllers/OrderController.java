@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping(path = "api/orders")
 
 public class OrderController {
