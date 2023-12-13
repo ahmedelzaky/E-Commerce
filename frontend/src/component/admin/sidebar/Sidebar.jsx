@@ -25,14 +25,14 @@ const Sidebar = () => {
   const { data: inprogress } = useAxios("/orders/orders-count/IN_PROGRESS");
 
   useEffect(() => {
-    if (inprogress) {
-      setDelevary(inprogress);
+    if (inprogress !== null) {
+      setDelevary(parseInt(inprogress));
       localStorage.setItem("delevary", parseInt(inprogress));
     }
   }, [inprogress]);
 
   useEffect(() => {
-    if (lowStock && pending) {
+    if (lowStock !== null && pending !== null) {
       setNotificationCount(parseInt(lowStock) + parseInt(pending));
       localStorage.setItem(
         "notificationCount",

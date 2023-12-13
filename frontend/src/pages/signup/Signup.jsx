@@ -4,13 +4,18 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { GoAlertFill } from "react-icons/go";
 import FormControl from "../../component/FormControl";
+import { signUp } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let formErrors = {};
@@ -36,10 +41,21 @@ function Signup() {
     return Object.keys(formErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Submit form
+      const { errorMessage } = await signUp({
+        email,
+        firstName,
+        lastName,
+        phone,
+        password,
+      });
+      if (errorMessage) {
+        setErrors({ email: errorMessage });
+      } else {
+        navigate("/");
+      }
     }
   };
 
@@ -59,6 +75,18 @@ function Signup() {
         </div>
         <div className="l-section">
           <h2>SIGN UP</h2>
+          <FormControl
+            type="text"
+            label="First Name"
+            value={firstName}
+            setValue={setFirstName}
+          />
+          <FormControl
+            type="text"
+            label="Last Name"
+            value={lastName}
+            setValue={setLastName}
+          />
           <FormControl
             type="email"
             label="Email"

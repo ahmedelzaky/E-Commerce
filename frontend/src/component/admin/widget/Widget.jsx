@@ -72,7 +72,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {!amount ? "loading..." : amount}
         </span>
         <Link
           style={{ textDecoration: "none" }}
