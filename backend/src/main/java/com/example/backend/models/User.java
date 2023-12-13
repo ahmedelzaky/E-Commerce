@@ -36,19 +36,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    List<Address> addresses;
 
-    public User(String firstName, String lastName, String email, String phone,
-                Date joinDate, String password, List<Address> addresses, Role role) {
+    public User(String firstName, String lastName, String email, String phone, Date joinDate, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.joinDate = joinDate;
         this.password = password;
-        this.addresses = addresses;
         this.role = role;
 
     }

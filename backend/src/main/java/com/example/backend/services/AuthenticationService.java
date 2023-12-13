@@ -1,8 +1,8 @@
 package com.example.backend.services;
 
-import com.example.backend.dto.AuthenticationRequest;
-import com.example.backend.dto.AuthenticationResponse;
-import com.example.backend.dto.RegisterRequest;
+import com.example.backend.auth.AuthenticationRequest;
+import com.example.backend.auth.AuthenticationResponse;
+import com.example.backend.auth.RegisterRequest;
 import com.example.backend.jwt.JwtUtils;
 import com.example.backend.models.User;
 import com.example.backend.repositorys.UserRepository;
@@ -29,13 +29,14 @@ public class AuthenticationService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    CustomerServices customerServices;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
         var savedUser = repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
-
 
     }
 
@@ -49,6 +50,9 @@ public class AuthenticationService {
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
 
         var jwtToken = jwtUtils.generateToken(user);
+        if (user.getRole().toString().equals("USER")) {
+            return AuthenticationResponse.builder().customerDto(customerServices.getCustomerById(user.getId())).token(jwtToken).build();
+        }
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 

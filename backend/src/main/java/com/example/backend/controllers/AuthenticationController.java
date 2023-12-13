@@ -1,8 +1,8 @@
 package com.example.backend.controllers;
 
-import com.example.backend.dto.AuthenticationRequest;
-import com.example.backend.dto.AuthenticationResponse;
-import com.example.backend.dto.RegisterRequest;
+import com.example.backend.auth.AuthenticationRequest;
+import com.example.backend.auth.AuthenticationResponse;
+import com.example.backend.auth.RegisterRequest;
 import com.example.backend.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("authenticate")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) throws Exception {
         return ResponseEntity.ok(service.authenticate(request));
     }
