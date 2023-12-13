@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 @Builder
 @Entity
 @Table(name = "user_t")
@@ -31,14 +32,16 @@ public class User implements UserDetails {
     @Column(name = "join_date", insertable = false)
     private Date joinDate;
     private String password;
-
+    @Column(insertable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     List<Address> addresses;
 
     public User(String firstName, String lastName, String email, String phone,
-                Date joinDate, String password, List<Address> addresses ,Role role) {
+                Date joinDate, String password, List<Address> addresses, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -46,11 +49,10 @@ public class User implements UserDetails {
         this.joinDate = joinDate;
         this.password = password;
         this.addresses = addresses;
-        this.role=role;
+        this.role = role;
 
     }
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
@@ -61,8 +63,9 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
+
     @Override
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 

@@ -1,9 +1,8 @@
 package com.example.backend.services;
 
-import ch.qos.logback.classic.spi.EventArgUtil;
 import com.example.backend.dto.AuthenticationRequest;
 import com.example.backend.dto.AuthenticationResponse;
-import com.example.backend.dto.RegisterReqest;
+import com.example.backend.dto.RegisterRequest;
 import com.example.backend.jwt.JwtUtils;
 import com.example.backend.models.User;
 import com.example.backend.repositorys.UserRepository;
@@ -31,7 +30,7 @@ public class AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterReqest request) {
+    public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
         var savedUser = repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);

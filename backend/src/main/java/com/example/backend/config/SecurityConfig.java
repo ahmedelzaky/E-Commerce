@@ -58,24 +58,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .requestMatchers(WHITE_LIST_URL).permitAll()
-                .requestMatchers("GET", "/api/products/**").permitAll()
-                .requestMatchers("POST", "/api/products/**").hasRole("ADMIN")
-                .requestMatchers("PUT", "/api/products/**").hasRole("ADMIN")
-                .requestMatchers("DELETE", "/api/products/**").hasRole("ADMIN")
-                .requestMatchers("GET", "/api/categories/**").permitAll()
-                .requestMatchers("POST", "/api/categories/**").hasRole("ADMIN")
-                .requestMatchers("PUT", "/api/categories/**").hasRole("ADMIN")
-                .requestMatchers("DELETE", "/api/categories/**").hasRole("ADMIN")
-                .requestMatchers("GET", "/api/orders/**").authenticated()
-                .requestMatchers("PUT", "/api/orders/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req ->
+                        req.requestMatchers(WHITE_LIST_URL).permitAll()
+                                .requestMatchers("GET", "/api/products/**").permitAll()
+                                .requestMatchers("POST", "/api/products/**").hasRole("ADMIN")
+                                .requestMatchers("PUT", "/api/products/**").hasRole("ADMIN")
+                                .requestMatchers("DELETE", "/api/products/**").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/categories/**").permitAll()
+                                .requestMatchers("POST", "/api/categories/**").hasRole("ADMIN")
+                                .requestMatchers("PUT", "/api/categories/**").hasRole("ADMIN")
+                                .requestMatchers("DELETE", "/api/categories/**").hasRole("ADMIN")
+                                .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
