@@ -54,7 +54,7 @@ function Signup() {
       if (errorMessage) {
         setErrors({ email: errorMessage });
       } else {
-        navigate("/");
+        navigate("/sign-in");
       }
     }
   };

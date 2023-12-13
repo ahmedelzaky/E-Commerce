@@ -10,6 +10,10 @@ const logIn = async (email, password) => {
       password,
     });
     localStorage.setItem("token", response.data.token);
+    localStorage.setItem(
+      "user",
+      JSON.stringify(response.data.customerDto || { role: "ADMIN" })
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -26,7 +30,6 @@ export const signUp = async (user) => {
   let isPending = true;
   try {
     response = await axios.post("/auth/register", user);
-    localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -35,6 +38,11 @@ export const signUp = async (user) => {
   isPending = false;
 
   return { response, errorMessage, isPending };
+};
+
+export const logOut = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 };
 
 export default logIn;

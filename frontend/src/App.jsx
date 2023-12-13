@@ -23,8 +23,14 @@ import EditCategory from "./pages/admin/edit/EditCategory";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Notifications from "./pages/admin/notigications/Notigications";
 import OrderDetails from "./pages/admin/orderdetails/OrderDetails";
+import RequireAuth from "./component/RequireAuth";
 
 function App() {
+  const ROLES = {
+    user: "USER",
+    admin: "ADMIN",
+  };
+
   const { dark } = useContext(darkContext);
   const navigate = useNavigate();
 
@@ -46,38 +52,40 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
 
         {/* admin */}
-        <Route path="/admin">
-          <Route index element={<Dashboard />} />
+        <Route element={<RequireAuth role={ROLES.admin} />}>
+          <Route path="/admin">
+            <Route index element={<Dashboard />} />
 
-          <Route path="users">
-            <Route index element={<List />} />
-            <Route path=":userId" element={<Single />} />
-          </Route>
+            <Route path="users">
+              <Route index element={<List />} />
+              <Route path=":userId" element={<Single />} />
+            </Route>
 
-          <Route path="products">
-            <Route index element={<Productslist />} />
-            <Route path="new" element={<AddProduct />} />
-            <Route path="edit/:productId" element={<EditProduct />} />
-          </Route>
+            <Route path="products">
+              <Route index element={<Productslist />} />
+              <Route path="new" element={<AddProduct />} />
+              <Route path="edit/:productId" element={<EditProduct />} />
+            </Route>
 
-          <Route path="orders">
-            <Route index element={<Orderslist />} />
-            <Route path=":orderId" element={<OrderDetails />} />
-          </Route>
+            <Route path="orders">
+              <Route index element={<Orderslist />} />
+              <Route path=":orderId" element={<OrderDetails />} />
+            </Route>
 
-          <Route path="categories">
-            <Route index element={<Categorieslist />} />
-            <Route path="new" element={<AddCategory />} />
-            <Route path="edit/:categoryId" element={<EditCategory />} />
-          </Route>
-          <Route path="delivery">
-            <Route index element={<Delivery />} />
-            <Route path=":orderId" element={<OrderDetails />} />
-          </Route>
-          <Route path="notigications">
-            <Route index element={<Notifications />} />
-            <Route path="edit/:productId" element={<EditProduct />} />
-            <Route path=":orderId" element={<OrderDetails />} />
+            <Route path="categories">
+              <Route index element={<Categorieslist />} />
+              <Route path="new" element={<AddCategory />} />
+              <Route path="edit/:categoryId" element={<EditCategory />} />
+            </Route>
+            <Route path="delivery">
+              <Route index element={<Delivery />} />
+              <Route path=":orderId" element={<OrderDetails />} />
+            </Route>
+            <Route path="notigications">
+              <Route index element={<Notifications />} />
+              <Route path="edit/:productId" element={<EditProduct />} />
+              <Route path=":orderId" element={<OrderDetails />} />
+            </Route>
           </Route>
         </Route>
 
