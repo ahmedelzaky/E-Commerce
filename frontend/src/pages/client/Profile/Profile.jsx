@@ -12,7 +12,6 @@ const Profile = () => {
   const { data: orders } = useAxios(
     `/orders/get-order-details-by-customer-id/${USER.id}`
   );
-  console.log(orders);
   return (
     <NavBar>
       <div className="profile">

@@ -79,7 +79,7 @@ function App() {
               <Route index element={<Delivery />} />
               <Route path=":orderId" element={<OrderDetails />} />
             </Route>
-            <Route path="notigications">
+            <Route path="notifications">
               <Route index element={<Notifications />} />
               <Route path="edit/:productId" element={<EditProduct />} />
               <Route path=":orderId" element={<OrderDetails />} />

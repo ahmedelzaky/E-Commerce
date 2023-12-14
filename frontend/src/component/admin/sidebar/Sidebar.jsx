@@ -95,7 +95,7 @@ const Sidebar = () => {
               <span>Delivery</span>
             </li>
           </Link>
-          <Link to="/admin/notigications" style={{ textDecoration: "none" }}>
+          <Link to="/admin/notifications" style={{ textDecoration: "none" }}>
             <li>
               <NotificationsNoneOutlinedIcon className="icon" />
               {notificationCount > 0 && (

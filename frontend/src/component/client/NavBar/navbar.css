@@ -94,4 +94,7 @@
   .login-btn {
     margin: 10px 0;
   }
+  .navbar .badge {
+    top: 0;
+  }
 }

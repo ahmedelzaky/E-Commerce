@@ -12,7 +12,6 @@ const Notigications = () => {
           columns={productColumns}
           title={"Low Stock Products"}
           actionColum={productsActionColums}
-          addNew={true}
         />
         <Datatable
           url={`/orders/get-orders-by-status/PENDING`}
