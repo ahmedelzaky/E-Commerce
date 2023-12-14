@@ -25,6 +25,7 @@ import RequireAuth from "./component/RequireAuth";
 import Customers from "./pages/admin/customers/Customers";
 import { ROLES } from "./api/auth";
 import Profile from "./pages/client/Profile/Profile";
+import Payment from "./pages/client/Payment/Payment";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route element={<RequireAuth role={ROLES.user} />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/payment" element={<Payment />} />
         </Route>
 
         {/* admin */}

@@ -33,37 +33,41 @@ const Profile = () => {
 
                 <h6>Join Date: {new Date(customer.joinDate).toUTCString()} </h6>
               </div>
-              <div className="orders">
-                {orders?.map((order) => (
-                  <Row key={order.id}>
-                    <div className="oredr-headding">
-                      <h6>
-                        {" "}
-                        <span>Order #{order.id}</span>
-                        <span>
-                          Order Date {new Date(order.orderDate).toUTCString()}{" "}
-                        </span>
-                        {order.arrivalDate && (
+              {orders?.length && (
+                <div className="orders">
+                  {orders?.map((order) => (
+                    <Row key={order.id}>
+                      <div className="oredr-headding">
+                        <h6>
+                          {" "}
+                          <span>Order #{order.id}</span>
                           <span>
-                            {" "}
-                            Arriva Date{" "}
-                            {new Date(order.arrivalDate).toUTCString()}{" "}
+                            Order Date {new Date(order.orderDate).toUTCString()}{" "}
                           </span>
-                        )}
-                        <span
-                          className={`status ${
-                            order.statue == "COMPLETED" ? "Approved" : "Pending"
-                          }`}
-                        >
-                          {order.statue}{" "}
-                        </span>
-                      </h6>
-                    </div>
-                    <CartTable orderId={order.id} />
-                    <hr />
-                  </Row>
-                ))}
-              </div>
+                          {order.arrivalDate && (
+                            <span>
+                              {" "}
+                              Arriva Date{" "}
+                              {new Date(order.arrivalDate).toUTCString()}{" "}
+                            </span>
+                          )}
+                          <span
+                            className={`status ${
+                              order.statue == "COMPLETED"
+                                ? "Approved"
+                                : "Pending"
+                            }`}
+                          >
+                            {order.statue}{" "}
+                          </span>
+                        </h6>
+                      </div>
+                      <CartTable orderId={order.id} />
+                      <hr />
+                    </Row>
+                  ))}
+                </div>
+              )}
             </Row>
           )}
         </Container>
