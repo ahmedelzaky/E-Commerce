@@ -47,6 +47,11 @@ public class OrderController {
         return orderServices.getOrderDetailsById(id);
     }
 
+    @GetMapping("/get-order-details-by-customer-id/{id}")
+    public List<OrderDetailsDTO> getOrderDetailsByCustomerId(@PathVariable("id") Long id) {
+        return orderServices.getOrderDetailsByCustomerId(id);
+    }
+
     @PutMapping("/update-order-status/{id}")
     public void updateOrderStatus(@PathVariable("id") Long id, @RequestParam OrderStatus status) {
         orderServices.updateOrderStatus(id, status);

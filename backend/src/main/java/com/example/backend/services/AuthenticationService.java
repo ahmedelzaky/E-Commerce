@@ -32,6 +32,12 @@ public class AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (repository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalStateException("Email already exists");
+        } else if (repository.findByPhone(request.getPhone()).isPresent()) {
+            throw new IllegalStateException("Phone number already exists");
+        }
+
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
         var savedUser = repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);
@@ -51,9 +57,7 @@ public class AuthenticationService {
         var jwtToken = jwtUtils.generateToken(user);
 
 
-        return AuthenticationResponse.builder()
-                .user(new UserDto(user.getId(), user.getRole()))
-                .token(jwtToken).build();
+        return AuthenticationResponse.builder().user(new UserDto(user.getId(), user.getRole())).token(jwtToken).build();
     }
 
 

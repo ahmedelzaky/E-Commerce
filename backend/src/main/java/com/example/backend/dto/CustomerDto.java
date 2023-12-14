@@ -1,5 +1,7 @@
 package com.example.backend.dto;
 
+import java.util.Date;
+
 public interface CustomerDto {
     Long getId();
 
@@ -10,6 +12,8 @@ public interface CustomerDto {
     String getEmail();
 
     String getPhone();
+
+    Date getJoinDate();
 
     String getRole();
 

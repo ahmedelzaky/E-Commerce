@@ -50,4 +50,8 @@ public class OrderServices {
     public OrderDetailsDTO getOrderDetailsById(Long id) {
         return repository.findOrderDetails(id).orElseThrow(() -> new IllegalStateException("this order dose not exist"));
     }
+
+    public List<OrderDetailsDTO> getOrderDetailsByCustomerId(Long id) {
+        return repository.findOrderDetailsByCustomerId(id);
+    }
 }

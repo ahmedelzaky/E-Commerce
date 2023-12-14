@@ -33,4 +33,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "SELECT * FROM get_order_details(:id)", nativeQuery = true)
     Optional<OrderDetailsDTO> findOrderDetails(Long id);
+
+    @Query(value = "SELECT * FROM get_order_details_by_customer_id(:id)", nativeQuery = true)
+    List<OrderDetailsDTO> findOrderDetailsByCustomerId(Long id);
 }
