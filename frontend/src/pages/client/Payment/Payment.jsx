@@ -8,7 +8,7 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import "./Payment.css";
+import "./payment.css";
 import { USER } from "../../../api/auth";
 import useAxios from "../../../hooks/useAxios";
 import { useState } from "react";
