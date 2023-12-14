@@ -1,11 +1,11 @@
 import "../../pages/signin/signin.css";
 import img from "../../assets/signin.webp";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { GoAlertFill } from "react-icons/go";
 import FormControl from "../../component/FormControl";
 import { signUp } from "../../api/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -15,6 +15,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -43,6 +44,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsPending(true);
     if (validateForm()) {
       const { errorMessage } = await signUp({
         email,
@@ -57,6 +59,7 @@ function Signup() {
         navigate("/sign-in");
       }
     }
+    setIsPending(false);
   };
 
   return (
@@ -99,7 +102,6 @@ function Signup() {
               {errors.email}
             </p>
           )}
-
           <FormControl
             type="text"
             label="Phone"
@@ -112,7 +114,6 @@ function Signup() {
               {errors.phone}
             </p>
           )}
-
           <FormControl
             type="password"
             label="Password"
@@ -125,14 +126,21 @@ function Signup() {
               {errors.password}
             </p>
           )}
-
           <FormControl
             type="password"
             label="Confirm Password"
             value={confirmPassword}
             setValue={setConfirmPassword}
           />
-          <input type="submit" title="SIGNUP" />
+          <Button type="submit" disabled={isPending}>
+            {isPending ? "Loading..." : "Sign In"}
+          </Button>{" "}
+          <p>
+            Already have an account?{" "}
+            <Link className="sigin-up-link" to="/sign-in">
+              Sign In
+            </Link>
+          </p>
         </div>
       </div>
     </Form>

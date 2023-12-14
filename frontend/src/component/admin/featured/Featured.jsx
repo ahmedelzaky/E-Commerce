@@ -24,7 +24,7 @@ const Featured = () => {
           />
         </div>
         <p className="title">Total earnings made today</p>
-        <p className="amount">${earnings}</p>
+        <p className="amount">${earnings || 0}</p>
         <div className="summary">
           <div className="item">
             <div className="itemTitle">Target</div>

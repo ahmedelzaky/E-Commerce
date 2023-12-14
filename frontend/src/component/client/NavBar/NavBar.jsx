@@ -10,8 +10,10 @@ import useAxios from "../../../hooks/useAxios";
 import { useSelector } from "react-redux";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Badge, Collapse, Row } from "react-bootstrap";
+import { Badge, Button, Collapse, Row } from "react-bootstrap";
 import axios from "../../../api/axios";
+import { USER, logOut } from "../../../api/auth";
+import { ROLES } from "../../../api/auth";
 
 const NavBar = ({ children }) => {
   const { data: categories } = useAxios("/categories");
@@ -134,18 +136,30 @@ const NavBar = ({ children }) => {
                 </Collapse>
               )}
             </Form>
-            {!localStorage.getItem("token") ? (
+            {!USER ? (
               <Link className="btn btn-warning login-btn" to={`/sign-in`}>
                 Signin
               </Link>
             ) : (
               <NavDropdown title={"Welcome Back"} id="navbarScrollingDropdown">
-                <Link className="dropdown-item" to="/profile">
-                  Profile
-                </Link>
-                <Link className="dropdown-item" to="/logout">
+                {USER.role === ROLES.admin ? (
+                  <Link className="dropdown-item" to="/admin">
+                    DashBoard
+                  </Link>
+                ) : (
+                  <Link className="dropdown-item" to="/profile">
+                    Profile
+                  </Link>
+                )}
+                <Button
+                  className="dropdown-item"
+                  onClick={() => {
+                    logOut();
+                    window.location.reload();
+                  }}
+                >
                   Logout
-                </Link>
+                </Button>
               </NavDropdown>
             )}
           </Navbar.Collapse>

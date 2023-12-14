@@ -1,32 +1,32 @@
 import axios from "./axios";
+export const USER = JSON.parse(localStorage.getItem("user"));
+export const ROLES = {
+  user: "USER",
+  admin: "ADMIN",
+};
 
 const logIn = async (email, password) => {
   let response;
   let errorMessage;
-  let isPending = true;
   try {
     response = await axios.post("/auth/authenticate", {
       email,
       password,
     });
     localStorage.setItem("token", response.data.token);
-    localStorage.setItem(
-      "user",
-      JSON.stringify(response.data.customerDto || { role: "ADMIN" })
-    );
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+    response = response.data.user;
   } catch (error) {
     console.log(error);
     errorMessage = "Invalid email or password";
   }
-  isPending = false;
 
-  return { response, errorMessage, isPending };
+  return { response, errorMessage };
 };
 
 export const signUp = async (user) => {
   let response;
   let errorMessage;
-  let isPending = true;
   try {
     response = await axios.post("/auth/register", user);
     return response.data;
@@ -34,9 +34,8 @@ export const signUp = async (user) => {
     console.log(error);
     errorMessage = error.message;
   }
-  isPending = false;
 
-  return { response, errorMessage, isPending };
+  return { response, errorMessage };
 };
 
 export const logOut = () => {

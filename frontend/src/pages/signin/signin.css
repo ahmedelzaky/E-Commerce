@@ -59,7 +59,7 @@
   background-color: #ffd30d;
   color: #fff;
   width: 40%;
-  height: 564px;
+  min-height: 564px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -196,7 +196,7 @@
   transform: rotate(45deg);
 }
 
-.login-page .l-section input[type="submit"] {
+.login-page .l-section button {
   position: relative;
   background-color: #fff;
   border-radius: 10px;
@@ -215,7 +215,7 @@
   cursor: pointer;
 }
 
-.login-page .l-section input[type="submit"]::before {
+.login-page .l-section button::before {
   content: "";
   background-color: #fdf7e7;
   width: 0;
@@ -228,7 +228,7 @@
   display: inline-block;
 }
 
-.login-page .l-section input[type="submit"]:hover::before {
+.login-page .l-section button:hover::before {
   width: 100%;
 }
 

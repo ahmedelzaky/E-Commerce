@@ -23,13 +23,9 @@ import Notifications from "./pages/admin/notigications/Notigications";
 import OrderDetails from "./pages/admin/orderdetails/OrderDetails";
 import RequireAuth from "./component/RequireAuth";
 import Customers from "./pages/admin/customers/Customers";
+import { ROLES } from "./api/auth";
 
 function App() {
-  const ROLES = {
-    user: "USER",
-    admin: "ADMIN",
-  };
-
   const { dark } = useContext(darkContext);
   const navigate = useNavigate();
 

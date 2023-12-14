@@ -2,25 +2,30 @@ import "./signin.css";
 import img from "../../assets/signin.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import FormControl from "../../component/FormControl";
 import logIn from "../../api/auth";
+import { ROLES } from "../../api/auth";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
   const from = location.state?.from;
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsPending(true);
     const { response, errorMessage } = await logIn(email, password);
     if (!errorMessage) {
-      if (!response.customerDto) navigate("/admin");
+      if (response.role === ROLES.admin) navigate("/admin");
       else navigate(from ? from : "/", { replace: true });
+      window.location.reload();
     } else {
       setErrorMessage(errorMessage);
     }
+    setIsPending(false);
   };
 
   return (
@@ -60,7 +65,9 @@ const Signin = () => {
               </label>
             </div>
           </div>
-          <input type="submit" name="SIGNIN" title="SIGNIN" />
+          <Button type="submit" disabled={isPending}>
+            {isPending ? "Loading..." : "Sign In"}
+          </Button>
           <p>
             New User?{" "}
             <Link className="sigin-up-link" to="/sign-up">
