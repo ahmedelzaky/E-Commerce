@@ -1,0 +1,38 @@
+.profile {
+  padding-top: 100px;
+  background-color: #eee;
+}
+.profile .row {
+  gap: 50px;
+}
+
+.profile .customer {
+  background: #fff;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-main);
+}
+.profile .orders {
+  background: #fff;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-main);
+}
+.profile h6 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 700;
+  gap: 50px;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    padding: 100px 30px 10px;
+  }
+  .profile .row {
+    flex-direction: column;
+  }
+}

@@ -24,6 +24,7 @@ import OrderDetails from "./pages/admin/orderdetails/OrderDetails";
 import RequireAuth from "./component/RequireAuth";
 import Customers from "./pages/admin/customers/Customers";
 import { ROLES } from "./api/auth";
+import Profile from "./pages/client/Profile/Profile";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -45,6 +46,9 @@ function App() {
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route element={<RequireAuth role={ROLES.user} />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
         {/* admin */}
         <Route element={<RequireAuth role={ROLES.admin} />}>

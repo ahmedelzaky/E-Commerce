@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";
 import { Badge } from "@mui/material";
 import { useEffect, useState } from "react";
+import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined";
 
 const Sidebar = () => {
   const [notificationCount, setNotificationCount] = useState(
@@ -101,6 +102,12 @@ const Sidebar = () => {
                 <Badge badgeContent={notificationCount}></Badge>
               )}
               <span>Notifications</span>
+            </li>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreMallDirectoryOutlinedIcon className="icon" />
+              <span>Store</span>
             </li>
           </Link>
         </ul>
