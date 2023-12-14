@@ -139,7 +139,7 @@ const NavBar = ({ children }) => {
             {!USER ? (
               <center>
                 {" "}
-                <Link className="btn btn-warning login-btn mt-3" to={`/sign-in`}>
+                <Link className="btn btn-warning login-btn" to={`/sign-in`}>
                   Signin
                 </Link>
               </center>
