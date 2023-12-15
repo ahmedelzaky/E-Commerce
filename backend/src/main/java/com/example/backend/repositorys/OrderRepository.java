@@ -26,7 +26,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT COUNT(o) FROM Order o where o.status=?1")
     Long countOrdersByStatus(OrderStatus status);
 
-    @Query("SELECT o FROM Order o where o.status=?1 ORDER BY o.id DESC")
+    @Query("SELECT o FROM Order o where o.status=?1 ORDER BY  case when o.status = 'COMPLETED' THEN o.id END DESC , case when o.status != 'COMPLETED' THEN o.id END ASC ")
     List<Order> findOrdersByStatus(OrderStatus status);
 
     @Query(value = "SELECT * FROM get_order_details(:id)", nativeQuery = true)
