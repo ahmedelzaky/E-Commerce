@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
 import com.example.backend.models.Product;
@@ -7,6 +8,8 @@ import com.example.backend.repositorys.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,8 +26,8 @@ public class PaymentServices {
 
     private void CheckProductsQuantity(List<OrderItem> orderItems) {
         for (OrderItem item : orderItems) {
-            Product product = productServices.getProduct(item.getProductId())
-                    .orElseThrow(() -> new IllegalStateException("this product dose not exist"));
+
+            Product product = productServices.getProduct(item.getProductId());
 
             if (product.getStockQuantity() < item.getQuantity()) {
                 throw new IllegalStateException("There is no enough stock of " + product.getTitle());
@@ -43,7 +46,29 @@ public class PaymentServices {
 
         editProductsStockQuantity(payment.getOrder().getOrderItems());
 
+        if (payment.getPaymentMethod() == PaymentMethod.VISA)
+            payment.setPaymentDate(new Date());
+        
         paymentRepository.save(payment);
     }
 
+    public List<Payment> getPaymentByCustomerId(long id) {
+        return paymentRepository.findPaymentByCustomerId(id);
+    }
+
+    public List<Payment> getPaymentByDate(LocalDate date) {
+        return paymentRepository.findPaymentByDate(date);
+    }
+
+    public Double getEarnings() {
+        return paymentRepository.getEarnings();
+    }
+
+    public Double getEarningsToday() {
+        return paymentRepository.getEarningsToday();
+    }
+
+    public List<Payment> getLatestPayments() {
+        return paymentRepository.findLatestPayments();
+    }
 }

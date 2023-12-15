@@ -1,5 +1,6 @@
 package com.example.backend.models;
 
+import com.example.backend.enums.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,19 +20,13 @@ public class Payment {
     @Column(name = "payment_date")
     private Date paymentDate;
     @Column(name = "payment_method", columnDefinition = "varchar")
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
     @Column(name = "amount")
     private Float amount;
     @OneToOne(targetEntity = Order.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
-
-    public Payment(Date paymentDate, String paymentMethod, Float amount, Order order) {
-        this.paymentDate = paymentDate;
-        this.paymentMethod = paymentMethod;
-        this.amount = amount;
-        this.order = order;
-    }
 }
 
 
