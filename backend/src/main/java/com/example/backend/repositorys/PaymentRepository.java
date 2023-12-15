@@ -1,8 +1,6 @@
 package com.example.backend.repositorys;
 
-import com.example.backend.models.Order;
 import com.example.backend.models.Payment;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

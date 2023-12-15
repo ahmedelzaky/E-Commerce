@@ -65,5 +65,4 @@ public class CategoryController {
         return ResponseEntity.ok().body("category deleted successfully.");
     }
 
-
 }

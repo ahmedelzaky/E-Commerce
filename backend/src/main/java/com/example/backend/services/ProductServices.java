@@ -127,7 +127,8 @@ public class ProductServices {
     }
 
     public void deleteProduct(Long productId) {
-        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("the product dose not exist"));
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalStateException("the product dose not exist"));
         imageService.deleteImage(product.getImageUrl());
         productRepository.deleteById(productId);
     }
@@ -152,6 +153,7 @@ public class ProductServices {
             product.setCategoryId(UpdatedProduct.getCategoryId());
         }
         if (image != null) {
+            imageService.deleteImage(product.getImageUrl());
             String imageUrl = imageService.uploadImage(image);
             product.setImageUrl(imageUrl);
         }

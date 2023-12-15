@@ -3,6 +3,7 @@ package com.example.backend.controllers;
 import com.example.backend.models.Payment;
 import com.example.backend.services.PaymentServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -45,10 +46,12 @@ public class PaymentController {
     }
 
     @PostMapping("/pay")
-    public void pay(@RequestBody Payment payment) {
-        System.out.println(payment);
-        paymentServices.pay(payment);
+    public ResponseEntity<String> pay(@RequestBody Payment payment) {
+        try {
+            paymentServices.pay(payment);
+            return ResponseEntity.ok("Payment is added");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
-
-
 }

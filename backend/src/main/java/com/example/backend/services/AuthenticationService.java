@@ -7,8 +7,6 @@ import com.example.backend.dto.UserDto;
 import com.example.backend.jwt.JwtUtils;
 import com.example.backend.models.User;
 import com.example.backend.repositorys.UserRepository;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -44,15 +44,16 @@ public class CategoryServices {
             category.setName(updatedCategory.getName());
         }
         if (image != null) {
+            imageServices.deleteImage(category.getImageUrl());
             String imageUrl = imageServices.uploadImage(image);
             category.setImageUrl(imageUrl);
         }
     }
 
     public void deleteCategory(Long id) {
-        boolean exist = categoryRepository.existsById(id);
-        if (!exist) throw new IllegalStateException("this category dose not exist");
-
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("this category dose not exist"));
+        imageServices.deleteImage(category.getImageUrl());
         categoryRepository.deleteById(id);
     }
 

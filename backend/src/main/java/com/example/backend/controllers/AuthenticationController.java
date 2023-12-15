@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/auth")
@@ -25,9 +28,13 @@ public class AuthenticationController {
 
     @PostMapping("register")
 
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<String> register(
             @RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(service.register(request));
+        try {
+            return ResponseEntity.ok(service.register(request).toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @PostMapping("authenticate")

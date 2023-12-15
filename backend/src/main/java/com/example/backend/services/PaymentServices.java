@@ -1,6 +1,5 @@
 package com.example.backend.services;
 
-import com.example.backend.enums.OrderStatus;
 import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
