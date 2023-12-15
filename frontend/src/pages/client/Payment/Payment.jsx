@@ -17,6 +17,7 @@ import LoadingScreen from "../../../component/LoadingScreen";
 import NavBar from "../../../component/client/NavBar/NavBar";
 import axios from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../../../component/ErrorMessage";
 
 const PAYMENT_METHODS = {
   CASH: "CASH",
@@ -26,6 +27,7 @@ const Payment = () => {
   const [payment, setPayment] = useState(PAYMENT_METHODS.CASH);
   const cart = useSelector((state) => state.cart);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [address, setAddress] = useState({
     street: "",
@@ -61,11 +63,11 @@ const Payment = () => {
     try {
       const res = await axios.post("/address", newAddress);
       if (res.status === 200) {
-        window.location.reload();
         setOpen(false);
       }
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
 
@@ -90,6 +92,7 @@ const Payment = () => {
       }
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
 
@@ -196,102 +199,100 @@ const Payment = () => {
                     Add New Address
                   </Button>
                   <Collapse in={open}>
-                    <Form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        handleAddAddress(address);
-                      }}
-                    >
-                      <Row>
-                        <Form.Group
-                          as={Col}
-                          md="6"
-                          className="mb-3"
-                          controlId="street"
+                    <Row>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        className="mb-3"
+                        controlId="street"
+                      >
+                        <Form.Label>Street</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="street"
+                          value={address.street}
+                          onChange={handleInputChange}
+                          required={open}
+                          placeholder="Enter Street"
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        className="mb-3"
+                        controlId="postalCode"
+                      >
+                        <Form.Label>postal code</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="postalCode"
+                          value={address.postalCode}
+                          onChange={handleInputChange}
+                          required={open}
+                          placeholder="Enter Postal Code"
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        className="mb-3"
+                        controlId="city"
+                      >
+                        <Form.Label>City</Form.Label>
+                        <Form.Control
+                          as="select"
+                          name="city"
+                          value={address.city}
+                          onChange={handleInputChange}
+                          required={open}
+                          placeholder="Enter City"
                         >
-                          <Form.Label>Street</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="street"
-                            value={address.street}
-                            onChange={handleInputChange}
-                            required
-                            placeholder="Enter Street"
-                          />
-                        </Form.Group>
-                        <Form.Group
-                          as={Col}
-                          md="6"
-                          className="mb-3"
-                          controlId="postalCode"
+                          <option value="">Select a City</option>
+                          {cities &&
+                            cities.map((city) => (
+                              <option key={city.id} value={city.id}>
+                                {city.name}
+                              </option>
+                            ))}
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="6"
+                        className="mb-3"
+                        controlId="country"
+                      >
+                        <Form.Label>Country</Form.Label>
+                        <Form.Control
+                          as="select"
+                          name="country"
+                          value={address.country}
+                          onChange={handleInputChange}
+                          required={open}
+                          placeholder="Enter Country"
                         >
-                          <Form.Label>postal code</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="postalCode"
-                            value={address.postalCode}
-                            onChange={handleInputChange}
-                            required
-                            placeholder="Enter Postal Code"
-                          />
-                        </Form.Group>
-                        <Form.Group
-                          as={Col}
-                          md="6"
-                          className="mb-3"
-                          controlId="city"
-                        >
-                          <Form.Label>City</Form.Label>
-                          <Form.Control
-                            as="select"
-                            name="city"
-                            value={address.city}
-                            onChange={handleInputChange}
-                            required
-                            placeholder="Enter City"
+                          <option value="">Select a Country</option>
+                          {countries &&
+                            countries.map((country) => (
+                              <option key={country.id} value={country.id}>
+                                {country.name}
+                              </option>
+                            ))}
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group as={Col} md="12" className="mb-3">
+                        <center>
+                          <Button
+                            style={{ width: "100px" }}
+                            onClick={() => {
+                              handleAddAddress(address);
+                            }}
                           >
-                            <option value="">Select a City</option>
-                            {cities &&
-                              cities.map((city) => (
-                                <option key={city.id} value={city.id}>
-                                  {city.name}
-                                </option>
-                              ))}
-                          </Form.Control>
-                        </Form.Group>
-                        <Form.Group
-                          as={Col}
-                          md="6"
-                          className="mb-3"
-                          controlId="country"
-                        >
-                          <Form.Label>Country</Form.Label>
-                          <Form.Control
-                            as="select"
-                            name="country"
-                            value={address.country}
-                            onChange={handleInputChange}
-                            required
-                            placeholder="Enter Country"
-                          >
-                            <option value="">Select a Country</option>
-                            {countries &&
-                              countries.map((country) => (
-                                <option key={country.id} value={country.id}>
-                                  {country.name}
-                                </option>
-                              ))}
-                          </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col} md="12" className="mb-3">
-                          <center>
-                            <Button style={{ width: "100px" }} type="submit">
-                              Add
-                            </Button>
-                          </center>
-                        </Form.Group>
-                      </Row>
-                    </Form>
+                            Add
+                          </Button>
+                        </center>
+                      </Form.Group>
+                    </Row>
                   </Collapse>
                 </Card.Body>
               </Card>
@@ -317,7 +318,13 @@ const Payment = () => {
               </Card>
               <div className="checkout">
                 <center>
-                  <Button type="submit" className="checkout-btn">
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                    className="checkout-btn"
+                  >
                     Checkout
                   </Button>
                 </center>
@@ -327,6 +334,7 @@ const Payment = () => {
         ) : (
           <LoadingScreen />
         )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </div>
     </NavBar>
   );

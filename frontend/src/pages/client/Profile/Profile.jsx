@@ -33,7 +33,7 @@ const Profile = () => {
 
                 <h6>Join Date: {new Date(customer.joinDate).toUTCString()} </h6>
               </div>
-              {orders?.length && (
+              {orders?.length > 0 && (
                 <div className="orders">
                   {orders?.map((order) => (
                     <Row key={order.id}>
