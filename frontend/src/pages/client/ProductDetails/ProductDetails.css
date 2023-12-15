@@ -1,0 +1,113 @@
+.product-details {
+  margin-top: 100px;
+}
+
+.product-details .container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-main);
+}
+.product-details .product-info {
+  flex: 1;
+}
+.product-details .product-img {
+  width: 400px;
+  height: 400px;
+}
+
+.product-details .product-info .product-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.product-details .product-info .product-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.product-details .product-info .product-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.product-details .product-info input {
+  width: 50px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-right: 1rem;
+}
+
+.product-details .product-info button {
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.suggestions {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.suggestions .card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  height: 250px;
+}
+.suggestions .card .card-img-top {
+  width: 150px;
+  height: 150px;
+}
+.suggestions .card .card-title a {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+.suggestions .card .card-title a:hover {
+  color: var(--hover-color);
+}
+
+@media (max-width: 767px) {
+  .product-details {
+    padding: 20px;
+  }
+
+  .product-details .row {
+    flex-direction: column;
+  }
+  .product-details .product-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-details .product-info {
+    margin-top: 20px;
+  }
+  .product-details .product-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-details .product-info .product-title {
+    font-size: 1.5rem;
+  }
+  .product-details .product-info .product-price {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,29 @@
+.order-details {
+  font-size: medium;
+  color: #333;
+  text-transform: capitalize;
+}
+.order-details ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.order-details li {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.order-details .address ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.order-details span {
+  font-weight: normal;
+}
+.order-details .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}

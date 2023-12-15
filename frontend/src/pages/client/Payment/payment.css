@@ -1,0 +1,33 @@
+.payment-page {
+  padding: 100px 0;
+  background-color: #eee;
+  text-transform: capitalize;
+}
+
+.payment-page .card {
+  margin-bottom: 30px;
+}
+
+.payment-page .card .card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-page .customer .customer-details {
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-page .customer .customer-details h6 {
+  margin-bottom: 10px;
+}
+.payment-page .customer .customer-details h6 span {
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .payment-page .order {
+    overflow-x: scroll;
+  }
+}

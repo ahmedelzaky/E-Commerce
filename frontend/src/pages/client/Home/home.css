@@ -1,0 +1,50 @@
+.home {
+  background-color: var(--background-color);
+  padding-top: 80px;
+}
+
+.carousel img {
+  height: 600px;
+}
+.top-selling {
+  padding-bottom: 50px;
+  text-align: center;
+}
+.top-selling h2 {
+  padding-bottom: 40px;
+  font-size: 40px;
+  font-weight: 500;
+  position: relative;
+}
+.top-selling h2::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 120px;
+  background-color: #333;
+  bottom: 22px;
+}
+
+.top-selling h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 14px;
+  width: 14px;
+  border: 2px solid#333;
+  bottom: 15px;
+  background-color: white;
+  border-radius: 50%;
+}
+.top-selling .pagination {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .home {
+    padding-top: 30px;
+  }
+}

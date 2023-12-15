@@ -18,9 +18,9 @@ export const cartSlice = createSlice({
     addToCartWithQty: (state, action) => {
       const product = state.find((product) => product.id === action.payload.id);
       if (product) {
-        product.qty = action.payload.qty;
+        product.qty += Number(action.payload.qty);
       } else {
-        const productClone = { ...action.payload, qty: action.payload.qty };
+        const productClone = { ...action.payload };
         state.push(productClone);
       }
     },

@@ -29,10 +29,10 @@
 
 @media (max-width: 767px) {
   .category {
-    scale: 0.9;
+    width: 330px;
   }
   .category:hover {
-    scale: 1;
+    scale: 1.1;
   }
   .col {
     display: flex;
