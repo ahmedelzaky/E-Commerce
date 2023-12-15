@@ -24,6 +24,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   font-family: 700;
   gap: 50px;
 }

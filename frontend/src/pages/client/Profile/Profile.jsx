@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { USER } from "../../../api/auth";
 import NavBar from "../../../component/client/NavBar/NavBar";
 import useAxios from "../../../hooks/useAxios";
@@ -6,6 +6,7 @@ import "./profile.css";
 import LoadingScreen from "../../../component/LoadingScreen";
 import ErrorMessage from "../../../component/ErrorMessage";
 import CartTable from "../../../component/CartTable";
+import { updateOrderStatus } from "../../../api/Server";
 
 const Profile = () => {
   const { data: customer, error, loading } = useAxios(`/customers/${USER.id}`);
@@ -60,6 +61,16 @@ const Profile = () => {
                           >
                             {order.statue}{" "}
                           </span>
+                          {order.statue == "PENDING" && (
+                            <Button
+                              onClick={() =>
+                                updateOrderStatus(order.id, "CANCELLED")
+                              }
+                              variant="danger"
+                            >
+                              Cancel
+                            </Button>
+                          )}
                         </h6>
                       </div>
                       <CartTable orderId={order.id} />

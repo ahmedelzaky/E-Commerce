@@ -1,13 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  Collapse,
-  Container,
-  Form,
-  Row,
-  Table,
-} from "react-bootstrap";
+import { Button, Card, Container, Form } from "react-bootstrap";
 import "./payment.css";
 import { USER } from "../../../api/auth";
 import useAxios from "../../../hooks/useAxios";
@@ -18,6 +9,8 @@ import NavBar from "../../../component/client/NavBar/NavBar";
 import axios from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../../component/ErrorMessage";
+import Order from "../../../component/client/Payment/Order";
+import Address from "../../../component/client/Payment/Address";
 
 const PAYMENT_METHODS = {
   CASH: "CASH",
@@ -29,48 +22,10 @@ const Payment = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [address, setAddress] = useState({
-    street: "",
-    city: "",
-    country: "",
-    postalCode: "",
-  });
+
   const [addressId, setAddressId] = useState("");
 
   const { data: customer, isPending } = useAxios(`/customers/${USER.id}`);
-  const { data: addresses } = useAxios(
-    `/address/get-address-by-customer-id/${USER.id}`
-  );
-  const { data: countries } = useAxios("/countries");
-  const { data: cities } = useAxios("/cities");
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setAddress({
-      ...address,
-      [name]: value,
-    });
-  };
-  const handleAddAddress = async (address) => {
-    const { street, postalCode, city, country } = address;
-    const newAddress = {
-      street,
-      postalCode,
-      cityId: city,
-      countryId: country,
-      customerId: USER.id,
-    };
-    try {
-      const res = await axios.post("/address", newAddress);
-      if (res.status === 200) {
-        window.location.reload();
-        setOpen(false);
-      }
-    } catch (err) {
-      console.log(err);
-      setError(err.message);
-    }
-  };
 
   const handleCheckOut = async () => {
     const paymentSchema = {
@@ -86,14 +41,12 @@ const Payment = () => {
       },
     };
     try {
-      const res = await axios.post("/payment/pay", paymentSchema);
-      if (res.status === 200) {
-        localStorage.removeItem("cart");
-        navigate("/profile");
-      }
+      await axios.post("/payment/pay", paymentSchema);
+      localStorage.removeItem("cart");
+      navigate("/profile");
     } catch (err) {
       console.log(err);
-      setError(err.message);
+      setError(err.response.data);
     }
   };
 
@@ -133,170 +86,15 @@ const Payment = () => {
                 </Card.Body>
               </Card>
 
-              <Card className="order">
-                <Card.Header>
-                  <h3>Order Details</h3>
-                </Card.Header>
-                <Card.Body>
-                  <Table>
-                    <thead>
-                      <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cart?.map((item) => (
-                        <tr key={item.id}>
-                          <td>{item.title}</td>
-                          <td>{item.qty}</td>
-                          <td>${item.price}</td>
-                          <td>${item.price * item.qty}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                  <div className="total">
-                    <h5>
-                      Total: $
-                      {cart?.reduce(
-                        (total, item) => total + item.price * item.qty,
-                        0
-                      )}
-                    </h5>
-                  </div>
-                </Card.Body>
-              </Card>
+              <Order />
 
-              <Card className="address">
-                <Card.Header>
-                  <h3>Shipping Address</h3>
-                </Card.Header>
-                <Card.Body>
-                  <div className="address-list">
-                    {addresses?.map((address) => (
-                      <div className="address-item" key={address.id}>
-                        <input
-                          type="radio"
-                          name="address"
-                          required
-                          id="address"
-                          onChange={() => setAddressId(address.id)}
-                          value={address.id}
-                        />
-                        <label htmlFor="address">
-                          {address.street}, {address.postalCode},{" "}
-                          {address.cityName}, {address.countryName}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                  <Button
-                    className="add-address-btn mt-3"
-                    onClick={() => setOpen(true)}
-                  >
-                    Add New Address
-                  </Button>
-                  <Collapse in={open}>
-                    <Row>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        className="mb-3"
-                        controlId="street"
-                      >
-                        <Form.Label>Street</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="street"
-                          value={address.street}
-                          onChange={handleInputChange}
-                          required={open}
-                          placeholder="Enter Street"
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        className="mb-3"
-                        controlId="postalCode"
-                      >
-                        <Form.Label>postal code</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="postalCode"
-                          value={address.postalCode}
-                          onChange={handleInputChange}
-                          required={open}
-                          placeholder="Enter Postal Code"
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        className="mb-3"
-                        controlId="city"
-                      >
-                        <Form.Label>City</Form.Label>
-                        <Form.Control
-                          as="select"
-                          name="city"
-                          value={address.city}
-                          onChange={handleInputChange}
-                          required={open}
-                          placeholder="Enter City"
-                        >
-                          <option value="">Select a City</option>
-                          {cities &&
-                            cities.map((city) => (
-                              <option key={city.id} value={city.id}>
-                                {city.name}
-                              </option>
-                            ))}
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group
-                        as={Col}
-                        md="6"
-                        className="mb-3"
-                        controlId="country"
-                      >
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control
-                          as="select"
-                          name="country"
-                          value={address.country}
-                          onChange={handleInputChange}
-                          required={open}
-                          placeholder="Enter Country"
-                        >
-                          <option value="">Select a Country</option>
-                          {countries &&
-                            countries.map((country) => (
-                              <option key={country.id} value={country.id}>
-                                {country.name}
-                              </option>
-                            ))}
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group as={Col} md="12" className="mb-3">
-                        <center>
-                          <Button
-                            style={{ width: "100px" }}
-                            onClick={() => {
-                              handleAddAddress(address);
-                            }}
-                          >
-                            Add
-                          </Button>
-                        </center>
-                      </Form.Group>
-                    </Row>
-                  </Collapse>
-                </Card.Body>
-              </Card>
+              <Address
+                setAddressId={setAddressId}
+                open={open}
+                setError={setError}
+                setOpen={setOpen}
+              />
+
               <Card className="payment">
                 <Card.Header>
                   <h3>Payment Method</h3>

@@ -133,7 +133,7 @@ function Signup() {
             setValue={setConfirmPassword}
           />
           <Button type="submit" disabled={isPending}>
-            {isPending ? "Loading..." : "Sign In"}
+            {isPending ? "Loading..." : "Sign Up"}
           </Button>{" "}
           <p>
             Already have an account?{" "}

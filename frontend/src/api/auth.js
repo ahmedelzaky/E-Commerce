@@ -32,7 +32,7 @@ export const signUp = async (user) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    errorMessage = error.message;
+    errorMessage = error.response.data;
   }
 
   return { response, errorMessage };
