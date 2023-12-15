@@ -63,6 +63,7 @@ const Payment = () => {
     try {
       const res = await axios.post("/address", newAddress);
       if (res.status === 200) {
+        window.location.reload();
         setOpen(false);
       }
     } catch (err) {
