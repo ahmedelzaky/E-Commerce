@@ -2,6 +2,7 @@ package com.example.backend.services;
 
 
 import com.example.backend.dto.ProductDto;
+import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
 import com.example.backend.repositorys.ProductRepository;
 import jakarta.transaction.Transactional;
@@ -179,5 +180,9 @@ public class ProductServices {
 
     public int getLowStockCount() {
         return productRepository.findLowStockCount();
+    }
+
+    public List<SoldProductDto> getProductsBySails() {
+        return productRepository.findProductsBySails();
     }
 }

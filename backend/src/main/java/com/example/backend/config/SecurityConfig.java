@@ -57,7 +57,6 @@ public class SecurityConfig {
                                 .requestMatchers("POST", "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers("PUT", "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers("DELETE", "/api/categories/**").hasRole("ADMIN")
-                                .requestMatchers("GET", "/api/payment/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

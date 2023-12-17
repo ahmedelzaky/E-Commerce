@@ -2,6 +2,7 @@ package com.example.backend.controllers;
 
 
 import com.example.backend.dto.ProductDto;
+import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
 import com.example.backend.services.ProductServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -81,7 +82,7 @@ public class ProductController {
             productServices.addProduct(product, image);
 
             return ResponseEntity.ok().body("Product added successfully.");
-        } catch (IOException e) {
+        } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to add product. Error: " + e.getMessage());
         }
     }
@@ -98,7 +99,7 @@ public class ProductController {
             productServices.updateProduct(productId, product, image);
 
             return ResponseEntity.ok().body("Product updated successfully.");
-        } catch (IOException e) {
+        } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to update product. Error: " + e.getMessage());
         }
     }
@@ -120,6 +121,12 @@ public class ProductController {
         System.out.println("searchText: " + searchText + " categoryName: " + categoryName);
         return productServices.searchProductsByCategoryName(searchText, categoryName);
     }
+
+    @GetMapping(path = "sails")
+    public List<SoldProductDto> getProductsBySails() {
+        return productServices.getProductsBySails();
+    }
+
 
     @GetMapping(path = "top-selling")
     public List<ProductDto> getTopSellingProducts() {

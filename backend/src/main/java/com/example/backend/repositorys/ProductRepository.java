@@ -2,6 +2,7 @@ package com.example.backend.repositorys;
 
 
 import com.example.backend.dto.ProductDto;
+import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -132,4 +133,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT COUNT(p) FROM Product p WHERE p.stockQuantity <= 10")
     int findLowStockCount();
+
+    @Query(value = "SELECT * FROM sold_products_v", nativeQuery = true)
+    List<SoldProductDto> findProductsBySails();
 }
