@@ -76,7 +76,8 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {!amount ? "loading..." : amount}
+          {data.isMoney && "$"}{" "}
+          {!amount ? "loading..." : data.isMoney ? amount.toFixed(2) : amount}
         </span>
         <Link
           style={{ textDecoration: "none" }}

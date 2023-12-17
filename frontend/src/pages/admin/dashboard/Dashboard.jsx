@@ -17,7 +17,7 @@ const Dashboard = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Renvenue)" aspect={2 / 1} />
+          <Chart title="Last 7 Days (Renvenue)" aspect={2 / 1} />
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>

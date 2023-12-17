@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Container, Row } from "react-bootstrap";
 import { USER } from "../../../api/auth";
 import NavBar from "../../../component/client/NavBar/NavBar";
@@ -8,8 +7,7 @@ import LoadingScreen from "../../../component/LoadingScreen";
 import ErrorMessage from "../../../component/ErrorMessage";
 import CartTable from "../../../component/CartTable";
 import { updateOrderStatus } from "../../../api/Server";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { CgProfile } from "react-icons/cg";
 
 const Profile = () => {
   const { data: customer, error, loading } = useAxios(`/customers/${USER.id}`);
@@ -26,7 +24,7 @@ const Profile = () => {
             <Row className="details">
               <div className="customer">
                 <h4>
-                  <FontAwesomeIcon icon={faUser} /> Profile
+                  <CgProfile /> Profile
                 </h4>
                 <h6>
                   <span className="label">First Name:</span>
@@ -34,8 +32,8 @@ const Profile = () => {
                 </h6>
 
                 <h6>
-                <span className="label">Last Name:</span>
-                <span className="value">{customer.lastName}</span>
+                  <span className="label">Last Name:</span>
+                  <span className="value">{customer.lastName}</span>
                 </h6>
 
                 <h6>
@@ -49,8 +47,11 @@ const Profile = () => {
                 </h6>
 
                 <h6>
-                  <span  className="label">Join Date: </span>
-                  <span className="value"> {new Date(customer.joinDate).toUTCString()}</span>
+                  <span className="label">Join Date: </span>
+                  <span className="value">
+                    {" "}
+                    {new Date(customer.joinDate).toUTCString()}
+                  </span>
                 </h6>
               </div>
               {orders?.length > 0 && (
@@ -58,39 +59,48 @@ const Profile = () => {
                   {orders?.map((order) => (
                     <Row key={order.id}>
                       <div className="order-headding">
-                      <h6>
-                        <span className="label">Order: </span>
-                        <span className="value">#{order.id}</span>
-                      </h6>
-                      <h6>
-                        <span className="label">Order Date: </span>
-                        <span className="value">{new Date(order.orderDate).toUTCString()}{" "}</span>
+                        <h6>
+                          <span className="label">Order: </span>
+                          <span className="value">#{order.id}</span>
                         </h6>
                         <h6>
-                    {order.arrivalDate && (
-                      <span>
-                        <span className="label"> Arrival Date: </span>
-                        <span className="value">{new Date(order.arrivalDate).toUTCString()}</span>
-                      </span>
-                    )}
+                          <span className="label">Order Date: </span>
+                          <span className="value">
+                            {new Date(order.orderDate).toUTCString()}{" "}
+                          </span>
+                        </h6>
+                        <h6>
+                          {order.arrivalDate && (
+                            <span>
+                              <span className="label"> Arrival Date: </span>
+                              <span className="value">
+                                {new Date(order.arrivalDate).toUTCString()}
+                              </span>
+                            </span>
+                          )}
                         </h6>
                         <h5>
                           <span
-                          className={`status ${
-                            order.statue === "COMPLETED" ? "Approved" :
-                            order.statue === "PENDING" ? "Pending" : "Cancelled"
-                          }`}
-                        >
-                          {order.statue}{" "}
-                        </span>
-                        {order.statue === "PENDING" && (
-                          <Button
-                            onClick={() => updateOrderStatus(order.id, "CANCELLED")}
-                            variant="danger"
+                            className={`status ${
+                              order.statue === "COMPLETED"
+                                ? "Approved"
+                                : order.statue === "PENDING"
+                                ? "Pending"
+                                : "Cancelled"
+                            }`}
                           >
-                            Cancel
-                          </Button>
-                        )}
+                            {order.statue}{" "}
+                          </span>
+                          {order.statue === "PENDING" && (
+                            <Button
+                              onClick={() =>
+                                updateOrderStatus(order.id, "CANCELLED")
+                              }
+                              variant="danger"
+                            >
+                              Cancel
+                            </Button>
+                          )}
                         </h5>
                       </div>
                       <CartTable orderId={order.id} />
