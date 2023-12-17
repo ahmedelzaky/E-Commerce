@@ -14,8 +14,6 @@ import PropTypes from "prop-types";
 const Chart = ({ aspect, title }) => {
   const { data } = useAxios("/payment/last-7days-earnings");
 
-  console.log(data);
-
   return (
     <div
       className="chart"
