@@ -26,6 +26,7 @@ import Customers from "./pages/admin/customers/Customers";
 import { ROLES } from "./api/auth";
 import Profile from "./pages/client/Profile/Profile";
 import Payment from "./pages/client/Payment/Payment";
+import Sails from "./pages/admin/sails/Sails";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -86,6 +87,7 @@ function App() {
               <Route path="edit/:productId" element={<EditProduct />} />
               <Route path=":orderId" element={<OrderDetails />} />
             </Route>
+            <Route path="sails" element={<Sails />} />
           </Route>
         </Route>
 

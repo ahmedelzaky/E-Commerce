@@ -104,6 +104,12 @@ const Sidebar = () => {
               <span>Notifications</span>
             </li>
           </Link>
+          <Link to="/admin/sails" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreMallDirectoryOutlinedIcon className="icon" />
+              <span>Sails</span>
+            </li>
+          </Link>
           <Link to="/" style={{ textDecoration: "none" }}>
             <li>
               <StoreMallDirectoryOutlinedIcon className="icon" />

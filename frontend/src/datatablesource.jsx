@@ -136,7 +136,10 @@ export const ordersActionColum = [
       return (
         <div className="cellAction">
           <Button variant="outlined">
-            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link
+              to={`${params.row.id}`}
+              style={{ textDecoration: "none", zIndex: "1000" }}
+            >
               View
             </Link>
           </Button>
@@ -189,7 +192,10 @@ export const pendingOrderActionColum = [
             Reject
           </Button>
           <Button variant="outlined">
-            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link
+              to={`${params.row.id}`}
+              style={{ textDecoration: "none", zIndex: "1000" }}
+            >
               View
             </Link>
           </Button>
@@ -222,13 +228,30 @@ export const inProgressOrderActionColum = [
             Cancel
           </Button>
           <Button variant="outlined">
-            <Link to={`${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link
+              to={`${params.row.id}`}
+              style={{ textDecoration: "none", zIndex: "1000" }}
+            >
               View
             </Link>
           </Button>
         </div>
       );
     },
+  },
+];
+
+export const ProductsSoldColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 500,
+  },
+  {
+    field: "sold",
+    headerName: "SoldQuantity",
+    width: 200,
   },
 ];
 
@@ -287,4 +310,3 @@ export const categoriesActionColum = [
     },
   },
 ];
-
