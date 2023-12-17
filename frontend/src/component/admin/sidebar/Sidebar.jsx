@@ -11,6 +11,7 @@ import useAxios from "../../../hooks/useAxios";
 import { Badge } from "@mui/material";
 import { useEffect, useState } from "react";
 import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined";
+import InventoryOutlinedIcon from "@mui/icons-material/InventoryOutlined";
 
 const Sidebar = () => {
   const [notificationCount, setNotificationCount] = useState(
@@ -106,7 +107,7 @@ const Sidebar = () => {
           </Link>
           <Link to="/admin/sails" style={{ textDecoration: "none" }}>
             <li>
-              <StoreMallDirectoryOutlinedIcon className="icon" />
+              <InventoryOutlinedIcon className="icon" />
               <span>Sails</span>
             </li>
           </Link>

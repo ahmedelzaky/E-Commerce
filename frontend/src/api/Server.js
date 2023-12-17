@@ -13,7 +13,7 @@ const uploadProduct = async (formData) => {
   } catch (err) {
     console.error("Error uploading product:", err);
     console.error("Error response:", err.response);
-    if (err.response.data.message.length) error = err.response.data.message;
+    if (err.response.data) error =  err.response.data;
     else error = "Error uploading product";
   }
   isPending = false;
@@ -37,7 +37,7 @@ export const uploadCategory = async (formData) => {
   } catch (err) {
     console.error("Error uploading category:", err);
     console.error("Error response:", err.response);
-    if (err.response.data.message.length) error = err.response.data.message;
+    if (err.response.data) error =  err.response.data;
     else error = "Error uploading category";
   }
   isPending = false;
@@ -61,7 +61,7 @@ export const updateProduct = async (id, formData) => {
   } catch (err) {
     console.error("Error updating product:", err);
     console.error("Error response:", err.response);
-    if (err.response.data.message.length) error = err.response.data.message;
+    if (err.response.data) error = err.response.data;
     else error = "Error updating product";
   }
   isPending = false;
@@ -85,7 +85,7 @@ export const updateCategory = async (id, formData) => {
   } catch (err) {
     console.error("Error updating category:", err);
     console.error("Error response:", err.response);
-    if (err.response.data.message.length) error = err.response.data.message;
+    if (err.response.data) error =  err.response.data;
     else error = "Error updating category";
   }
   isPending = false;
