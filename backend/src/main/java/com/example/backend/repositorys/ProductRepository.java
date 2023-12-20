@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM  get_all_products() " + " WHERE  id = ?1", nativeQuery = true)
     Optional<ProductDto> findProductDtoById(Long productId);
 
-    @Query("select p FROM Product p WHERE  p.title = ?1")
+    @Query("select p FROM Product p WHERE lower( p.title) = lower(:title) ")
     Optional<Product> findByTittle(String title);
 
     @Query(value = "SELECT * FROM  get_all_products() " + " WHERE price >= :min AND price <= :max", nativeQuery = true)
