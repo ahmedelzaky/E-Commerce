@@ -1,6 +1,7 @@
 package com.example.backend.services;
 
 
+import com.example.backend.dto.PriceHistoryDto;
 import com.example.backend.dto.ProductDto;
 import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
@@ -184,5 +185,9 @@ public class ProductServices {
 
     public List<SoldProductDto> getProductsBySails() {
         return productRepository.findProductsBySails();
+    }
+
+    public List<PriceHistoryDto> getPriceHistory(Long productId) {
+        return productRepository.findPriceHistory(productId);
     }
 }

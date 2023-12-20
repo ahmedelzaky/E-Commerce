@@ -1,6 +1,7 @@
 package com.example.backend.controllers;
 
 
+import com.example.backend.dto.PriceHistoryDto;
 import com.example.backend.dto.ProductDto;
 import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
@@ -146,6 +147,11 @@ public class ProductController {
     @GetMapping("Low-stock-count")
     public int getLowStockCount() {
         return productServices.getLowStockCount();
+    }
+
+    @GetMapping("price-history/{productId}")
+    public List<PriceHistoryDto> getPriceHistory(@PathVariable Long productId) {
+        return productServices.getPriceHistory(productId);
     }
 
 }

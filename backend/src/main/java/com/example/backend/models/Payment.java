@@ -22,7 +22,7 @@ public class Payment {
     @Column(name = "payment_method", columnDefinition = "varchar")
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    @Column(name = "amount")
+    @Column(columnDefinition = "numeric")
     private Float amount;
     @OneToOne(targetEntity = Order.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
