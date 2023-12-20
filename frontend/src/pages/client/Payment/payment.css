@@ -3,6 +3,9 @@
   background-color: #eee;
   text-transform: capitalize;
 }
+.payment-page form {
+  display: block;
+}
 
 .payment-page .card {
   margin-bottom: 30px;

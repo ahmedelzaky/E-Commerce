@@ -31,10 +31,9 @@ const ProductDetailsAdmin = () => {
 
   return (
     <MainContainer title={`Product #${productId}`}>
+      {isPending && <LoadingScreen />}
+      {error && <ErrorMessage> {error} </ErrorMessage>}
       <div className="product-details-admin">
-        {isPending && <LoadingScreen />}
-        {error && <ErrorMessage> {error} </ErrorMessage>}
-
         {product && (
           <Row>
             <Col>
@@ -94,29 +93,33 @@ const ProductDetailsAdmin = () => {
         ) : (
           ""
         )}
-        <div className="actions">
-          <Button
-            variant="outlined"
-            onClick={() => {
-              if (
-                window.confirm("Are you sure you want to delete this product?")
-              ) {
-                // deleteProduct(productId);
-              }
-            }}
-            color="error"
-          >
-            Delete
-          </Button>
-          <Button variant="outlined">
-            <Link
-              style={{ textDecoration: "none", zIndex: 1000 }}
-              to={`/admin/Products/edit/${productId}`}
+        {product && (
+          <div className="actions">
+            <Button
+              variant="outlined"
+              onClick={() => {
+                if (
+                  window.confirm(
+                    "Are you sure you want to delete this product?"
+                  )
+                ) {
+                  // deleteProduct(productId);
+                }
+              }}
+              color="error"
             >
-              Edit
-            </Link>
-          </Button>
-        </div>
+              Delete
+            </Button>
+            <Button variant="outlined">
+              <Link
+                style={{ textDecoration: "none", zIndex: 1000 }}
+                to={`/admin/Products/edit/${productId}`}
+              >
+                Edit
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
     </MainContainer>
   );

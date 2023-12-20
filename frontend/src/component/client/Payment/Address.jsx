@@ -6,11 +6,15 @@ import axios from "../../../api/axios";
 import PropTypes from "prop-types";
 
 const Address = ({ setAddressId, open, setError, setOpen }) => {
+  const [countryId, setCountryId] = useState(0);
+  const [pending, setPending] = useState(false);
   const { data: addresses } = useAxios(
     `/address/get-address-by-customer-id/${USER.id}`
   );
   const { data: countries } = useAxios("/countries");
-  const { data: cities } = useAxios("/cities");
+  const { data: cities } = useAxios(
+    `/cities/get-city-by-country-id/${countryId}`
+  );
   const [address, setAddress] = useState({
     street: "",
     city: "",
@@ -25,6 +29,7 @@ const Address = ({ setAddressId, open, setError, setOpen }) => {
     });
   };
   const handleAddAddress = async (address) => {
+    setPending(true);
     const { street, postalCode, city, country } = address;
     const newAddress = {
       street,
@@ -40,6 +45,7 @@ const Address = ({ setAddressId, open, setError, setOpen }) => {
       console.log(err.response);
       setError(err.response.data);
     }
+    setPending(false);
   };
 
   return (
@@ -118,7 +124,10 @@ const Address = ({ setAddressId, open, setError, setOpen }) => {
                 as="select"
                 name="country"
                 value={address.country}
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  setCountryId(e.target.value);
+                  handleInputChange(e);
+                }}
                 required={open}
                 placeholder="Enter Country"
               >
@@ -135,11 +144,12 @@ const Address = ({ setAddressId, open, setError, setOpen }) => {
               <center>
                 <Button
                   style={{ width: "100px" }}
+                  disabled={pending}
                   onClick={() => {
                     handleAddAddress(address);
                   }}
                 >
-                  Add
+                  {pending ? "Loading..." : "Add"}
                 </Button>
               </center>
             </Form.Group>
