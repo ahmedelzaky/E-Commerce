@@ -27,6 +27,7 @@ import { ROLES } from "./api/auth";
 import Profile from "./pages/client/Profile/Profile";
 import Payment from "./pages/client/Payment/Payment";
 import Sails from "./pages/admin/sails/Sails";
+import ProductsDetailsAdmin from "./pages/admin/productDetails/ProductDetailsAdmin";
 
 function App() {
   const { dark } = useContext(darkContext);
@@ -66,6 +67,10 @@ function App() {
               <Route index element={<Productslist />} />
               <Route path="new" element={<AddProduct />} />
               <Route path="edit/:productId" element={<EditProduct />} />
+              <Route
+                path="product/:productId"
+                element={<ProductsDetailsAdmin />}
+              />
             </Route>
 
             <Route path="orders">
@@ -86,6 +91,10 @@ function App() {
               <Route index element={<Notifications />} />
               <Route path="edit/:productId" element={<EditProduct />} />
               <Route path=":orderId" element={<OrderDetails />} />
+              <Route
+                path="product/:productId"
+                element={<ProductsDetailsAdmin />}
+              />
             </Route>
             <Route path="sails" element={<Sails />} />
           </Route>

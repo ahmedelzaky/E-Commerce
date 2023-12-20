@@ -90,6 +90,14 @@ export const productsActionColums = [
             Edit
           </Link>
 
+          <Link
+            className="viewButton"
+            to={`/admin/products/product/${params.row.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            View
+          </Link>
+
           <div
             className="deleteButton"
             onClick={() => handleProdcutDelete(params.row.id)}
@@ -174,7 +182,7 @@ export const pendingOrderActionColum = [
   {
     field: "action",
     headerName: "Actions",
-    width: 300,
+    width: 350,
     renderCell: (params) => {
       return (
         <div className="cellAction">
@@ -209,7 +217,7 @@ export const inProgressOrderActionColum = [
   {
     field: "action",
     headerName: "Actions",
-    width: 300,
+    width: 350,
     renderCell: (params) => {
       return (
         <div className="cellAction">

@@ -1,6 +1,9 @@
 import Datatable from "../../../component/admin/datatable/Datatable";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
-import { ProductsSoldColumns } from "../../../datatablesource";
+import {
+  ProductsSoldColumns,
+  productsActionColums,
+} from "../../../datatablesource";
 
 const Productslist = () => {
   return (
@@ -11,6 +14,7 @@ const Productslist = () => {
           url={`/products/sails`}
           columns={ProductsSoldColumns}
           title={"Sold Produycts"}
+          actionColum={productsActionColums}
           addNew={true}
         />
       </div>
