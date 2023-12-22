@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.dto.Earnings;
 import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
@@ -37,7 +38,7 @@ public class PaymentServices {
 
     private void editProductsStockQuantity(List<OrderItem> orderItems) {
         for (OrderItem item : orderItems) {
-            productServices.editStockQuantity(item.getProductId(), item.getQuantity());
+            productServices.editStockQuantity(item.getProductId(), item.getQuantity(), false);
         }
     }
 
@@ -46,9 +47,8 @@ public class PaymentServices {
 
         editProductsStockQuantity(payment.getOrder().getOrderItems());
 
-        if (payment.getPaymentMethod() == PaymentMethod.VISA)
-            payment.setPaymentDate(new Date());
-        
+        if (payment.getPaymentMethod() == PaymentMethod.VISA) payment.setPaymentDate(new Date());
+
         paymentRepository.save(payment);
     }
 
@@ -68,7 +68,15 @@ public class PaymentServices {
         return paymentRepository.getEarningsToday();
     }
 
+    public Double getHoldEarnings() {
+        return paymentRepository.getHoldEarnings();
+    }
+
     public List<Payment> getLatestPayments() {
         return paymentRepository.findLatestPayments();
+    }
+
+    public List<Earnings> getLast7DaysEarnings() {
+        return paymentRepository.getLast7DaysEarnings();
     }
 }

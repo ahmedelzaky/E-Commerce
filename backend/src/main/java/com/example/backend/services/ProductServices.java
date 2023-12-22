@@ -1,7 +1,9 @@
 package com.example.backend.services;
 
 
+import com.example.backend.dto.PriceHistoryDto;
 import com.example.backend.dto.ProductDto;
+import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
 import com.example.backend.repositorys.ProductRepository;
 import jakarta.transaction.Transactional;
@@ -106,10 +108,13 @@ public class ProductServices {
     }
 
     @Transactional
-    public void editStockQuantity(Long id, int qty) {
+    public void editStockQuantity(Long id, int qty, boolean isAdd) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("this product dose not exist"));
-        product.setStockQuantity(product.getStockQuantity() - qty);
-
+        if (isAdd) {
+            product.setStockQuantity(product.getStockQuantity() + qty);
+        } else {
+            product.setStockQuantity(product.getStockQuantity() - qty);
+        }
     }
 
     public List<ProductDto> getProducts(Integer min, Integer max, String sortBy, String order) {
@@ -179,5 +184,13 @@ public class ProductServices {
 
     public int getLowStockCount() {
         return productRepository.findLowStockCount();
+    }
+
+    public List<SoldProductDto> getProductsBySails() {
+        return productRepository.findProductsBySails();
+    }
+
+    public List<PriceHistoryDto> getPriceHistory(Long productId) {
+        return productRepository.findPriceHistory(productId);
     }
 }

@@ -18,6 +18,9 @@ public class OrderServices {
     @Autowired
     private OrderRepository repository;
 
+    @Autowired
+    private ProductServices productServices;
+
 
     public List<Order> findOrdersByDate(LocalDate date) {
         return repository.findOrdersByDate(date);
@@ -35,6 +38,11 @@ public class OrderServices {
     @Transactional
     public void updateOrderStatus(Long id, OrderStatus status) {
         Order order = repository.findById(id).orElseThrow(() -> new IllegalStateException("this order dose not exist"));
+        if (status == OrderStatus.CANCELLED) {
+            order.getOrderItems().forEach(orderItem -> {
+                productServices.editStockQuantity(orderItem.getProductId(), orderItem.getQuantity(), true);
+            });
+        }
         order.setStatus(status);
     }
 

@@ -1,5 +1,6 @@
 package com.example.backend.controllers;
 
+import com.example.backend.dto.Earnings;
 import com.example.backend.models.Payment;
 import com.example.backend.services.PaymentServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +55,16 @@ public class PaymentController {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
+
+    @GetMapping("/last-7days-earnings")
+    public List<Earnings> getLast7DaysEarnings() {
+        return paymentServices.getLast7DaysEarnings();
+    }
+
+    @GetMapping("/hold-earnings")
+    public Double getHoldEarnings() {
+        return paymentServices.getHoldEarnings();
+    }
+
+
 }
