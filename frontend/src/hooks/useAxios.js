@@ -28,6 +28,10 @@ const useAxios = (url) => {
       }
     };
     fetchData();
+
+    const intervalId = setInterval(fetchData, 60000);
+
+    return () => clearInterval(intervalId);
   }, [url, location.search]);
 
   return {

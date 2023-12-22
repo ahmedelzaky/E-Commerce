@@ -21,6 +21,7 @@ const Payment = () => {
   const cart = useSelector((state) => state.cart);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(null);
+  const [pendingPay, setPendingPay] = useState(false);
   const navigate = useNavigate();
 
   const [addressId, setAddressId] = useState("");
@@ -28,6 +29,7 @@ const Payment = () => {
   const { data: customer, isPending } = useAxios(`/customers/${USER.id}`);
 
   const handleCheckOut = async () => {
+    setPendingPay(true);
     const paymentSchema = {
       paymentMethod: payment,
       amount: cart?.reduce((total, item) => total + item.price * item.qty, 0),
@@ -48,6 +50,7 @@ const Payment = () => {
       console.log(err);
       setError(err.response.data);
     }
+    setPendingPay(false);
   };
 
   return (
@@ -124,7 +127,7 @@ const Payment = () => {
                     }}
                     className="checkout-btn"
                   >
-                    Checkout
+                    {pendingPay ? "Loading..." : "Check Out"}
                   </Button>
                 </center>
               </div>

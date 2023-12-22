@@ -8,6 +8,8 @@ import useAxios from "../../../hooks/useAxios";
 
 const Featured = () => {
   const { data: earnings } = useAxios("/payment/earnings-today");
+  const { data: holdEarnings } = useAxios("/payment/hold-earnings");
+
   const target = 10000;
   return (
     <div className="featured">
@@ -24,7 +26,9 @@ const Featured = () => {
           />
         </div>
         <p className="title">Total earnings made today</p>
-        <p className="amount">${earnings || 0}</p>
+        <p className="amount">${Number(earnings).toFixed(2)}</p>
+        <p className="title">In Hold</p>
+        <p className="amount">${Number(holdEarnings).toFixed(2)}</p>
         <div className="summary">
           <div className="item">
             <div className="itemTitle">Target</div>

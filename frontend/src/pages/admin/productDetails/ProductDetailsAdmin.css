@@ -1,0 +1,34 @@
+.product-details-admin .product-info {
+  flex: 1;
+  color: #333;
+}
+.product-details-admin .product-img {
+  width: 400px;
+  height: 600px;
+}
+
+.product-details-admin .product-info .product-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.product-details-admin .product-info .product-price,
+.product-details-admin .product-info .product-category {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.product-details-admin .product-info .product-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.product-details-admin .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 1rem;
+}

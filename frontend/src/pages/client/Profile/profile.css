@@ -9,24 +9,69 @@
 .profile .customer {
   background: #fff;
   padding: 30px;
+  margin-bottom: 50px;
   border-radius: 4px;
   box-shadow: var(--box-shadow-main);
 }
-.profile .orders {
-  background: #fff;
-  padding: 30px;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow-main);
-}
+.customer h4{
+  width:max-content ;
+  font-weight: bolder;
+  font-size: xx-large;
+  color: rgb(240, 182, 75);
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+  }
 .profile h6 {
   font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  display: flex;
+  margin-bottom: 15px;
   flex-wrap: wrap;
   align-items: center;
   font-family: 700;
   gap: 50px;
+}
+.label{
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.value{
+  font-size: 17px;
+  margin-left: 10px;
+}
+.customer:hover {
+  background-color: #f9f7f7;
+}
+/* .orders h6:hover{
+  background-color: #e0dbdb;
+} */
+.profile .orders {
+  background: #f9f7f7;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-main);
+}
+.status {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+.status.Approved {
+  color: #28a745;
+  background-color: #d4edda;
+}
+
+.status.Pending {
+  color: #ffc107;
+  background-color: #fff3cd;
+}
+.status.Cancelled {
+  color: rgb(233, 40, 40);
+  background-color: #f7c2c0;
+}
+.table>:not(caption)>*>*:hover,
+.css-1ex1afd-MuiTableCell-root:hover{
+  background: #eee;
 }
 
 @media (max-width: 768px) {
@@ -36,4 +81,9 @@
   .profile .row {
     flex-direction: column;
   }
+  .profile h4 .fa-user {
+    font-size: 24px;
+  }
 }
+
+

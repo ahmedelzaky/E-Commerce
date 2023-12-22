@@ -6,6 +6,7 @@ import { Button, Form } from "react-bootstrap";
 import FormControl from "../../component/FormControl";
 import logIn from "../../api/auth";
 import { ROLES } from "../../api/auth";
+import { motion } from "framer-motion";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,9 @@ const Signin = () => {
       window.location.reload();
     } else {
       setErrorMessage(errorMessage);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
     setIsPending(false);
   };
@@ -75,9 +79,17 @@ const Signin = () => {
             </Link>
           </p>
           {errorMessage && (
-            <p style={{ margin: "0" }} className="error">
-              {errorMessage}
-            </p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.5 }}
+            >
+              {" "}
+              <p style={{ margin: "0" }} className="error">
+                {errorMessage}
+              </p>
+            </motion.div>
           )}
         </div>
       </div>

@@ -25,7 +25,7 @@ const Order = () => {
                 <td>{item.title}</td>
                 <td>{item.qty}</td>
                 <td>${item.price}</td>
-                <td>${item.price * item.qty}</td>
+                <td>${(item.price * item.qty).toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
@@ -33,7 +33,9 @@ const Order = () => {
         <div className="total">
           <h5>
             Total: $
-            {cart?.reduce((total, item) => total + item.price * item.qty, 0)}
+            {cart
+              ?.reduce((total, item) => total + item.price * item.qty, 0)
+              .toFixed(2)}
           </h5>
         </div>
       </Card.Body>
