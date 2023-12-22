@@ -108,10 +108,13 @@ public class ProductServices {
     }
 
     @Transactional
-    public void editStockQuantity(Long id, int qty) {
+    public void editStockQuantity(Long id, int qty, boolean isAdd) {
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalStateException("this product dose not exist"));
-        product.setStockQuantity(product.getStockQuantity() - qty);
-
+        if (isAdd) {
+            product.setStockQuantity(product.getStockQuantity() + qty);
+        } else {
+            product.setStockQuantity(product.getStockQuantity() - qty);
+        }
     }
 
     public List<ProductDto> getProducts(Integer min, Integer max, String sortBy, String order) {

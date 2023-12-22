@@ -38,7 +38,7 @@ public class PaymentServices {
 
     private void editProductsStockQuantity(List<OrderItem> orderItems) {
         for (OrderItem item : orderItems) {
-            productServices.editStockQuantity(item.getProductId(), item.getQuantity());
+            productServices.editStockQuantity(item.getProductId(), item.getQuantity(), false);
         }
     }
 
