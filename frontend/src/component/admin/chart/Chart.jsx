@@ -1,5 +1,4 @@
 import "./chart.css";
-import "../../../style/dark.css";
 import {
   AreaChart,
   Area,

@@ -8,8 +8,6 @@ import Category from "./pages/client/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
 import SignIn from "./pages/signin/Signin";
 import SignUp from "./pages/signup/Signup";
-import { useContext } from "react";
-import { darkContext } from "./context/darkModeContext";
 import Orderslist from "./pages/admin/orderslist/Orderslist";
 import Productslist from "./pages/admin/productslist/Productslist";
 import Categorieslist from "./pages/admin/categorieslist/Categorieslist";
@@ -30,7 +28,6 @@ import Sails from "./pages/admin/sails/Sails";
 import ProductsDetailsAdmin from "./pages/admin/productDetails/ProductDetailsAdmin";
 
 function App() {
-  const { dark } = useContext(darkContext);
   const navigate = useNavigate();
 
   window.addEventListener("keypress", (e) => {
@@ -40,7 +37,7 @@ function App() {
   });
 
   return (
-    <div className={dark ? "app dark" : "app"}>
+    <div className={"app"}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all" element={<All />} />
