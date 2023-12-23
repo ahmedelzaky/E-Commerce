@@ -5,7 +5,7 @@ import LoadingScreen from "../../../component/LoadingScreen";
 import ErrorMessage from "../../../component/ErrorMessage";
 import "./orderdetails.css";
 import { Button } from "@mui/material";
-import { updateOrderStatus } from "../../../api/Server";
+import { updateOrderStatus } from "../../../api/apiServices";
 import CartTable from "../../../component/CartTable";
 
 const OrderDetails = () => {

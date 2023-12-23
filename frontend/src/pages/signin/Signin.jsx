@@ -60,15 +60,6 @@ const Signin = () => {
             value={password}
             setValue={setPassword}
           />
-          <div className="forget">
-            <div className="a">
-              <label className="container">
-                Remember Me
-                <input type="checkbox" defaultChecked="checked" />
-                <span className="checkmark" />
-              </label>
-            </div>
-          </div>
           <Button type="submit" disabled={isPending}>
             {isPending ? "Loading..." : "Sign In"}
           </Button>

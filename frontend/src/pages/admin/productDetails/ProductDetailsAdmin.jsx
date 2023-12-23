@@ -14,7 +14,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { deleteProduct } from "../../../api/Server";
+import { deleteProduct } from "../../../api/apiServices";
 
 const ProductDetailsAdmin = () => {
   const { productId } = useParams();

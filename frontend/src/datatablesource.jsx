@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { deleteCategory, deleteProduct, updateOrderStatus } from "./api/Server";
+import { deleteCategory, deleteProduct, updateOrderStatus } from "./api/apiServices";
 import { Button } from "@mui/material";
 
 export const customerColumns = [

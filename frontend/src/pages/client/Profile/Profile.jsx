@@ -6,7 +6,7 @@ import "./profile.css";
 import LoadingScreen from "../../../component/LoadingScreen";
 import ErrorMessage from "../../../component/ErrorMessage";
 import CartTable from "../../../component/CartTable";
-import { updateOrderStatus } from "../../../api/Server";
+import { updateOrderStatus } from "../../../api/apiServices";
 import { CgProfile } from "react-icons/cg";
 
 const Profile = () => {
