@@ -6,6 +6,7 @@ This repository contains an E-Commerce application built for a Database course. 
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Demo](#demo)
 - [Installation](#installation)
 - [License](#license)
 
@@ -16,7 +17,7 @@ This repository contains an E-Commerce application built for a Database course. 
 - Shopping cart functionality.
 - Secure checkout process.
 - Order history and tracking.
-- Admin panel for product and user management.
+- Admin panel for product and order management.
 
 ## Technologies Used
 
@@ -40,6 +41,9 @@ This repository contains an E-Commerce application built for a Database course. 
 ### Database:
 
 - PostgreSQL
+### Demo
+
+- [LiveDemo](https://e-commerce-git-frontend-ahmedelzaky.vercel.app/)
 
 ### Installation
 
