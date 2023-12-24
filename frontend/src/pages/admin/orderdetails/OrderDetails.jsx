@@ -5,7 +5,7 @@ import LoadingScreen from "../../../component/LoadingScreen";
 import ErrorMessage from "../../../component/ErrorMessage";
 import "./orderdetails.css";
 import { Button } from "@mui/material";
-import { updateOrderStatus } from "../../../api/Server";
+import { updateOrderStatus } from "../../../api/apiServices";
 import CartTable from "../../../component/CartTable";
 
 const OrderDetails = () => {
@@ -51,6 +51,8 @@ const OrderDetails = () => {
                   </li>
                 </ul>
                 <hr />
+              </li>
+              <ul>
                 <li>
                   {" "}
                   Order Date :{" "}
@@ -63,7 +65,7 @@ const OrderDetails = () => {
                     <span> {new Date(order?.arrivalDate).toUTCString()} </span>
                   </li>
                 )}
-              </li>
+              </ul>
               <hr />
               <li>
                 {" "}
@@ -88,7 +90,7 @@ const OrderDetails = () => {
             <hr />
 
             <h2>Cart</h2>
-            <CartTable orderId={orderId}></CartTable>
+            <CartTable orderId={Number(orderId)}></CartTable>
           </>
         )}
         <center>

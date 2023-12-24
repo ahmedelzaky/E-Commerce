@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { uploadCategory } from "../../../api/Server";
+import { uploadCategory } from "../../../api/apiServices";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
 import MainContainer from "../../../component/admin/new/MainContainer";

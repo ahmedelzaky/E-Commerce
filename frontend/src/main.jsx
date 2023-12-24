@@ -9,7 +9,6 @@ import "@fontsource/roboto/700.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import store from "./rtk/store";
-import DarkContextProvider from "./context/darkModeContext";
 import { BrowserRouter as Router } from "react-router-dom";
 
 store.subscribe(() => {
@@ -19,11 +18,9 @@ store.subscribe(() => {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <DarkContextProvider>
-        <Router>
-          <App />
-        </Router>
-      </DarkContextProvider>
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>
 );

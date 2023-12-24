@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import useAxios from "../../../hooks/useAxios";
-import { updateProduct } from "../../../api/Server";
+import { updateProduct } from "../../../api/apiServices";
 import ProductForm from "../../../component/admin/forms/ProductForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
 import MainContainer from "../../../component/admin/new/MainContainer";

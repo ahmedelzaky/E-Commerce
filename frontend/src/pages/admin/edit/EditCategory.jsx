@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateCategory } from "../../../api/Server";
+import { updateCategory } from "../../../api/apiServices";
 import CategoryForm from "../../../component/admin/forms/CategoryForm";
 import { useParams } from "react-router-dom";
 import useAxios from "../../../hooks/useAxios";

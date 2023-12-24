@@ -15,7 +15,6 @@ const Productslist = () => {
           columns={ProductsSoldColumns}
           title={"Sold Produycts"}
           actionColum={productsActionColums}
-          addNew={true}
         />
       </div>
     </div>

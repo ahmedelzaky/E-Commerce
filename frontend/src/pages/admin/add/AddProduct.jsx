@@ -1,5 +1,5 @@
 import { useState } from "react";
-import uploadProduct from "../../../api/Server";
+import uploadProduct from "../../../api/apiServices";
 import ProductForm from "../../../component/admin/forms/ProductForm";
 import FormStatus from "../../../component/admin/forms/FormStatus";
 import MainContainer from "../../../component/admin/new/MainContainer";
