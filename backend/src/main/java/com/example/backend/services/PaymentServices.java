@@ -43,6 +43,7 @@ public class PaymentServices {
     }
 
     public void pay(Payment payment) {
+        if (payment.getOrder().getAddressId() == null) throw new IllegalStateException("Address is required");
         CheckProductsQuantity(payment.getOrder().getOrderItems());
 
         editProductsStockQuantity(payment.getOrder().getOrderItems());

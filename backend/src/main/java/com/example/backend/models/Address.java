@@ -13,7 +13,7 @@ import lombok.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "customer_id")
     private Long customerId;
     private String street;
