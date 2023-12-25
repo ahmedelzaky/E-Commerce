@@ -21,12 +21,6 @@ public class ImageService {
         return (String) result.get("secure_url");
     }
 
-    public String uploadAndTransformImage(MultipartFile file) throws IOException {
-        Map<?, ?> result = cloudinary.uploader().upload(file.getBytes(),
-                ObjectUtils.asMap("transformation", new Transformation<>().width(300).height(300).crop("fill")));
-        return (String) result.get("secure_url");
-    }
-
     public void deleteImage(String imageUrl) {
         try {
             String publicId = imageUrl.substring(imageUrl.lastIndexOf("/") + 1, imageUrl.lastIndexOf("."));
