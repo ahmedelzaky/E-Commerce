@@ -27,7 +27,7 @@
   color: var(--hover-color);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .category {
     width: 330px;
   }

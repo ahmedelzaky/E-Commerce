@@ -255,7 +255,7 @@
 }
 
 /* ---media-phone--- */
-@media only screen and (max-width: 600px) {
+@media (max-width: 991px) {
   .login-page .r-section {
     display: none;
   }
