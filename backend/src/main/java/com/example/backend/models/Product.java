@@ -29,13 +29,4 @@ public class Product {
     @Column(columnDefinition = "numeric")
     private Float rating;
 
-    public Product(String title, Float price, String description, Long categoryId, String imageUrl, Integer stockQuantity, Float rating) {
-        this.title = title;
-        this.price = price;
-        this.description = description;
-        this.categoryId = categoryId;
-        this.imageUrl = imageUrl;
-        this.stockQuantity = stockQuantity;
-        this.rating = rating;
-    }
 }

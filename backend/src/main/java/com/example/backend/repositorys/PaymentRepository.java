@@ -29,9 +29,10 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query("SELECT p FROM Payment p  ORDER BY p.id DESC limit 5")
     List<Payment> findLatestPayments();
 
-    @Query(value = "SELECT TO_CHAR(payment_date, 'Day') AS day, " +
-            "       SUM(amount) AS earnings FROM payment_t " +
-            "       WHERE payment_date >= current_date - interval '7 days' GROUP BY day", nativeQuery = true)
+    @Query(value = "SELECT TO_CHAR(payment_date, 'Day') AS day,  SUM(amount)   AS earnings " +
+            "FROM payment_t WHERE payment_date >= current_date - interval '8 days'  " +
+            "and date(payment_date) != current_date GROUP BY day, date(payment_date) " +
+            "order by date(payment_date)", nativeQuery = true)
     List<Earnings> getLast7DaysEarnings();
 
     @Query("SELECT SUM(p.amount) FROM Payment p where p.order.status='PENDING' or p.order.status='IN_PROGRESS'")

@@ -13,12 +13,9 @@ import lombok.*;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     @Column(name = "country_id")
     private Long countryId;
 
-    public City(String name) {
-        this.name = name;
-    }
 }

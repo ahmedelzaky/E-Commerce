@@ -17,9 +17,9 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "customer_id")
-    private long customerId;
+    private Long customerId;
     @Column(name = "order_date", insertable = false)
     private Date orderDate;
     @Column(name = "arrival_date")
@@ -29,16 +29,10 @@ public class Order {
     private OrderStatus status;
 
     @Column(name = "address_id")
-    private long addressId;
+    private Long addressId;
 
     @OneToMany(targetEntity = OrderItem.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     List<OrderItem> orderItems;
 
-    public Order(long customerId, Date orderDate, Date arrivalDate, List<OrderItem> orderItems) {
-        this.customerId = customerId;
-        this.orderDate = orderDate;
-        this.arrivalDate = arrivalDate;
-        this.orderItems = orderItems;
-    }
 }

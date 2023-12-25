@@ -13,10 +13,6 @@ import lombok.*;
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
-
-    public Country(String name) {
-        this.name = name;
-    }
 }
