@@ -10,10 +10,6 @@
   border-radius: 10px;
 }
 
-.category p.price {
-  font-size: 20px;
-  font-weight: 600;
-}
 .category .card-title {
   height: 45px;
   text-decoration: none;

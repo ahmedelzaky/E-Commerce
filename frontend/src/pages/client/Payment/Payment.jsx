@@ -55,7 +55,7 @@ const Payment = () => {
     }
     setPendingPay(false);
   };
-
+  
   return (
     <NavBar>
       <div className="payment-page">
@@ -129,6 +129,7 @@ const Payment = () => {
                       setOpen(false);
                     }}
                     className="checkout-btn"
+                    disabled={pendingPay}
                   >
                     {pendingPay ? "Loading..." : "Check Out"}
                   </Button>
