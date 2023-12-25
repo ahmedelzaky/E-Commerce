@@ -26,15 +26,28 @@ import Profile from "./pages/client/Profile/Profile";
 import Payment from "./pages/client/Payment/Payment";
 import Sails from "./pages/admin/sails/Sails";
 import ProductsDetailsAdmin from "./pages/admin/productDetails/ProductDetailsAdmin";
+import { useDispatch } from "react-redux";
+import { refreshCart } from "./rtk/slices/cart-slice";
+import { useEffect } from "react";
 
 function App() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshCart());
 
-  window.addEventListener("keypress", (e) => {
-    if (e.key === "~" && e.shiftKey) {
-      navigate("/admin");
-    }
-  });
+    const handleKeyPress = (e) => {
+      if (e.key === "~" && e.shiftKey) {
+        navigate("/admin");
+      }
+    };
+
+    window.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [dispatch, navigate]);
 
   return (
     <div className={"app"}>

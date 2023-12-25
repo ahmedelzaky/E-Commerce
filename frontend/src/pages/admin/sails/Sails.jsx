@@ -2,7 +2,7 @@ import Datatable from "../../../component/admin/datatable/Datatable";
 import Sidebar from "../../../component/admin/sidebar/Sidebar";
 import {
   ProductsSoldColumns,
-  productsActionColums,
+  productsSailsActionColums,
 } from "../../../datatablesource";
 
 const Productslist = () => {
@@ -14,7 +14,7 @@ const Productslist = () => {
           url={`/products/sails`}
           columns={ProductsSoldColumns}
           title={"Sold Produycts"}
-          actionColum={productsActionColums}
+          actionColum={productsSailsActionColums}
         />
       </div>
     </div>
