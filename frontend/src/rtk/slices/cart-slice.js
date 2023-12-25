@@ -38,11 +38,21 @@ export const cartSlice = createSlice({
       product.title = action.payload.title;
       product.image = action.payload.image;
     },
+    clearCart: (state) => {
+      state = [];
+      return state;
+    },
   },
 });
 
-export const { addToCart, addToCartWithQty, update, removeFromCart, refresh } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  addToCartWithQty,
+  update,
+  removeFromCart,
+  refresh,
+  clearCart,
+} = cartSlice.actions;
 
 export const refreshCart = () => async (dispatch, getState) => {
   const cart = getState().cart;

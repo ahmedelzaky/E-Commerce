@@ -3,7 +3,7 @@ import "./payment.css";
 import { USER } from "../../../api/auth";
 import useAxios from "../../../hooks/useAxios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingScreen from "../../../component/LoadingScreen";
 import NavBar from "../../../component/client/NavBar/NavBar";
 import axios from "../../../api/axios";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../../component/ErrorMessage";
 import Order from "../../../component/client/Payment/Order";
 import Address from "../../../component/client/Payment/Address";
+import { clearCart } from "../../../rtk/slices/cart-slice";
 
 const PAYMENT_METHODS = {
   CASH: "CASH",
@@ -23,6 +24,7 @@ const Payment = () => {
   const [error, setError] = useState(null);
   const [pendingPay, setPendingPay] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [addressId, setAddressId] = useState("");
 
@@ -45,6 +47,7 @@ const Payment = () => {
     try {
       await axios.post("/payment/pay", paymentSchema);
       localStorage.removeItem("cart");
+      dispatch(clearCart());
       navigate("/profile");
     } catch (err) {
       console.log(err);
