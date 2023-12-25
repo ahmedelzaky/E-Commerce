@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { deleteCategory, deleteProduct, updateOrderStatus } from "./api/apiServices";
+import {
+  deleteCategory,
+  deleteProduct,
+  updateOrderStatus,
+} from "./api/apiServices";
 import { Button } from "@mui/material";
 
 export const customerColumns = [
@@ -109,7 +113,26 @@ export const productsActionColums = [
     },
   },
 ];
-
+export const productsSailsActionColums = [
+  {
+    field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Link
+            className="viewButton"
+            to={`/admin/products/product/${params.row.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            View
+          </Link>
+        </div>
+      );
+    },
+  },
+];
 export const orderColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {

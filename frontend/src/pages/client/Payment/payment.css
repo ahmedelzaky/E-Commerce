@@ -28,6 +28,11 @@
 .payment-page .customer .customer-details h6 span {
   font-size: 14px;
 }
+.payment-page .method input[type="radio"] {
+  margin-right: 5px;
+  accent-color: #0a58ca;
+
+}
 
 @media (max-width: 767px) {
   .payment-page .order {
