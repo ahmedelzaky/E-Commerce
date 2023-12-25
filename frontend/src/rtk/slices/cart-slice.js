@@ -37,6 +37,7 @@ export const cartSlice = createSlice({
       product.price = action.payload.price;
       product.title = action.payload.title;
       product.image = action.payload.image;
+      product.stockQuantity = action.payload.stockQuantity;
     },
     clearCart: (state) => {
       state = [];
@@ -67,6 +68,7 @@ export const refreshCart = () => async (dispatch, getState) => {
             price: productData.price,
             title: productData.title,
             image: productData.image,
+            stockQuantity: productData.stockQuantity,
           })
         );
       });
