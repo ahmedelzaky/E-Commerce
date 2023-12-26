@@ -52,3 +52,16 @@
   border: none;
   border-bottom: 1px solid gray;
 }
+.mainContainer .top h1 {
+  color: #7451f8;
+}
+.mainContainer .bottom button.btn {
+  background-color: #7451f8;
+  color: #fff;
+  border: none;
+}
+.mainContainer .bottom button.btn:hover {
+  background-color: #fff;
+  color: #7451f8;
+  border: 1px solid #7451f8;
+}
