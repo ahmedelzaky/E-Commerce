@@ -21,16 +21,62 @@
   background-color: #fff;
   border-bottom: 1px solid #eee;
 }
+h1{
+  font-weight: bolder;
+  font-size: 65px;
+  color: rgb(240, 182, 75);
+  padding-bottom: 20px;
+}
 
-.payment-page .customer .customer-details h6 {
-  margin-bottom: 10px;
+h3{
+  color: rgb(240, 182, 75);
+  font-size: 28px;
+  margin: 15px;
+  font-family: 700;
 }
-.payment-page .customer .customer-details h6 span {
-  font-size: 14px;
+
+.label{
+  line-height: 35px;
+  font-size: 20px;
+  font-weight: bold;
 }
-.payment-page .method input[type="radio"] {
+.value{
+  font-size: 17px;
+  margin-left: 15px;
+}
+
+.address-item{
+  padding: 10px;
+  font-size: 18px;
+}
+
+.add-address-btn.mt-3.btn.btn-primary,
+.btn.btn-primary {
+  background-color: rgb(236, 177, 68);
+  --bs-btn-active-bg: rgb(236, 177, 68);
+  margin-left: 10px;
+  --bs-btn-border-color: text-transform;
+}
+
+.error .error-icon {
+  margin-right: 0;
+}
+
+.dropdown-item.btn.btn-primary{
+  background-color: transparent;
+  --bs-btn-border-color: text-transform;
+  margin-left: 0;
+  
+}
+.dropdown-item.btn.btn-primary:hover{
+  background-color: #f8f8f8;
+  color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
+}
+
+
+input[type="radio"] {
   margin-right: 5px;
-  accent-color: #0a58ca;
+  accent-color: #9e8e46;
 
 }
 
@@ -39,3 +85,7 @@
     overflow-x: scroll;
   }
 }
+
+
+
+

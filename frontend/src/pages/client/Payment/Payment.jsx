@@ -77,16 +77,16 @@ const Payment = () => {
                 <Card.Body>
                   <div className="customer-details">
                     <h6>
-                      Name:{" "}
-                      <span>
-                        {customer?.firstName + " " + customer?.lastName}
-                      </span>
+                      <span className="label">Name:{" "}</span>
+                      <span className="value">{customer?.firstName + " " + customer?.lastName}</span>
                     </h6>
                     <h6>
-                      Email: <span>{customer?.email}</span>
+                      <span className="label">Email:</span>
+                      <span className="value"> {customer?.email}</span>
                     </h6>
                     <h6>
-                      Phone: <span>{customer?.phone}</span>
+                      <span className="label">Phone:</span>
+                      <span className="value">{customer?.phone}</span>
                     </h6>
                   </div>
                 </Card.Body>
