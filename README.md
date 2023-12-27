@@ -43,7 +43,7 @@ This repository contains an E-Commerce application built for a Database course. 
 - PostgreSQL
 ### Demo
 
-- [LiveDemo](https://e-commerce-git-frontend-ahmedelzaky.vercel.app/)
+- [LiveDemo](https://e-commerce-ahmedelzaky.vercel.app)
 
 ### Installation
 
