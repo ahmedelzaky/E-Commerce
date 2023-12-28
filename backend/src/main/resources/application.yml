@@ -9,6 +9,18 @@ spring:
     show-sql: true
     properties:
       hibernate.format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: amagon.ecommerce
+    password: trlm room uupd acwz
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 server:
   error:
     include-message: always
@@ -20,6 +32,7 @@ management:
   endpoint:
     info:
       enabled: true
+
 
 application:
   security:

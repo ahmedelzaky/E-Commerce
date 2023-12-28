@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.dto.CustomerDto;
 import com.example.backend.dto.Earnings;
 import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
@@ -20,6 +21,10 @@ public class PaymentServices {
 
     @Autowired
     private ProductServices productServices;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private CustomerServices customerServices;
 
     public List<Payment> getPayment() {
         return paymentRepository.findAll();
@@ -50,6 +55,9 @@ public class PaymentServices {
 
         if (payment.getPaymentMethod() == PaymentMethod.VISA) payment.setPaymentDate(new Date());
 
+        CustomerDto customer = customerServices.getCustomerById(payment.getOrder().getCustomerId());
+
+        emailService.sendEmail(customer.getEmail(), "Order is placed", createPaymentEmail(payment));
         paymentRepository.save(payment);
     }
 
@@ -79,5 +87,19 @@ public class PaymentServices {
 
     public List<Earnings> getLast7DaysEarnings() {
         return paymentRepository.getLast7DaysEarnings();
+    }
+
+    String createPaymentEmail(Payment payment) {
+        CustomerDto customer = customerServices.getCustomerById(payment.getOrder().getCustomerId());
+        String email = "Dear " + customer.getFirstName() + " " + customer.getLastName() + ",\n\n" +
+                "Your order is placed successfully.\n\n" +
+                "Order details:\n" +
+                "Order Date: " + new Date() + "\n" +
+                "Payment Method: " + payment.getPaymentMethod() + "\n" +
+                "Total Price: " + payment.getAmount() + "\n\n" +
+                "Thank you for shopping with us.\n\n" +
+                "Regards,\n" +
+                "Amagon Team";
+        return email;
     }
 }
