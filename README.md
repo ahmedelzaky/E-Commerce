@@ -44,6 +44,10 @@ This repository contains an E-Commerce application built for a Database course. 
 ### Demo
 - [Video](https://www.youtube.com/watch?v=RzZj42CNfkM)
 - [LiveDemo](https://e-commerce-ahmedelzaky.vercel.app)
+- You Can Access Dashboard By Pressing `shift` + `~`
+- Username: admin
+- Password: admin
+
 
 ### Installation
 
