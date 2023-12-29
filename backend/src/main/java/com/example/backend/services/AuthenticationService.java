@@ -28,6 +28,8 @@ public class AuthenticationService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private EmailService emailService;
 
     public AuthenticationResponse register(RegisterRequest request) {
         if (repository.findByEmail(request.getEmail()).isPresent()) {
@@ -39,6 +41,8 @@ public class AuthenticationService {
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
         var savedUser = repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);
+        emailService.sendEmail(user.getEmail(), "Welcome to our website", "Welcome " + user.getFirstName() + " " + user.getLastName() + " to our website");
+
         return AuthenticationResponse.builder().token(jwtToken).build();
 
     }

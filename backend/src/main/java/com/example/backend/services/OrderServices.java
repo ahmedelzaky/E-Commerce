@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.dto.CustomerDto;
 import com.example.backend.dto.OrderDetailsDTO;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
@@ -20,6 +21,11 @@ public class OrderServices {
 
     @Autowired
     private ProductServices productServices;
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private CustomerServices CustomerServices;
 
 
     public List<Order> findOrdersByDate(LocalDate date) {
@@ -38,12 +44,30 @@ public class OrderServices {
     @Transactional
     public void updateOrderStatus(Long id, OrderStatus status) {
         Order order = repository.findById(id).orElseThrow(() -> new IllegalStateException("this order dose not exist"));
+        if (order.getStatus() == OrderStatus.CANCELLED) {
+            throw new IllegalStateException("this order is already cancelled");
+        }
+        if (order.getStatus() == OrderStatus.COMPLETED) {
+            throw new IllegalStateException("this order is already delivered");
+        }
         if (status == OrderStatus.CANCELLED) {
             order.getOrderItems().forEach(orderItem -> {
                 productServices.editStockQuantity(orderItem.getProductId(), orderItem.getQuantity(), true);
             });
+            CustomerDto customer = CustomerServices.getCustomerById(order.getCustomerId());
+            emailService.sendEmail(customer.getEmail(), "Order is cancelled", createOrderCancelledEmail(order, customer));
+
         }
         order.setStatus(status);
+    }
+
+    private String createOrderCancelledEmail(Order order, CustomerDto customer) {
+        return "Dear " + customer.getFirstName() + " " + customer.getLastName() + "\n" +
+                "Your order is cancelled\n" +
+                "Order id: " + order.getId() + "\n" +
+                "Order date: " + order.getOrderDate() + "\n" +
+                "Order status: " + order.getStatus() + "\n" +
+                "Thank you for shopping with us";
     }
 
 
