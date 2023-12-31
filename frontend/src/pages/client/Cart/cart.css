@@ -45,6 +45,7 @@
 
 .cart .details {
   flex: 1;
+  width: 100%;
 }
 
 .cart .details h4,
@@ -101,6 +102,9 @@
   }
   .cart .item {
     flex-direction: column;
+    .col {
+      flex: 0;
+    }
   }
 
   .cart .payment {

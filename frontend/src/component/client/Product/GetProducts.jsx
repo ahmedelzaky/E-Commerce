@@ -45,7 +45,7 @@ const GetProducts = ({ url }) => {
     dispatch(addToCart(product));
     setTimeout(() => {
       setShow(false);
-    }, 500);
+    }, 800);
   };
 
   return (
@@ -75,6 +75,7 @@ const GetProducts = ({ url }) => {
                         height: "250px",
                         width: "250px",
                       }}
+                      loading="lazy"
                     />
                   </center>
                   <Card.Body>
