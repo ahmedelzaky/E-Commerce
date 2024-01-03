@@ -6,7 +6,7 @@ import com.example.backend.enums.PaymentMethod;
 import com.example.backend.models.OrderItem;
 import com.example.backend.models.Payment;
 import com.example.backend.models.Product;
-import com.example.backend.repositorys.PaymentRepository;
+import com.example.backend.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -5,7 +5,7 @@ import com.example.backend.dto.PriceHistoryDto;
 import com.example.backend.dto.ProductDto;
 import com.example.backend.dto.SoldProductDto;
 import com.example.backend.models.Product;
-import com.example.backend.repositorys.ProductRepository;
+import com.example.backend.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.example.backend.services;
 
 import com.example.backend.models.Country;
-import com.example.backend.repositorys.CountryRepository;
+import com.example.backend.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

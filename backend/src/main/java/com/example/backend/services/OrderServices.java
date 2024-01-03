@@ -4,7 +4,7 @@ import com.example.backend.dto.CustomerDto;
 import com.example.backend.dto.OrderDetailsDTO;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
-import com.example.backend.repositorys.OrderRepository;
+import com.example.backend.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
