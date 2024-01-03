@@ -44,9 +44,9 @@ const Suggestions = ({ category, currendId }) => {
                   <Card.Body>
                     <Card.Title>
                       <a href={`/product/${product.id}`}>
-                        {product.title.length < 50
+                        {product.title.length < 40
                           ? product.title
-                          : product.title.slice(0, 50) + "..."}
+                          : product.title.slice(0, 40) + "..."}
                       </a>
                     </Card.Title>
                   </Card.Body>
