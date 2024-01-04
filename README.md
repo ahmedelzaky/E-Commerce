@@ -86,6 +86,8 @@ To run this project locally, follow the instructions below.
    npm install
    npm run dev
    ```
+# ER DIAGRAM
+![drawSQL-e-commerce-export-2024-01-04](https://github.com/ahmedelzaky/E-Commerce/assets/89663624/9ff5e9bc-fe82-4212-ae93-ba0e91d33989)
 
 # License
 
