@@ -94,6 +94,9 @@
   .cart .container {
     justify-content: center;
   }
+  .cart .actions .btn {
+    margin-top: 0;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -109,11 +112,5 @@
 
   .cart .payment {
     position: inherit;
-  }
-}
-
-@media (max-width: 768px) {
-  .cart .actions .btn {
-    margin-top: 0;
   }
 }

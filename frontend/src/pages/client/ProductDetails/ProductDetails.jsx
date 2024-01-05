@@ -29,11 +29,10 @@ const ProductDetails = () => {
 
   return (
     <NavBar>
+      {show && <AddedPopup />}
       <div className="product-details">
         {isPending && <LoadingScreen />}
         {error && <ErrorMessage> {error} </ErrorMessage>}
-        {show && <AddedPopup />}
-
         <Container>
           {product && (
             <Row>
@@ -59,17 +58,18 @@ const ProductDetails = () => {
                   <p className="out-stock">Out OF Stock</p>
                 )}
                 <p className="product-description"> {product.description} </p>
-
-                <p> Qty </p>
-                <div>
-                  <input
-                    type="number"
-                    min="1"
-                    max={product.stockQuantity}
-                    defaultValue={qty}
-                    onBlur={(e) => setQty(e.target.value)}
-                  />
-                  <br />
+                <div className="add-qty">
+                  <div className="qty">
+                    <p> Qty </p>
+                    <input
+                      type="number"
+                      min="1"
+                      max={product.stockQuantity}
+                      label="Qty"
+                      defaultValue={qty}
+                      onBlur={(e) => setQty(e.target.value)}
+                    />
+                  </div>
                   <Button
                     disabled={product.stockQuantity === 0}
                     variant="warning"
