@@ -1,7 +1,7 @@
 package com.example.backend.services;
 
 import com.example.backend.models.Category;
-import com.example.backend.repositorys.CategoryRepository;
+import com.example.backend.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

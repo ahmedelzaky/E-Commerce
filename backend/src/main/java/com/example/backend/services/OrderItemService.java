@@ -1,7 +1,7 @@
 package com.example.backend.services;
 
 import com.example.backend.dto.CartDto;
-import com.example.backend.repositorys.OrderItemRepository;
+import com.example.backend.repository.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

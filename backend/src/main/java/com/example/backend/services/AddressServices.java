@@ -2,7 +2,7 @@ package com.example.backend.services;
 
 import com.example.backend.dto.AddressDto;
 import com.example.backend.models.Address;
-import com.example.backend.repositorys.AddressRepository;
+import com.example.backend.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

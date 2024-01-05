@@ -1,4 +1,4 @@
-package com.example.backend.repositorys;
+package com.example.backend.repository;
 
 import com.example.backend.models.Country;
 import org.springframework.data.jpa.repository.JpaRepository;

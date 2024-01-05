@@ -6,7 +6,7 @@ import com.example.backend.auth.RegisterRequest;
 import com.example.backend.dto.UserDto;
 import com.example.backend.jwt.JwtUtils;
 import com.example.backend.models.User;
-import com.example.backend.repositorys.UserRepository;
+import com.example.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,10 +38,13 @@ public class AuthenticationService {
             throw new IllegalStateException("Phone number already exists");
         }
 
-        var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(request.getRole()).phone(request.getPhone()).build();
-        var savedUser = repository.save(user);
+        var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(request.getRole()).phone(request.getPhone()).build();
+        repository.save(user);
         var jwtToken = jwtUtils.generateToken(user);
-        emailService.sendEmail(user.getEmail(), "Welcome to our website", "Welcome " + user.getFirstName() + " " + user.getLastName() + " to our website");
+        emailService.sendEmail(user.getEmail(), "Welcome to our website",
+                "Welcome " + user.getFirstName() + " " + user.getLastName() + " to our website");
 
         return AuthenticationResponse.builder().token(jwtToken).build();
 
@@ -50,7 +53,8 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
 
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+            authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         } catch (Exception e) {
             throw new Exception("Invalid username/password");
         }
@@ -58,9 +62,7 @@ public class AuthenticationService {
 
         var jwtToken = jwtUtils.generateToken(user);
 
-
         return AuthenticationResponse.builder().user(new UserDto(user.getId(), user.getRole())).token(jwtToken).build();
     }
-
 
 }
