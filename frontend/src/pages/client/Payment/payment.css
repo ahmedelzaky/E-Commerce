@@ -21,37 +21,37 @@
   background-color: #fff;
   border-bottom: 1px solid #eee;
 }
-h1{
+.payment-page h1 {
   font-weight: bolder;
   font-size: 65px;
   color: rgb(240, 182, 75);
   padding-bottom: 20px;
 }
 
-h3{
+.payment-page h3 {
   color: rgb(240, 182, 75);
   font-size: 28px;
   margin: 15px;
   font-family: 700;
 }
 
-.label{
+.payment-page .label {
   line-height: 35px;
   font-size: 20px;
   font-weight: bold;
 }
-.value{
+.payment-page .value {
   font-size: 17px;
   margin-left: 15px;
 }
 
-.address-item{
+.payment-page .address-item {
   padding: 10px;
   font-size: 18px;
 }
 
-.add-address-btn.mt-3.btn.btn-primary,
-.btn.btn-primary {
+.payment-page .add-address-btn.mt-3.btn.btn-primary,
+.payment-page .btn.btn-primary {
   background-color: rgb(236, 177, 68);
   --bs-btn-active-bg: rgb(236, 177, 68);
   margin-left: 10px;
@@ -62,22 +62,19 @@ h3{
   margin-right: 0;
 }
 
-.dropdown-item.btn.btn-primary{
+.payment-page .dropdown-item.btn.btn-primary {
   background-color: transparent;
   --bs-btn-border-color: text-transform;
   margin-left: 0;
-  
 }
-.dropdown-item.btn.btn-primary:hover{
+.payment-page .dropdown-item.btn.btn-primary:hover {
   background-color: #f8f8f8;
-  color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
 }
 
-
-input[type="radio"] {
+.payment-page input[type="radio"] {
   margin-right: 5px;
   accent-color: #9e8e46;
-
 }
 
 @media (max-width: 767px) {
@@ -85,7 +82,3 @@ input[type="radio"] {
     overflow-x: scroll;
   }
 }
-
-
-
-
