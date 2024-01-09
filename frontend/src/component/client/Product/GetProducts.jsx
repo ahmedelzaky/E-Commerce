@@ -16,11 +16,10 @@ import AddedPopup from "./AddedPopup";
 
 const GetProducts = ({ url }) => {
   const { data: products, isPending, error } = useAxios(url);
-  const [show, setShow] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [PopupKey, setPopupKey] = useState(null);
 
   const dispatch = useDispatch();
-
-  const [currentPage, setCurrentPage] = useState(1);
 
   const productsPerPage = 12;
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -41,11 +40,9 @@ const GetProducts = ({ url }) => {
     setCurrentPage(pageNumber);
   };
   const handleAddToCart = (product) => {
-    setShow(true);
+    product.stockQuantity--;
+    setPopupKey(`${product.id}${product.stockQuantity}`);
     dispatch(addToCart(product));
-    setTimeout(() => {
-      setShow(false);
-    }, 800);
   };
 
   return (
@@ -56,7 +53,7 @@ const GetProducts = ({ url }) => {
         {products && products.length === 0 && (
           <ErrorMessage> No products found </ErrorMessage>
         )}
-        {show && <AddedPopup />}
+        {PopupKey && <AddedPopup key={PopupKey} />}
         {products &&
           currentProducts.map((product) => (
             <Col key={product.id}>
@@ -89,7 +86,7 @@ const GetProducts = ({ url }) => {
                     <p className="price">{product.price}$</p>
                     <center>
                       <Button
-                        disabled={product.stockQuantity === 0}
+                        disabled={product.stockQuantity <= 0}
                         variant="warning"
                         onClick={() => {
                           handleAddToCart(product);

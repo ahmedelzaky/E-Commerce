@@ -17,19 +17,17 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const { data: product, isPending, error } = useAxios(`/products/${id}`);
-  const [show, setShow] = useState(false);
+  const [PopupKey, setPopupKey] = useState(null);
 
   const handleAddToCart = (product, qty) => {
-    setShow(true);
+    product.stockQuantity -= qty;
+    setPopupKey(`${product.id}${product.stockQuantity}`);
     dispatch(addToCartWithQty({ ...product, qty }));
-    setTimeout(() => {
-      setShow(false);
-    }, 500);
   };
 
   return (
     <NavBar>
-      {show && <AddedPopup />}
+      {PopupKey && <AddedPopup key={PopupKey} />}
       <div className="product-details">
         {isPending && <LoadingScreen />}
         {error && <ErrorMessage> {error} </ErrorMessage>}
@@ -71,7 +69,7 @@ const ProductDetails = () => {
                     />
                   </div>
                   <Button
-                    disabled={product.stockQuantity === 0}
+                    disabled={product.stockQuantity <= 0}
                     variant="warning"
                     onClick={() => {
                       handleAddToCart(product, qty);
