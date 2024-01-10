@@ -1,6 +1,7 @@
 package com.example.backend.repository;
 
 import com.example.backend.dto.OrderDetailsDTO;
+import com.example.backend.dto.OrderDto;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,8 +27,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT COUNT(o) FROM Order o where o.status=?1")
     Long countOrdersByStatus(OrderStatus status);
 
-    @Query("SELECT o FROM Order o where o.status=?1 ORDER BY  case when o.status = 'COMPLETED' THEN o.id END DESC , case when o.status != 'COMPLETED' THEN o.id END ASC ")
-    List<Order> findOrdersByStatus(OrderStatus status);
+    @Query("SELECT o.customerId as customerId , o.id as id , o.arrivalDate as arrivalDate , o.orderDate as orderDate" +
+            " FROM Order o where o.status=?1 ORDER BY " +
+            " case when o.status = 'COMPLETED' THEN o.id END DESC ," +
+            " case when o.status != 'COMPLETED' THEN o.id END ASC ")
+    List<OrderDto> findOrdersByStatus(OrderStatus status);
 
     @Query(value = "SELECT * FROM get_order_details(:id)", nativeQuery = true)
     Optional<OrderDetailsDTO> findOrderDetails(Long id);

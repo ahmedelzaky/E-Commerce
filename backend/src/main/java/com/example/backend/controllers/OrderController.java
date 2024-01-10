@@ -1,6 +1,7 @@
 package com.example.backend.controllers;
 
 import com.example.backend.dto.OrderDetailsDTO;
+import com.example.backend.dto.OrderDto;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.services.OrderServices;
@@ -38,7 +39,7 @@ public class OrderController {
     }
 
     @GetMapping("get-orders-by-status/{status}")
-    public List<Order> getOrdersByStatus(@PathVariable("status") OrderStatus status) {
+    public List<OrderDto> getOrdersByStatus(@PathVariable("status") OrderStatus status) {
         return orderServices.getOrdersByStatus(status);
     }
 
