@@ -5,10 +5,16 @@
 
 .cart .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 30px;
   flex-direction: row;
+}
+
+
+form {
+  display: flex;
+  gap: 30px;
+  align-items: start;
 }
 
 .cart .items {
@@ -30,14 +36,17 @@
   height: 200px;
   width: 200px;
 }
+
 .cart .item .in-stock {
   color: green;
   font-weight: 500;
 }
+
 .cart .item .med-stock {
   color: orange;
   font-weight: 500;
 }
+
 .cart .item .out-stock {
   color: red;
   font-weight: 500;
@@ -52,10 +61,12 @@
 .cart .details h5 {
   margin: 0;
 }
+
 .cart .details h4 a {
   text-decoration: none;
   color: #333;
 }
+
 .cart .details h4 a:hover {
   color: var(--hover-color);
 }
@@ -70,13 +81,14 @@
   width: 60px;
   margin-left: 10px;
 }
+
 .cart .actions .btn {
   margin-top: 24px;
 }
 
 .cart .payment {
-  position: fixed;
-  left: calc(50% + 300px);
+  position: sticky;
+  top: 100px;
   background-color: #fff;
   width: 300px;
   padding: 20px;
@@ -94,17 +106,21 @@
   .cart .container {
     justify-content: center;
   }
+
   .cart .actions .btn {
     margin-top: 0;
   }
+
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   .cart .item {
     flex-direction: column;
+
     .col {
       flex: 0;
     }

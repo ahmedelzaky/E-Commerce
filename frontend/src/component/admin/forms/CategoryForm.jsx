@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const CategoryForm = ({ handleSubmit, categoryData, isPending }) => {
@@ -29,12 +29,13 @@ const CategoryForm = ({ handleSubmit, categoryData, isPending }) => {
 
   return (
     <Form
+      style={{ display: "block" }}
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit(category, file);
       }}
     >
-      <Row className="mb-3">
+      <Row style={{ gap: "30px" }} className="mb-3">
         <Form.Group controlId="formTitle">
           <Form.Label>Category name:</Form.Label>
           <Form.Control
@@ -64,17 +65,17 @@ const CategoryForm = ({ handleSubmit, categoryData, isPending }) => {
             )}
           </center>
         </Form.Group>
+        <Col className="d-flex justify-content-center" lg={12}>
+          <Button
+            className="mt-3"
+            variant="primary"
+            disabled={isPending}
+            type="submit"
+          >
+            {isPending ? "Submiting..." : "Submit"}
+          </Button>
+        </Col>
       </Row>
-      <center>
-        <Button
-          className="mt-3"
-          variant="primary"
-          disabled={isPending}
-          type="submit"
-        >
-          {isPending ? "Submiting..." : "Submit"}
-        </Button>
-      </center>
     </Form>
   );
 };

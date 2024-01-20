@@ -139,17 +139,17 @@ const ProductForm = ({ handleSubmit, isPending, productData }) => {
             )}
           </center>
         </Form.Group>
+        <Col className="d-flex justify-content-center" lg={12}>
+          <Button
+            className="mt-3"
+            variant="primary"
+            disabled={isPending}
+            type="submit"
+          >
+            {isPending ? "Submiting..." : "Submit"}
+          </Button>
+        </Col>
       </Row>
-      <center>
-        <Button
-          className="mt-3"
-          variant="primary"
-          disabled={isPending}
-          type="submit"
-        >
-          {isPending ? "Submiting..." : "Submit"}
-        </Button>
-      </center>
     </Form>
   );
 };
