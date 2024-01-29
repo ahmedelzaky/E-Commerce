@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
         info = @Info(
                 description = " OpenApi Documentation for E-Commerce",
                 title = "E-Commerce",
-                version = "0.5"
+                version = "1.0.1"
         ),
         servers = {
                 @Server(

@@ -2,6 +2,7 @@ package com.example.backend.services;
 
 import com.example.backend.dto.CustomerDto;
 import com.example.backend.dto.OrderDetailsDTO;
+import com.example.backend.dto.OrderDto;
 import com.example.backend.enums.OrderStatus;
 import com.example.backend.models.Order;
 import com.example.backend.repository.OrderRepository;
@@ -75,7 +76,7 @@ public class OrderServices {
         return repository.countOrdersByStatus(status);
     }
 
-    public List<Order> getOrdersByStatus(OrderStatus status) {
+    public List<OrderDto> getOrdersByStatus(OrderStatus status) {
         return repository.findOrdersByStatus(status);
     }
 

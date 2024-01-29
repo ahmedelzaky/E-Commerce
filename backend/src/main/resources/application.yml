@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cktperunfb1c738p5hig-a.frankfurt-postgres.render.com/ecommerce_vbrg
+    url: jdbc:postgresql://dpg-cms2fca1hbls73drnhg0-a.frankfurt-postgres.render.com/ecommerce_vbrg
     username: root
-    password: rbRNkCxQrciZfGfl7RpngEVKyjdVxjLZ
+    password: w09WWrRvatF13p36sp5OpiyWeyxJGfTZ
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
