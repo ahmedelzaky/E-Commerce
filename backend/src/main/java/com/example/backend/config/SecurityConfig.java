@@ -38,8 +38,7 @@ public class SecurityConfig {
             "/webjars/**",
             "/swagger-ui.html",
             "/",
-            "/api/products",
-            "/api/categories",};
+    };
 
 
     @Bean
@@ -50,13 +49,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL).permitAll()
                                 .requestMatchers("GET", "/api/products/**").permitAll()
+                                .requestMatchers("GET", "/api/categories/**").permitAll()
                                 .requestMatchers("POST", "/api/products/**").hasRole("ADMIN")
                                 .requestMatchers("PUT", "/api/products/**").hasRole("ADMIN")
                                 .requestMatchers("DELETE", "/api/products/**").hasRole("ADMIN")
-                                .requestMatchers("GET", "/api/categories/**").permitAll()
                                 .requestMatchers("POST", "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers("PUT", "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers("DELETE", "/api/categories/**").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/payment/last-7days-earnings").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/payment/hold-earnings").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/payment/earnings").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/payment/earnings-today").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/payment/get-latest-payment").hasRole("ADMIN")
+                                .requestMatchers("GET", "/api/orders/orders-count/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

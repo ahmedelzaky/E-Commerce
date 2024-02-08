@@ -16,15 +16,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     @Query("SELECT u.id as id , u.email as email , u.firstName as firstName , u.lastName as lastName " +
-            ", u.role as role , u.phone as phone , u.joinDate as  joinDate  from User u WHERE u.role = 'USER'")
+            ", u.role as role , u.phone as phone , u.joinDate as  joinDate  from User u WHERE u.role = 'ROLE_USER'")
     List<CustomerDto> getCustomers();
 
-    @Query("SELECT count(u) from User u WHERE u.role = 'USER'")
+    @Query("SELECT count(u) from User u WHERE u.role = 'ROLE_USER'")
     Long findCustomerCount();
 
 
     @Query("SELECT u.id as id , u.email as email , u.firstName as firstName , u.lastName as lastName "
-            + ", u.role as role , u.phone as phone  , u.joinDate as  joinDate  from User u WHERE u.id = ?1 AND u.role = 'USER'")
+            + ", u.role as role , u.phone as phone  , u.joinDate as  joinDate  from User u WHERE u.id = ?1 AND u.role = 'ROLE_USER'")
     Optional<CustomerDto> findCustomerById(Long id);
 
     @Query("SELECT u.id as id , u.role as role   from User u WHERE u.id = ?1")

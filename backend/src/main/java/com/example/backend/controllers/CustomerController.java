@@ -17,7 +17,6 @@ public class CustomerController {
 
     @Autowired
     private CustomerServices customerServices;
-
     @GetMapping
     public List<CustomerDto> getCustomers() {
         return customerServices.getCustomers();
