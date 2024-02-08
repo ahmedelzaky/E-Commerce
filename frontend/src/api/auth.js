@@ -1,8 +1,8 @@
 import axios from "./axios";
 export const USER = JSON.parse(localStorage.getItem("user"));
 export const ROLES = {
-  user: "USER",
-  admin: "ADMIN",
+  user: "ROLE_USER",
+  admin: "ROLE_ADMIN",
 };
 
 const logIn = async (email, password) => {
