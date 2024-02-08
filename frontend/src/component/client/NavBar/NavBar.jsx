@@ -60,7 +60,7 @@ const NavBar = ({ children }) => {
 
   return (
     <>
-      <Navbar ref={ref} expand="lg" className="bg-body-tertiary" fixed="top">
+      <Navbar ref={ref} expand="lg" fixed="top">
         <Container fluid>
           <Navbar.Brand>
             <Link to={"/"}>
