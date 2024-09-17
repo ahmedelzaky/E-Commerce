@@ -2290,6 +2290,8 @@ INSERT INTO public.user_t (id, first_name, last_name, email, phone, join_date, p
 INSERT INTO public.user_t (id, first_name, last_name, email, phone, join_date, password, role) VALUES (1051, 'Casandra', 'Hadcroft', 'chadcroftrr@thetimes.co.uk', '+92 995 329 2686', '2023-12-28 17:07:46.635276', 'oC4<''t=NX@', 'USER');
 INSERT INTO public.user_t (id, first_name, last_name, email, phone, join_date, password, role) VALUES (1052, 'Ahmad', 'Kasme', 'gombizombi1@gmail.com', '+201017826756', '2023-12-28 21:05:49.924752', '$2a$10$3bmivxt3El8u2WOc7VsjtujNBnsa9QgoVzsNGPohRNZmJpAhffUUi', 'USER');
 
+UPDATE  user_t set role = 'ROLE_ADMIN' WHERE role =  'ADMIN';
+UPDATE  user_t set role = 'ROLE_USER' WHERE role =  'USER';
 
 --
 -- Name: address_t_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
